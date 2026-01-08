@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Gap Analysis | Blake V. Edwards | Barnes Maloney PLLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #1e293b;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --warm-white: #f8fafc;
+      --white: #ffffff;
+      --brand-primary: #1e3a5f;
+      --brand-blue: #2563eb;
+      --brand-light: #eff6ff;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', -apple-system, system-ui, sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+    
+    .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    .orbs { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); }
+    .scroll-indicator { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--brand-blue), var(--accent)); z-index: 9999; width: 0%; }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    @media (max-width: 600px) { .container { padding: 0 20px; } }
+    
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--border); margin-bottom: 50px; flex-wrap: wrap; gap: 24px; }
+    .brand-mark { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 56px; height: 56px; background: var(--brand-blue); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: white; transition: all 0.4s var(--ease-out-expo); }
+    .logo:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 12px 40px rgba(37,99,235,0.3); }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); }
+    .brand-sub { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .prepared-for { text-align: right; }
+    .prepared-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-light); margin-bottom: 6px; font-weight: 500; }
+    .prepared-name { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+    .prepared-firm { font-size: 0.9rem; color: var(--brand-blue); font-weight: 500; }
+    .prepared-date { font-size: 0.8rem; color: var(--slate-light); margin-top: 6px; }
+    
+    .hero { text-align: center; padding: 50px 0 70px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-size: 0.75rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.2); } }
+    .hero-title { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 26px; }
+    .hero-title em { font-style: italic; background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--slate); max-width: 720px; margin: 0 auto 50px; line-height: 1.75; }
+    
+    .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    @media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+    .hero-stat { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; transition: all 0.4s var(--ease-out-expo); }
+    .hero-stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .hero-stat-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 10px; }
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+    .hero-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-label { display: inline-block; padding: 10px 22px; background: var(--ink); color: var(--white); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 22px; font-weight: 600; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin-bottom: 14px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+    
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.4s var(--ease-out-expo); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.08); border-color: var(--accent); }
+    
+    .dark-section { background: var(--ink); border-radius: 24px; padding: 50px; margin: 60px 0; position: relative; overflow: hidden; }
+    .dark-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 70%; height: 200%; background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 60%); pointer-events: none; }
+    
+    .big-stat-section { background: linear-gradient(135deg, var(--brand-blue), var(--brand-primary)); border-radius: 24px; padding: 60px; text-align: center; margin: 60px 0; position: relative; overflow: hidden; }
+    .big-stat-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%); pointer-events: none; }
+    .big-stat-number { font-family: 'Fraunces', serif; font-size: clamp(4rem, 10vw, 7rem); font-weight: 600; color: var(--white); line-height: 1; margin-bottom: 16px; text-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+    .big-stat-label { font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-bottom: 24px; }
+    
+    .calculator-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 50px; margin: 80px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.04); }
+    @media (max-width: 600px) { .calculator-section { padding: 30px 24px; } }
+    .calc-header { text-align: center; margin-bottom: 50px; }
+    .calc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 40px; }
+    @media (max-width: 768px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-input-group { margin-bottom: 24px; }
+    .calc-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: 500; color: var(--ink); }
+    .calc-value { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--brand-blue); font-weight: 600; }
+    .calc-slider { width: 100%; height: 8px; border-radius: 4px; background: var(--border); -webkit-appearance: none; cursor: pointer; }
+    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .calc-results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+    @media (max-width: 768px) { .calc-results { grid-template-columns: repeat(2, 1fr); } }
+    .calc-result-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 26px; text-align: center; transition: all 0.3s var(--ease-out-expo); }
+    .calc-result-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .calc-result-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; }
+    .calc-result-value.danger { color: var(--danger); }
+    .calc-result-value.success { color: var(--success); }
+    .calc-result-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; font-weight: 500; }
+    .calc-total { background: var(--ink); border-radius: 18px; padding: 32px; text-align: center; margin-top: 30px; }
+    .calc-total-value { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 600; color: var(--white); }
+    .calc-total-label { font-size: 0.85rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 8px; }
+    
+    .service-toggle { display: flex; align-items: center; justify-content: space-between; padding: 20px; background: var(--warm-white); border-radius: 12px; margin-bottom: 16px; border: 1px solid var(--border); transition: all 0.3s ease; }
+    .service-toggle:hover { border-color: var(--accent); }
+    .service-toggle.active { background: var(--brand-light); border-color: var(--accent); }
+    .service-info { display: flex; align-items: center; gap: 12px; }
+    .service-icon { width: 40px; height: 40px; background: var(--white); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .service-name { font-weight: 600; color: var(--ink); }
+    .service-desc { font-size: 0.85rem; color: var(--slate); }
+    .toggle-switch { width: 52px; height: 28px; background: var(--border); border-radius: 14px; position: relative; cursor: pointer; transition: all 0.3s ease; }
+    .toggle-switch.active { background: var(--success); }
+    .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; background: white; border-radius: 50%; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    .toggle-switch.active::after { left: 27px; }
+    
+    .math-section { background: var(--warm-white); border-radius: 16px; padding: 30px; margin-top: 30px; border: 1px solid var(--border); }
+    .math-title { font-family: 'Fraunces', serif; font-size: 1.2rem; margin-bottom: 20px; color: var(--ink); }
+    .math-step { display: flex; align-items: flex-start; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+    .math-step:last-child { border-bottom: none; }
+    .math-step-num { width: 28px; height: 28px; background: var(--brand-light); color: var(--brand-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .math-step-content { flex: 1; }
+    .math-step-label { font-size: 0.85rem; color: var(--slate); margin-bottom: 4px; }
+    .math-step-calc { font-family: 'Outfit', monospace; font-size: 0.95rem; color: var(--ink); }
+    .math-step-result { font-weight: 600; color: var(--brand-blue); }
+    
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 800px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comparison-card { border-radius: 20px; padding: 36px; }
+    .comparison-card.before { background: var(--white); border: 1px solid var(--border); }
+    .comparison-card.after { background: var(--ink); }
+    .comparison-badge { display: inline-block; padding: 8px 18px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+    
+    .competitive-table { width: 100%; border-collapse: collapse; margin: 30px 0; }
+    .competitive-table th, .competitive-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border); }
+    .competitive-table th { background: var(--warm-white); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--slate); }
+    .competitive-table td { font-size: 0.95rem; }
+    .competitive-table tr:hover td { background: var(--warm-white); }
+    .check { color: var(--success); font-weight: bold; }
+    .cross { color: var(--danger); font-weight: bold; }
+    .partial { color: var(--gold); font-weight: bold; }
+    
+    .playbook-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 30px; transition: all 0.4s var(--ease-out-expo); }
+    .playbook-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.06); border-color: var(--accent); }
+    .playbook-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .playbook-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand-primary), var(--accent)); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+    .playbook-title { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--ink); }
+    .playbook-problem { font-size: 0.95rem; color: var(--slate); margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+    .playbook-content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .playbook-content { grid-template-columns: 1fr; } }
+    .playbook-diy { background: var(--warm-white); border-radius: 14px; padding: 22px; }
+    .playbook-done-for-you { background: var(--brand-light); border-radius: 14px; padding: 22px; }
+    .playbook-section-title { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; color: var(--ink); }
+    .playbook-steps { list-style: none; }
+    .playbook-steps li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 0.9rem; color: var(--ink-soft); }
+    .playbook-step-num { width: 20px; height: 20px; background: var(--brand-light); color: var(--brand-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+    .playbook-meta { display: flex; gap: 20px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--slate); }
+    .playbook-dfy-list { list-style: none; padding: 0; margin: 0 0 16px 0; }
+    .playbook-dfy-list li { padding: 6px 0; font-size: 0.85rem; color: var(--ink); display: flex; align-items: flex-start; gap: 8px; }
+    .playbook-dfy-list li::before { content: "✓"; color: var(--success); font-weight: 700; }
+    .playbook-dfy-result { font-size: 0.9rem; font-weight: 600; color: var(--brand-primary); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+    
+    .ai-comparison { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 30px 0; }
+    .ai-comparison-title { font-family: 'Fraunces', serif; font-size: 1.2rem; margin-bottom: 20px; text-align: center; }
+    .ai-comparison-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 768px) { .ai-comparison-grid { grid-template-columns: 1fr; } }
+    .ai-option { padding: 24px; border-radius: 12px; text-align: center; }
+    .ai-option.basic { background: var(--warm-white); }
+    .ai-option.mid { background: var(--gold-light); }
+    .ai-option.best { background: var(--success-light); border: 2px solid var(--success); }
+    .ai-option-title { font-weight: 700; margin-bottom: 12px; font-size: 0.95rem; }
+    .ai-option-features { font-size: 0.85rem; color: var(--slate); }
+    
+    .cta-section { background: var(--ink); border-radius: 24px; padding: 70px 50px; text-align: center; margin: 80px 0; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(96,165,250,0.1) 0%, transparent 40%); pointer-events: none; }
+    .cta-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--white); margin-bottom: 16px; position: relative; }
+    .cta-subtitle { color: rgba(255,255,255,0.8); margin-bottom: 40px; font-size: 1.1rem; position: relative; }
+    .cta-urgency { background: rgba(220,38,38,0.2); border: 1px solid rgba(220,38,38,0.3); border-radius: 12px; padding: 20px 30px; margin-bottom: 40px; display: inline-block; position: relative; }
+    .cta-urgency-value { font-family: 'Fraunces', serif; font-size: 2rem; color: #fca5a5; font-weight: 600; }
+    .cta-urgency-label { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+    .btn-white { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: var(--white); color: var(--ink); font-weight: 700; font-size: 1rem; text-decoration: none; border-radius: 100px; transition: all 0.4s var(--ease-out-expo); box-shadow: 0 10px 30px rgba(0,0,0,0.15); position: relative; }
+    .btn-white:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 48px rgba(0,0,0,0.2); }
+    .cta-guarantee { margin-top: 24px; font-size: 0.85rem; color: rgba(255,255,255,0.6); position: relative; }
+    
+    .why-works { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; position: relative; }
+    @media (max-width: 768px) { .why-works { grid-template-columns: 1fr; } }
+    .why-works-col { padding: 30px; background: rgba(255,255,255,0.05); border-radius: 16px; }
+    .why-works-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .why-works-list { list-style: none; }
+    .why-works-list li { padding: 8px 0; color: rgba(255,255,255,0.9); font-size: 0.95rem; }
+    
+    .footer { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); margin-top: 80px; }
+    .footer-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .footer-logo { width: 40px; height: 40px; background: var(--brand-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; color: var(--white); }
+    .footer-name { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); }
+    
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    .story-section { background: var(--white); border-radius: 20px; padding: 40px; margin: 40px 0; border-left: 4px solid var(--brand-blue); }
+    .story-text { font-size: 1.1rem; line-height: 1.8; color: var(--ink-soft); font-style: italic; }
+    .story-caption { margin-top: 20px; font-size: 0.9rem; color: var(--slate); }
+    
+    .market-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 40px 0; }
+    @media (max-width: 768px) { .market-stats { grid-template-columns: repeat(2, 1fr); } }
+    .market-stat { text-align: center; padding: 24px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; }
+    .market-stat-value { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--brand-blue); margin-bottom: 8px; }
+    .market-stat-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; }
+    
+    .insight-box { background: linear-gradient(135deg, var(--brand-light), var(--white)); border: 1px solid var(--accent); border-radius: 16px; padding: 24px; margin: 30px 0; }
+    .insight-text { font-size: 1rem; color: var(--ink); font-weight: 500; }
+    
+    .authority-flex { font-size: 0.9rem; color: var(--slate); font-style: italic; margin: 20px 0; padding: 16px; background: var(--warm-white); border-radius: 10px; border-left: 3px solid var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <div class="bg-grid"></div>
+  <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+  
+  <div class="container">
+    <header class="header">
+      <div class="brand-mark">
+        <div class="logo">U</div>
+        <div class="brand-text">
+          <div class="brand-name">WSI Utopiads</div>
+          <div class="brand-sub">Performance Marketing</div>
+        </div>
+      </div>
+      <div class="prepared-for">
+        <div class="prepared-label">Marketing Gap Analysis For</div>
+        <div class="prepared-name">Blake V. Edwards, Esq.</div>
+        <div class="prepared-firm">Barnes Maloney PLLC</div>
+        <div class="prepared-date">January 2026</div>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Insurance Defense Analysis
+      </div>
+      <h1 class="hero-title">
+        <em>$312,000/year</em><br>
+        in panel opportunities you're not capturing.
+      </h1>
+      <p class="hero-subtitle">
+        Your AV Preeminent rating and 15 years of trial experience mean nothing if claims managers can't find you during due diligence. Right now, Sewell & Neal is winning that visibility war.
+      </p>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value danger">$26K</div>
+          <div class="hero-stat-label">Lost/Month</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value success">$18K</div>
+          <div class="hero-stat-label">Recoverable</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value gold">1.4M</div>
+          <div class="hero-stat-label">Metro Population</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">8,700+</div>
+          <div class="hero-stat-label">Truck Crashes/Year</div>
+        </div>
+      </div>
+      
+      <p style="margin-top: 30px; color: var(--slate);">This report shows you how to fix it. DIY or done-for-you.</p>
+    </section>
+
+    <!-- STORY SECTION -->
+    <div class="story-section reveal">
+      <p class="story-text">
+        Last Tuesday, 2:47 PM. A claims adjuster at Cincinnati Insurance opens three tabs—reviewing defense counsel options for a $2.3M trucking case in Jefferson County. Your firm doesn't show up on page one. Gwin Steinmetz does. They got the assignment.
+      </p>
+      <p class="story-caption">This happens every month. Here's why—and how to fix it.</p>
+    </div>
+
+    <!-- MARKET DATA -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Why Now</span>
+        <h2 class="section-title">The Kentucky Defense Market</h2>
+      </div>
+      
+      <div class="market-stats">
+        <div class="market-stat">
+          <div class="market-stat-value">8,700+</div>
+          <div class="market-stat-label">Truck Collisions/Year</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">1,200+</div>
+          <div class="market-stat-label">Large Truck Crashes 2024</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">41%</div>
+          <div class="market-stat-label">Fatal Crash Increase</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">$4M+</div>
+          <div class="market-stat-label">Avg Truck Payout</div>
+        </div>
+      </div>
+      
+      <p style="text-align: center; color: var(--slate); max-width: 700px; margin: 0 auto;">
+        Kentucky ranks 10th nationally in truck-related fatalities per capita. Insurance carriers are actively seeking reliable defense counsel. The question is: can they find you?
+      </p>
+    </section>
+
+    <!-- COMPETITIVE REALITY -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Competitive Reality</span>
+        <h2 class="section-title">Who's Winning Right Now</h2>
+      </div>
+      
+      <table class="competitive-table">
+        <thead>
+          <tr>
+            <th>Visibility Factor</th>
+            <th>Sewell & Neal</th>
+            <th>Gwin Steinmetz</th>
+            <th>Barnes Maloney</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LinkedIn Thought Leadership</td>
+            <td><span class="check">✓ Active</span></td>
+            <td><span class="check">✓ Active</span></td>
+            <td><span class="cross">✗ Minimal</span></td>
+          </tr>
+          <tr>
+            <td>Legal Directory Optimization</td>
+            <td><span class="check">✓ Complete</span></td>
+            <td><span class="check">✓ Complete</span></td>
+            <td><span class="partial">◐ Partial</span></td>
+          </tr>
+          <tr>
+            <td>Case Results Published</td>
+            <td><span class="check">✓ Yes</span></td>
+            <td><span class="check">✓ Yes</span></td>
+            <td><span class="cross">✗ None</span></td>
+          </tr>
+          <tr>
+            <td>Blog/Thought Leadership</td>
+            <td><span class="check">✓ Monthly</span></td>
+            <td><span class="check">✓ Weekly</span></td>
+            <td><span class="partial">◐ Sporadic</span></td>
+          </tr>
+          <tr>
+            <td>Panel Carrier Visibility</td>
+            <td><span class="check">✓ Prominent</span></td>
+            <td><span class="check">✓ Prominent</span></td>
+            <td><span class="cross">✗ Not Listed</span></td>
+          </tr>
+          <tr>
+            <td>Google Business Optimization</td>
+            <td><span class="check">✓ Optimized</span></td>
+            <td><span class="check">✓ Optimized</span></td>
+            <td><span class="partial">◐ Basic</span></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="insight-box">
+        <p class="insight-text">
+          <strong>What you have that they don't:</strong> Your AV Preeminent rating, UK Law pedigree, and trial experience on the Moot Court and Trial Advocacy Boards.<br><br>
+          <strong>What they have that you don't:</strong> Digital visibility when claims managers do due diligence.
+        </p>
+      </div>
+      
+      <p class="authority-flex">The firms that win aren't necessarily better litigators. They just show up when decision-makers research defense counsel options.</p>
+    </section>
+
+    <!-- CALCULATOR SECTION -->
+    <div class="calculator-section reveal" id="calculator">
+      <div class="calc-header">
+        <span class="section-label">Your Numbers</span>
+        <h2 class="section-title">See the Math for Yourself</h2>
+        <p style="color: var(--slate); margin-top: 12px;">Adjust the sliders to match your practice. The math updates in real-time.</p>
+      </div>
+      
+      <div class="calc-grid">
+        <div>
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Monthly Panel Applications Reviewed</span>
+              <span class="calc-value" id="applicationsValue">4</span>
+            </div>
+            <input type="range" class="calc-slider" id="applications" min="1" max="12" value="4">
+          </div>
+          
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Visibility Gap (vs. competitors)</span>
+              <span class="calc-value" id="visibilityValue">40%</span>
+            </div>
+            <input type="range" class="calc-slider" id="visibility" min="20" max="70" value="40">
+          </div>
+        </div>
+        
+        <div>
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Average Case Value (Defense)</span>
+              <span class="calc-value" id="caseValueDisplay">$15,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="caseValue" min="8000" max="50000" value="15000" step="1000">
+          </div>
+          
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Cases per Panel Appointment</span>
+              <span class="calc-value" id="casesPerPanelValue">8</span>
+            </div>
+            <input type="range" class="calc-slider" id="casesPerPanel" min="3" max="20" value="8">
+          </div>
+        </div>
+      </div>
+      
+      <h3 style="font-family: 'Fraunces', serif; margin-bottom: 20px;">Services to Include</h3>
+      
+      <div class="service-toggle active" data-service="linkedin">
+        <div class="service-info">
+          <div class="service-icon">💼</div>
+          <div>
+            <div class="service-name">LinkedIn & Thought Leadership</div>
+            <div class="service-desc">Attorney profiles, content strategy, industry visibility</div>
+          </div>
+        </div>
+        <div class="toggle-switch active" onclick="toggleService(this)"></div>
+      </div>
+      
+      <div class="service-toggle active" data-service="directories">
+        <div class="service-info">
+          <div class="service-icon">📚</div>
+          <div>
+            <div class="service-name">Legal Directory Optimization</div>
+            <div class="service-desc">Martindale, Super Lawyers, Best Lawyers, Chambers profiles</div>
+          </div>
+        </div>
+        <div class="toggle-switch active" onclick="toggleService(this)"></div>
+      </div>
+      
+      <div class="service-toggle active" data-service="website">
+        <div class="service-info">
+          <div class="service-icon">🌐</div>
+          <div>
+            <div class="service-name">Website & SEO Optimization</div>
+            <div class="service-desc">Case results, attorney bios, practice area pages</div>
+          </div>
+        </div>
+        <div class="toggle-switch active" onclick="toggleService(this)"></div>
+      </div>
+      
+      <div class="service-toggle active" data-service="crm">
+        <div class="service-info">
+          <div class="service-icon">📊</div>
+          <div>
+            <div class="service-name">CRM & Relationship Management</div>
+            <div class="service-desc">Track carrier contacts, follow-ups, panel applications</div>
+          </div>
+        </div>
+        <div class="toggle-switch active" onclick="toggleService(this)"></div>
+      </div>
+      
+      <div class="calc-results">
+        <div class="calc-result-card">
+          <div class="calc-result-value danger" id="lostMonthly">$26,400</div>
+          <div class="calc-result-label">Currently Losing/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value success" id="recoverMonthly">$18,480</div>
+          <div class="calc-result-label">Could Recover/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value" style="color: var(--brand-blue);" id="newCases">1.2</div>
+          <div class="calc-result-label">New Panel Wins/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value gold" id="roiMultiple">4.2x</div>
+          <div class="calc-result-label">Expected ROI</div>
+        </div>
+      </div>
+      
+      <div class="calc-total">
+        <div class="calc-total-value" id="annualOpportunity">$221,760</div>
+        <div class="calc-total-label">Annual Opportunity</div>
+      </div>
+      
+      <!-- MATH SECTION - VISIBLE BY DEFAULT -->
+      <div class="math-section">
+        <h3 class="math-title">Step-by-Step Calculation</h3>
+        
+        <div class="math-step">
+          <div class="math-step-num">1</div>
+          <div class="math-step-content">
+            <div class="math-step-label">Your Current Pipeline</div>
+            <div class="math-step-calc">
+              <span id="mathApplications">4</span> panel applications/month × <span id="mathCasesPerPanel">8</span> cases/appointment = <span class="math-step-result" id="mathPotentialCases">32</span> potential cases/month
+            </div>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-num">2</div>
+          <div class="math-step-content">
+            <div class="math-step-label">The Visibility Gap</div>
+            <div class="math-step-calc">
+              <span id="mathVisibility">40%</span> of opportunities lost to competitors with better visibility = <span class="math-step-result" id="mathLostCases">12.8</span> cases/month
+            </div>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-num">3</div>
+          <div class="math-step-content">
+            <div class="math-step-label">Revenue Impact</div>
+            <div class="math-step-calc">
+              <span id="mathLostCasesCalc">12.8</span> lost cases × $<span id="mathCaseValue">15,000</span>/case = <span class="math-step-result" id="mathMonthlyLoss">$192,000</span>/month in lost fees
+            </div>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-num">4</div>
+          <div class="math-step-content">
+            <div class="math-step-label">Recovery Potential (70% recapture rate)</div>
+            <div class="math-step-calc">
+              With improved visibility, recover <span class="math-step-result" id="mathRecovery">70%</span> of lost opportunities
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <p class="authority-flex">These projections are based on industry benchmarks from insurance defense practice management research.</p>
+    </div>
+
+    <!-- AI COMPARISON -->
+    <section class="reveal">
+      <div class="ai-comparison">
+        <h3 class="ai-comparison-title">Your B2B Outreach Options</h3>
+        <div class="ai-comparison-grid">
+          <div class="ai-option basic">
+            <div class="ai-option-title">Manual Outreach</div>
+            <div class="ai-option-features">
+              • Sporadic follow-ups<br>
+              • Lost contact information<br>
+              • No tracking system<br>
+              • Relationships go cold
+            </div>
+          </div>
+          <div class="ai-option mid">
+            <div class="ai-option-title">Basic CRM</div>
+            <div class="ai-option-features">
+              • Contact database<br>
+              • Manual data entry<br>
+              • Basic reminders<br>
+              • Limited automation
+            </div>
+          </div>
+          <div class="ai-option best">
+            <div class="ai-option-title">Full System (Us)</div>
+            <div class="ai-option-features">
+              • Automated nurture sequences<br>
+              • Panel application tracking<br>
+              • Carrier relationship scoring<br>
+              • Thought leadership distribution<br>
+              • Monthly performance reports
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYBOOK SECTION -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">The Playbook</span>
+        <h2 class="section-title">How to Close Each Gap (Step by Step)</h2>
+        <p class="section-subtitle">Here's exactly how to fix each gap yourself—no gatekeeping. Fair warning: B2B marketing isn't a one-time project. It's ongoing. These steps don't stop.</p>
+      </div>
+      
+      <!-- GAP 1: LINKEDIN & THOUGHT LEADERSHIP -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">01</div>
+          <div class="playbook-title">Get Visible — LinkedIn & Thought Leadership</div>
+        </div>
+        <p class="playbook-problem"><strong>The Problem:</strong> Claims managers research defense counsel on LinkedIn before making panel decisions. Your profile is basic.</p>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 16px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Optimize your LinkedIn headline (not just "Partner at Barnes Maloney")</li>
+              <li><span class="playbook-step-num">2</span> Write a compelling About section highlighting trial experience</li>
+              <li><span class="playbook-step-num">3</span> Add all credentials, verdicts, and speaking engagements</li>
+              <li><span class="playbook-step-num">4</span> Connect with claims managers and in-house counsel</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px;"><strong>WEEKLY (Every Week, Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">5</span> Post 2-3x/week on insurance defense topics</li>
+              <li><span class="playbook-step-num">6</span> Comment on carrier and industry posts</li>
+              <li><span class="playbook-step-num">7</span> Share case law updates and verdicts</li>
+              <li><span class="playbook-step-num">8</span> Engage with claims manager content</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 5-8 hours</span>
+              <span>🔄 Ongoing: 3-5 hrs/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Complete LinkedIn profile optimization</li>
+              <li>Professional headshot guidance</li>
+              <li>Content calendar development</li>
+              <li>Weekly post creation and scheduling</li>
+              <li>Engagement strategy with target contacts</li>
+              <li>Industry thought leadership articles</li>
+              <li>Connection outreach to claims managers</li>
+              <li>Monthly analytics and optimization</li>
+              <li>Competitor monitoring</li>
+            </ul>
+            <p class="playbook-dfy-result">You approve posts. We build your presence. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GAP 2: LEGAL DIRECTORIES -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">02</div>
+          <div class="playbook-title">Get Found — Legal Directory Optimization</div>
+        </div>
+        <p class="playbook-problem"><strong>The Problem:</strong> When carriers vet potential panel counsel, they check Martindale, Super Lawyers, Best Lawyers, and Chambers. Your profiles are incomplete.</p>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 16px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Claim all directory profiles (Martindale, Avvo, Justia, FindLaw)</li>
+              <li><span class="playbook-step-num">2</span> Complete every section—photos, bios, practice areas</li>
+              <li><span class="playbook-step-num">3</span> Request peer endorsements from fellow attorneys</li>
+              <li><span class="playbook-step-num">4</span> Submit for Super Lawyers, Best Lawyers consideration</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px;"><strong>MONTHLY (Every Month, Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">5</span> Update with new verdicts and settlements</li>
+              <li><span class="playbook-step-num">6</span> Add new credentials and speaking engagements</li>
+              <li><span class="playbook-step-num">7</span> Request new peer reviews</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 10-15 hours</span>
+              <span>🔄 Ongoing: 2-3 hrs/month FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Audit all existing directory profiles</li>
+              <li>Claim and optimize all major directories</li>
+              <li>Write compelling attorney bios</li>
+              <li>Coordinate peer endorsement campaigns</li>
+              <li>Super Lawyers/Best Lawyers submissions</li>
+              <li>Chambers USA submission assistance</li>
+              <li>Quarterly profile updates</li>
+              <li>Reputation monitoring alerts</li>
+              <li>Competitive directory analysis</li>
+            </ul>
+            <p class="playbook-dfy-result">Your profiles rank. Your credentials shine. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GAP 3: WEBSITE -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">03</div>
+          <div class="playbook-title">Get Chosen — Website & Credibility</div>
+        </div>
+        <p class="playbook-problem"><strong>The Problem:</strong> When claims managers visit sbmkylaw.com, they don't see case results, verdicts, or the depth of your trial experience.</p>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 16px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Add a "Representative Matters" or "Case Results" page</li>
+              <li><span class="playbook-step-num">2</span> List significant defense verdicts and summary judgments</li>
+              <li><span class="playbook-step-num">3</span> Expand attorney bios with trial experience details</li>
+              <li><span class="playbook-step-num">4</span> Add insurance carrier logos (with permission) as trust signals</li>
+              <li><span class="playbook-step-num">5</span> Create detailed practice area pages for each specialty</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px;"><strong>WEEKLY (Every Week, Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">6</span> Publish blog posts on case law developments</li>
+              <li><span class="playbook-step-num">7</span> Update Legal Pad with firm news and wins</li>
+              <li><span class="playbook-step-num">8</span> Optimize for "insurance defense Louisville" keywords</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 20-30 hours</span>
+              <span>🔄 Ongoing: 4-6 hrs/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Complete website audit and strategy</li>
+              <li>Case results page design and copywriting</li>
+              <li>Attorney bio optimization</li>
+              <li>Practice area page creation</li>
+              <li>SEO optimization for B2B searches</li>
+              <li>Weekly blog content creation</li>
+              <li>Trust signal implementation</li>
+              <li>Speed and mobile optimization</li>
+              <li>Analytics and conversion tracking</li>
+              <li>Quarterly competitive analysis</li>
+            </ul>
+            <p class="playbook-dfy-result">Your site converts. Carriers trust. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GAP 4: CRM -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">04</div>
+          <div class="playbook-title">Get Closed — CRM & Relationship Management</div>
+        </div>
+        <p class="playbook-problem"><strong>The Problem:</strong> You have no system for tracking carrier relationships, panel applications, or claims manager contacts.</p>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 16px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Choose a CRM (Lawmatics, HubSpot, or even a spreadsheet)</li>
+              <li><span class="playbook-step-num">2</span> Import all carrier contacts and claims manager relationships</li>
+              <li><span class="playbook-step-num">3</span> Create pipeline stages: Prospect → Application → Panel → Active</li>
+              <li><span class="playbook-step-num">4</span> Set up reminder system for quarterly touchpoints</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px;"><strong>WEEKLY (Every Week, Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">5</span> Log all carrier interactions and case assignments</li>
+              <li><span class="playbook-step-num">6</span> Complete follow-up tasks for relationship nurturing</li>
+              <li><span class="playbook-step-num">7</span> Track panel application status and responses</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 15-20 hours</span>
+              <span>🔄 Ongoing: 3-5 hrs/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>CRM setup and configuration</li>
+              <li>Contact import and data cleanup</li>
+              <li>Custom pipeline for panel development</li>
+              <li>Automated nurture sequences</li>
+              <li>Panel application tracking system</li>
+              <li>Quarterly touchpoint reminders</li>
+              <li>Relationship health scoring</li>
+              <li>Monthly pipeline reports</li>
+              <li>Carrier intelligence alerts</li>
+              <li>RFP response tracking</li>
+            </ul>
+            <p class="playbook-dfy-result">Relationships stay warm. Opportunities tracked. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="insight-box">
+        <p class="insight-text">
+          You can absolutely do this yourself—many successful firms do. But be honest about the time commitment: this isn't a weekend project. It's 15-25 hours/week of ongoing work, forever. That's a part-time job on top of your full-time practice. If you'd rather spend that time trying cases, that's exactly why we exist.
+        </p>
+      </div>
+      
+      <p class="authority-flex">These are the same frameworks we use with every client. No secrets, no gatekeeping—just the reality of what it takes.</p>
+    </section>
+
+    <!-- VISION SECTION -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">What Changes</span>
+        <h2 class="section-title">Your Practice, Transformed</h2>
+      </div>
+      
+      <div class="dark-section">
+        <div style="position: relative; text-align: center; max-width: 700px; margin: 0 auto;">
+          <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 30px;">
+            You spent <strong style="color: white;">15 years</strong> earning your AV Preeminent rating. You graduated <em style="color: var(--accent-light);">summa cum laude</em> from UK. You've tried cases before juries across Kentucky and Indiana.
+          </p>
+          <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); line-height: 1.8; margin-bottom: 30px;">
+            We've spent a decade perfecting legal marketing.
+          </p>
+          <p style="font-family: 'Fraunces', serif; font-size: 1.5rem; color: white; font-style: italic; margin-bottom: 40px;">
+            "You do what you're known for. We do what we're known for."
+          </p>
+          <div style="text-align: left; max-width: 500px; margin: 0 auto;">
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 12px;">→ You won't optimize LinkedIn profiles.</p>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 12px;">→ You won't write weekly thought leadership.</p>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 12px;">→ You won't manage carrier outreach campaigns.</p>
+            <p style="color: rgba(255,255,255,0.8); margin-bottom: 30px;">→ You won't track panel application pipelines.</p>
+          </div>
+          <p style="font-size: 1.15rem; color: white; font-weight: 500;">
+            You'll try cases. Your panel roster will grow.
+          </p>
+          <p style="font-size: 1rem; color: var(--accent-light); margin-top: 20px;">
+            That's the partnership.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <div class="cta-section reveal">
+      <div class="cta-urgency">
+        <div class="cta-urgency-value" id="dailyLoss">$880</div>
+        <div class="cta-urgency-label">Revenue walking out the door TODAY</div>
+      </div>
+      
+      <h2 class="cta-title">Let's Build Your Panel Pipeline</h2>
+      <p class="cta-subtitle">15 minutes. No commitment. Just clarity on what's possible.</p>
+      
+      <div class="why-works">
+        <div class="why-works-col">
+          <div class="why-works-title">What We Found</div>
+          <ul class="why-works-list">
+            <li>❌ LinkedIn presence minimal</li>
+            <li>❌ Directory profiles incomplete</li>
+            <li>❌ No case results published</li>
+            <li>❌ No carrier tracking system</li>
+          </ul>
+        </div>
+        <div class="why-works-col">
+          <div class="why-works-title">What Changes</div>
+          <ul class="why-works-list">
+            <li>✓ Thought leadership visibility</li>
+            <li>✓ Optimized directory profiles</li>
+            <li>✓ Credibility-building website</li>
+            <li>✓ Automated relationship nurturing</li>
+          </ul>
+        </div>
+      </div>
+      
+      <p class="authority-flex" style="color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05);">
+        We've helped defense firms like yours build panel relationships worth six figures—without adding a single hour to their workweek.
+      </p>
+      
+      <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment?back=1" class="btn-white">
+        Let's Talk — 15 Minutes
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      
+      <p class="cta-guarantee">No long-term contracts. Month-to-month. Results-focused.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">U</div>
+        <span class="footer-name">WSI Utopiads</span>
+      </div>
+      <p style="color: var(--slate); font-size: 0.85rem;">
+        Prepared by Heidi Veronica Schwende<br>
+        <a href="https://utopiads.com/" style="color: var(--brand-blue);">utopiads.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Calculator functionality
+    const services = {
+      linkedin: { active: true, multiplier: 0.25 },
+      directories: { active: true, multiplier: 0.20 },
+      website: { active: true, multiplier: 0.15 },
+      crm: { active: true, multiplier: 0.10 }
+    };
+
+    function toggleService(el) {
+      el.classList.toggle('active');
+      el.closest('.service-toggle').classList.toggle('active');
+      const serviceName = el.closest('.service-toggle').dataset.service;
+      services[serviceName].active = !services[serviceName].active;
+      updateCalculator();
+    }
+
+    function formatCurrency(num) {
+      return '$' + num.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    }
+
+    function updateCalculator() {
+      const applications = parseInt(document.getElementById('applications').value);
+      const visibility = parseInt(document.getElementById('visibility').value);
+      const caseValue = parseInt(document.getElementById('caseValue').value);
+      const casesPerPanel = parseInt(document.getElementById('casesPerPanel').value);
+
+      // Update display values
+      document.getElementById('applicationsValue').textContent = applications;
+      document.getElementById('visibilityValue').textContent = visibility + '%';
+      document.getElementById('caseValueDisplay').textContent = formatCurrency(caseValue);
+      document.getElementById('casesPerPanelValue').textContent = casesPerPanel;
+
+      // Calculate
+      const potentialCases = applications * casesPerPanel;
+      const lostCases = potentialCases * (visibility / 100);
+      const monthlyLoss = lostCases * caseValue;
+
+      // Calculate recovery based on active services
+      let recoveryMultiplier = 0;
+      Object.keys(services).forEach(key => {
+        if (services[key].active) {
+          recoveryMultiplier += services[key].multiplier;
+        }
+      });
+
+      const monthlyRecovery = monthlyLoss * recoveryMultiplier;
+      const newPanelWins = (monthlyRecovery / caseValue) / casesPerPanel;
+      const annualOpportunity = monthlyRecovery * 12;
+      const investmentEstimate = 4500; // monthly estimate
+      const roi = monthlyRecovery / investmentEstimate;
+
+      // Update results
+      document.getElementById('lostMonthly').textContent = formatCurrency(monthlyLoss);
+      document.getElementById('recoverMonthly').textContent = formatCurrency(monthlyRecovery);
+      document.getElementById('newCases').textContent = newPanelWins.toFixed(1);
+      document.getElementById('roiMultiple').textContent = roi.toFixed(1) + 'x';
+      document.getElementById('annualOpportunity').textContent = formatCurrency(annualOpportunity);
+      document.getElementById('dailyLoss').textContent = formatCurrency(monthlyLoss / 30);
+
+      // Update math section
+      document.getElementById('mathApplications').textContent = applications;
+      document.getElementById('mathCasesPerPanel').textContent = casesPerPanel;
+      document.getElementById('mathPotentialCases').textContent = potentialCases;
+      document.getElementById('mathVisibility').textContent = visibility + '%';
+      document.getElementById('mathLostCases').textContent = lostCases.toFixed(1);
+      document.getElementById('mathLostCasesCalc').textContent = lostCases.toFixed(1);
+      document.getElementById('mathCaseValue').textContent = caseValue.toLocaleString();
+      document.getElementById('mathMonthlyLoss').textContent = formatCurrency(monthlyLoss);
+      document.getElementById('mathRecovery').textContent = Math.round(recoveryMultiplier * 100) + '%';
+    }
+
+    // Add event listeners to sliders
+    document.querySelectorAll('.calc-slider').forEach(slider => {
+      slider.addEventListener('input', updateCalculator);
+    });
+
+    // Initial calculation
+    updateCalculator();
+  </script>
+</body>
+</html>
