@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marketing Gap Analysis | Emma Neate, Neate & Pugh — WSI Utopiads</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #1e293b;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --warm-white: #f8fafc;
+      --white: #ffffff;
+      --brand-primary: #1e3a5f;
+      --brand-blue: #2563eb;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --brand-light: #dbeafe;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --warning: #d97706;
+      --warning-light: #fef3c7;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Outfit', -apple-system, system-ui, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--warm-white);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .display { 
+      font-family: var(--font-display);
+      font-weight: 500;
+    }
+
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orbs {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.1;
+    }
+
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); }
+
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand-blue), var(--accent));
+      z-index: 9999;
+      width: 0%;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+    }
+
+    section { padding: 70px 0; }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      background: var(--brand-blue);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .logo:hover {
+      transform: scale(1.08) rotate(3deg);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.3);
+    }
+
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .brand-sub {
+      font-size: 0.7rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .prepared-for { text-align: right; }
+    .prepared-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--slate-light);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .prepared-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .prepared-firm {
+      font-size: 0.9rem;
+      color: var(--brand-blue);
+      font-weight: 500;
+    }
+    .prepared-date {
+      font-size: 0.8rem;
+      color: var(--slate-light);
+      margin-top: 6px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 50px 0 70px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 26px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 36px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.2); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 26px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--slate);
+      max-width: 720px;
+      margin: 0 auto 50px;
+      line-height: 1.75;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .hero-stat {
+      text-align: center;
+      padding: 24px 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .hero-stat:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-color: var(--accent);
+    }
+
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+
+    .hero-stat-label {
+      font-size: 0.7rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+
+    /* Story Section */
+    .story-section {
+      background: linear-gradient(135deg, var(--ink), #1e293b);
+      border-radius: 24px;
+      padding: 50px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+    }
+
+    .story-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 70%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .story-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .story-text {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+    }
+
+    .story-text em {
+      color: var(--accent-light);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .story-insight {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      position: relative;
+    }
+
+    /* Market Banner */
+    .market-banner {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-primary));
+      border-radius: 24px;
+      padding: 50px;
+      margin: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .market-banner::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .market-banner-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .market-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .market-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .market-stat {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .market-stat-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .market-stat-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .market-context {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* Competitive Section */
+    .competitive-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 50px;
+      margin: 60px 0;
+    }
+
+    .competitive-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .competitive-subtitle {
+      text-align: center;
+      color: var(--slate);
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    .competitor-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    .competitor-table th,
+    .competitor-table td {
+      padding: 16px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .competitor-table th {
+      background: var(--ink);
+      color: white;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 600;
+    }
+
+    .competitor-table th:first-child { border-radius: 12px 0 0 0; }
+    .competitor-table th:last-child { border-radius: 0 12px 0 0; }
+
+    .competitor-table tr:hover td { background: var(--warm-white); }
+    .competitor-table tr.highlight td { background: var(--danger-light); }
+
+    .check-yes { color: var(--success); font-weight: 600; }
+    .check-no { color: var(--danger); font-weight: 600; }
+    .check-partial { color: var(--warning); font-weight: 600; }
+
+    .competitive-insight {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 24px;
+      font-size: 0.95rem;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .competitive-insight strong {
+      color: var(--brand-primary);
+    }
+
+    /* Calculator Section */
+    .calculator-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 50px;
+      margin: 80px 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+    }
+
+    @media (max-width: 600px) {
+      .calculator-section { padding: 30px 24px; }
+    }
+
+    .calc-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .calc-label {
+      display: inline-block;
+      padding: 10px 22px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .calc-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .calc-subtitle {
+      color: var(--slate);
+      font-size: 1rem;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 800px) {
+      .calc-grid { grid-template-columns: 1fr; }
+    }
+
+    .calc-card {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .calc-card-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--slate);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .slider-group {
+      margin-bottom: 20px;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .slider-label-text {
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .slider-value {
+      font-weight: 700;
+      color: var(--brand-primary);
+      font-size: 0.95rem;
+    }
+
+    .slider-value.danger { color: var(--danger); }
+
+    .calc-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border);
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--ink);
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Service Toggles */
+    .service-toggles {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .service-toggle {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .service-toggle.active {
+      border-color: var(--success);
+      background: var(--success-light);
+    }
+
+    .service-toggle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .service-toggle-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .service-toggle-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--brand-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .service-toggle-name {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .service-toggle-desc {
+      font-size: 0.8rem;
+      color: var(--slate);
+    }
+
+    .toggle {
+      width: 48px;
+      height: 26px;
+      background: var(--success);
+      border-radius: 13px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle.off { background: var(--border); }
+
+    .toggle-thumb {
+      width: 22px;
+      height: 22px;
+      background: white;
+      border-radius: 11px;
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    .toggle.off .toggle-thumb {
+      right: auto;
+      left: 2px;
+    }
+
+    .service-toggle-content {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+
+    .service-toggle.active .service-toggle-content {
+      display: block;
+    }
+
+    /* AI Comparison */
+    .ai-comparison {
+      background: var(--brand-primary);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 30px 0;
+      color: white;
+    }
+
+    .ai-comparison-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .ai-comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 700px) {
+      .ai-comparison-grid { grid-template-columns: 1fr; }
+    }
+
+    .ai-comparison-col {
+      background: var(--brand-primary);
+      padding: 20px;
+    }
+
+    .ai-comparison-col-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--accent-light);
+    }
+
+    .ai-comparison-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .ai-comparison-item.good { color: #4ade80; }
+    .ai-comparison-item.bad { color: #f87171; }
+    .ai-comparison-item.partial { color: #fbbf24; }
+
+    /* Math Section */
+    .math-section {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 30px 0;
+    }
+
+    .math-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--slate);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .math-step {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .math-step:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .math-step-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--brand-primary);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .math-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      font-size: 0.9rem;
+    }
+
+    .math-label { color: var(--slate); }
+    .math-value { font-weight: 600; color: var(--ink); }
+    .math-value.danger { color: var(--danger); }
+    .math-value.success { color: var(--success); }
+
+    /* Results Panel */
+    .results-panel {
+      background: var(--ink);
+      border-radius: 20px;
+      padding: 36px;
+      margin-top: 40px;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 800px) {
+      .results-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .result-card {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 14px;
+    }
+
+    .result-value {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .result-value.danger { color: #f87171; }
+    .result-value.success { color: #4ade80; }
+    .result-value.gold { color: #fbbf24; }
+    .result-value.white { color: white; }
+
+    .result-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .results-total {
+      background: linear-gradient(135deg, var(--success), #047857);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .results-total-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 10px;
+    }
+
+    .results-total-value {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    .results-gut-punch {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+    }
+
+    .authority-flex {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--slate);
+      margin-top: 30px;
+      font-style: italic;
+    }
+
+    /* Playbook Section */
+    .playbook-section {
+      padding: 70px 0;
+    }
+
+    .playbook-intro {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 1rem;
+      color: var(--slate);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .playbook-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 36px;
+      margin-bottom: 28px;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .playbook-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.06);
+      border-color: var(--accent);
+    }
+
+    .playbook-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .playbook-number {
+      width: 52px;
+      height: 52px;
+      background: linear-gradient(135deg, var(--brand-primary), var(--brand-blue));
+      color: white;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .playbook-card-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .playbook-card-problem {
+      font-size: 0.9rem;
+      color: var(--slate);
+    }
+
+    .playbook-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+
+    @media (max-width: 800px) {
+      .playbook-content { grid-template-columns: 1fr; }
+    }
+
+    .playbook-diy {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .playbook-diy-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .playbook-diy-section {
+      margin-bottom: 16px;
+    }
+
+    .playbook-diy-section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--slate);
+      margin-bottom: 10px;
+    }
+
+    .playbook-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .playbook-step-num {
+      width: 20px;
+      height: 20px;
+      background: var(--brand-light);
+      color: var(--brand-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .playbook-time {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--slate);
+    }
+
+    .playbook-time span {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .playbook-done-for-you {
+      background: var(--brand-light);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .playbook-dfy-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .playbook-dfy-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px 0;
+    }
+
+    .playbook-dfy-list li {
+      padding: 6px 0;
+      font-size: 0.85rem;
+      color: var(--ink);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .playbook-dfy-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .playbook-dfy-result {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--brand-primary);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Vision Section */
+    .vision-section {
+      background: linear-gradient(135deg, var(--ink), #1e293b);
+      border-radius: 24px;
+      padding: 60px 50px;
+      margin: 60px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .vision-title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .vision-text {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .vision-quote {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--accent-light);
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .vision-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 30px;
+      position: relative;
+    }
+
+    .vision-list-item {
+      background: rgba(255,255,255,0.08);
+      padding: 12px 24px;
+      border-radius: 100px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.9rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: var(--ink);
+      border-radius: 24px;
+      padding: 70px 50px;
+      text-align: center;
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(96,165,250,0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .cta-urgency {
+      display: inline-block;
+      background: var(--danger);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--white);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .cta-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+
+    @media (max-width: 600px) {
+      .cta-comparison { grid-template-columns: 1fr; }
+    }
+
+    .cta-comparison-col {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+    }
+
+    .cta-comparison-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .cta-comparison-item {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .calendly-container {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 32px;
+      margin: 32px 0;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+    }
+
+    .calendly-container h3 {
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 24px;
+      font-family: var(--font-display);
+    }
+
+    .calendly-inline-widget {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .cta-guarantee {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      position: relative;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 50px 0 30px;
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+    }
+
+    .footer-brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--brand-blue);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .footer p {
+      color: var(--slate);
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: var(--brand-blue);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <div class="bg-grid"></div>
+  <div class="orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand-mark">
+        <div class="logo">U</div>
+        <div class="brand-text">
+          <div class="brand-name">WSI Utopiads</div>
+          <div class="brand-sub">Performance Marketing</div>
+        </div>
+      </div>
+      <div class="prepared-for">
+        <div class="prepared-label">Marketing Gap Analysis For</div>
+        <div class="prepared-name">Emma Neate</div>
+        <div class="prepared-firm">Neate & Pugh</div>
+        <div class="prepared-date">January 2026</div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>Employment Law Market Analysis</span>
+      </div>
+      
+      <h1 class="hero-title">
+        <em>£192,000/year</em><br>
+        That's what's walking out the door.
+      </h1>
+      
+      <p class="hero-subtitle">
+        Your 20+ years of employment law expertise and Birmingham Law Society leadership means nothing if employees can't reach you at 9 PM after receiving their redundancy letter. Right now, Gateley and Irwin Mitchell get that call.
+      </p>
+      
+      <p style="font-size: 1rem; color: var(--ink); margin-bottom: 30px; text-align: center;">
+        This report shows you how to fix it. DIY or done-for-you.
+      </p>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value danger" id="hero-lost">£16,000</div>
+          <div class="hero-stat-label">Lost/Month</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value success" id="hero-recovered">£24,500</div>
+          <div class="hero-stat-label">Recoverable</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value gold" id="hero-roi">5.2x</div>
+          <div class="hero-stat-label">Potential ROI</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">+33%</div>
+          <div class="hero-stat-label">ET Claims Surge</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <div class="story-section reveal">
+      <div class="story-title">⚠️ The Reality</div>
+      <p class="story-text">
+        Last Thursday, <em>9:23 PM</em>. A senior manager in the NEC car park just received an email: her position has been made redundant—effective in 4 weeks. She Googled <em>"employment solicitor Birmingham settlement agreement."</em> Your website loaded—but <em>Gateley's Google Ad</em> appeared above you. She clicked it. Their 24/7 intake answered immediately. She's their client now.
+      </p>
+      <p class="story-insight">
+        This happens every week. Here's why—and how to fix it.
+      </p>
+    </div>
+
+    <!-- Market Banner -->
+    <div class="market-banner reveal">
+      <div class="market-banner-title">🚨 Why Now: Employment Rights Act 2025</div>
+      <div class="market-stats">
+        <div class="market-stat">
+          <div class="market-stat-value">6 Mo</div>
+          <div class="market-stat-label">New Qualifying Period</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">No Cap</div>
+          <div class="market-stat-label">On Compensation</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">515K</div>
+          <div class="market-stat-label">Open Tribunal Cases</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">37,810</div>
+          <div class="market-stat-label">Birmingham Businesses</div>
+        </div>
+      </div>
+      <p class="market-context">
+        The Employment Rights Act 2025 received Royal Assent last month. Unfair dismissal protection drops from 2 years to 6 months. Compensation caps removed. Tribunal claims surging 33%. <strong>Demand for your services is about to explode.</strong>
+      </p>
+    </div>
+
+    <!-- Competitive Section -->
+    <div class="competitive-section reveal">
+      <h2 class="competitive-title">Who's Winning Right Now</h2>
+      <p class="competitive-subtitle">How you stack up against Birmingham's major players.</p>
+      
+      <table class="competitor-table">
+        <thead>
+          <tr>
+            <th>Firm</th>
+            <th>Google Ads</th>
+            <th>Meta Ads</th>
+            <th>After-Hours Intake</th>
+            <th>Legal 500</th>
+            <th>Reviews</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gateley Legal</strong></td>
+            <td class="check-yes">✓ Heavy</td>
+            <td class="check-yes">✓ Active</td>
+            <td class="check-yes">✓ 24/7</td>
+            <td class="check-yes">✓ Ranked</td>
+            <td>4.2 (198)</td>
+          </tr>
+          <tr>
+            <td><strong>Irwin Mitchell</strong></td>
+            <td class="check-yes">✓ Heavy</td>
+            <td class="check-yes">✓ Active</td>
+            <td class="check-yes">✓ 24/7</td>
+            <td class="check-yes">✓ Tier 3</td>
+            <td>4.5 (770+)</td>
+          </tr>
+          <tr>
+            <td><strong>Shakespeare Martineau</strong></td>
+            <td class="check-yes">✓ Active</td>
+            <td class="check-partial">◐ Limited</td>
+            <td class="check-yes">✓ Live</td>
+            <td class="check-yes">✓ Ranked</td>
+            <td>4.4 (120+)</td>
+          </tr>
+          <tr class="highlight">
+            <td><strong>Neate & Pugh</strong></td>
+            <td class="check-no">✗ None</td>
+            <td class="check-yes">✓ Active</td>
+            <td class="check-no">✗ Voicemail</td>
+            <td class="check-no">✗ Not yet</td>
+            <td><strong>5.0 (65)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="competitive-insight">
+        <strong>What you have that they don't:</strong> 20+ years specialist expertise, Birmingham Law Society Employment Committee leadership, perfect 5.0 rating across 65 reviews, and the "Jerry McGuire" boutique attention that corporates can't match.<br><br>
+        <strong>What they have that you don't:</strong> Google Ads visibility and 24/7 intake capturing after-hours leads.
+      </div>
+    </div>
+
+    <p class="authority-flex">The firms that win show up first and respond fastest.</p>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section reveal">
+      <div class="calc-header">
+        <div class="calc-label">💰 Your Numbers</div>
+        <h2 class="calc-title">See the Math for Yourself</h2>
+        <p class="calc-subtitle">Adjust these numbers to match your practice reality</p>
+      </div>
+      
+      <div class="calc-grid">
+        <div class="calc-card">
+          <div class="calc-card-title">📊 Practice Baseline</div>
+          
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Weekly inquiries</span>
+              <span class="slider-value" id="val-inquiries">10</span>
+            </div>
+            <input type="range" class="calc-slider" id="slider-inquiries" min="3" max="30" value="10">
+          </div>
+          
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">After-hours percentage</span>
+              <span class="slider-value danger" id="val-afterhours">35%</span>
+            </div>
+            <input type="range" class="calc-slider" id="slider-afterhours" min="20" max="60" value="35">
+          </div>
+          
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Average case value</span>
+              <span class="slider-value" id="val-casevalue">£6,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="slider-casevalue" min="2500" max="25000" step="500" value="6000">
+          </div>
+          
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Current close rate</span>
+              <span class="slider-value" id="val-closerate">30%</span>
+            </div>
+            <input type="range" class="calc-slider" id="slider-closerate" min="10" max="50" value="30">
+          </div>
+        </div>
+        
+        <div class="calc-card">
+          <div class="calc-card-title">💷 Advertising Investment</div>
+          
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Google Ads spend/month</span>
+              <span class="slider-value" id="val-googleads">£3,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="slider-googleads" min="1000" max="15000" step="500" value="3000">
+          </div>
+          
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Meta Ads spend/month</span>
+              <span class="slider-value" id="val-metaads">£1,500</span>
+            </div>
+            <input type="range" class="calc-slider" id="slider-metaads" min="500" max="10000" step="250" value="1500">
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Toggles -->
+      <div class="service-toggles">
+        <div class="service-toggle active" id="toggle-googleads">
+          <div class="service-toggle-header" onclick="toggleService('googleads')">
+            <div class="service-toggle-info">
+              <div class="service-toggle-icon">🔍</div>
+              <div>
+                <div class="service-toggle-name">Google Ads</div>
+                <div class="service-toggle-desc">Capture high-intent searches</div>
+              </div>
+            </div>
+            <div class="toggle" id="toggle-btn-googleads">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-toggle active" id="toggle-metaads">
+          <div class="service-toggle-header" onclick="toggleService('metaads')">
+            <div class="service-toggle-info">
+              <div class="service-toggle-icon">📱</div>
+              <div>
+                <div class="service-toggle-name">Meta Ads</div>
+                <div class="service-toggle-desc">Build awareness & retargeting</div>
+              </div>
+            </div>
+            <div class="toggle" id="toggle-btn-metaads">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-toggle active" id="toggle-aiintake">
+          <div class="service-toggle-header" onclick="toggleService('aiintake')">
+            <div class="service-toggle-info">
+              <div class="service-toggle-icon">🤖</div>
+              <div>
+                <div class="service-toggle-name">AI Voice Intake</div>
+                <div class="service-toggle-desc">24/7 lead capture (~£2,000/mo)</div>
+              </div>
+            </div>
+            <div class="toggle" id="toggle-btn-aiintake">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-toggle active" id="toggle-website">
+          <div class="service-toggle-header" onclick="toggleService('website')">
+            <div class="service-toggle-info">
+              <div class="service-toggle-icon">🌐</div>
+              <div>
+                <div class="service-toggle-name">Website Optimisation</div>
+                <div class="service-toggle-desc">+15% conversion improvement</div>
+              </div>
+            </div>
+            <div class="toggle" id="toggle-btn-website">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="service-toggle active" id="toggle-crm">
+          <div class="service-toggle-header" onclick="toggleService('crm')">
+            <div class="service-toggle-info">
+              <div class="service-toggle-icon">📋</div>
+              <div>
+                <div class="service-toggle-name">CRM & Automation</div>
+                <div class="service-toggle-desc">+10% close rate improvement</div>
+              </div>
+            </div>
+            <div class="toggle" id="toggle-btn-crm">
+              <div class="toggle-thumb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Comparison -->
+      <div class="ai-comparison">
+        <div class="ai-comparison-title">Your After-Hours Options</div>
+        <div class="ai-comparison-grid">
+          <div class="ai-comparison-col">
+            <div class="ai-comparison-col-title">Voicemail</div>
+            <div class="ai-comparison-item bad">❌ After-Hours: None</div>
+            <div class="ai-comparison-item bad">❌ Response: Never</div>
+            <div class="ai-comparison-item bad">❌ Lead Capture: ~15%</div>
+            <div class="ai-comparison-item bad">❌ Languages: 1</div>
+            <div class="ai-comparison-item partial">⚠️ No training needed</div>
+          </div>
+          <div class="ai-comparison-col">
+            <div class="ai-comparison-col-title">Answering Service</div>
+            <div class="ai-comparison-item partial">⚠️ Limited coverage</div>
+            <div class="ai-comparison-item partial">⚠️ Response: Minutes</div>
+            <div class="ai-comparison-item partial">⚠️ Lead Capture: ~60%</div>
+            <div class="ai-comparison-item bad">❌ Staff turnover</div>
+            <div class="ai-comparison-item bad">❌ Retraining every 3-6mo</div>
+          </div>
+          <div class="ai-comparison-col">
+            <div class="ai-comparison-col-title">AI Intake (Us)</div>
+            <div class="ai-comparison-item good">✓ 24/7/365 coverage</div>
+            <div class="ai-comparison-item good">✓ Response: < 5 minutes</div>
+            <div class="ai-comparison-item good">✓ Lead Capture: 90%+</div>
+            <div class="ai-comparison-item good">✓ 30+ languages</div>
+            <div class="ai-comparison-item good">✓ Never quits, improves over time</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Math Section -->
+      <div class="math-section">
+        <div class="math-section-title">Step-by-Step Calculation</div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 1: Your Current Baseline</div>
+          <div class="math-row">
+            <span class="math-label">Weekly inquiries × 4.3 weeks</span>
+            <span class="math-value" id="math-monthly">43.0/mo</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 2: The After-Hours Gap</div>
+          <div class="math-row">
+            <span class="math-label">Monthly inquiries × after-hours %</span>
+            <span class="math-value" id="math-afterhours">15.1 after-hours/mo</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">Current capture (voicemail 15%)</span>
+            <span class="math-value" id="math-capture">2.3 captured</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">After-hours LOST</span>
+            <span class="math-value danger" id="math-lost">12.8 lost/mo</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 3: Revenue Impact</div>
+          <div class="math-row">
+            <span class="math-label">Lost leads × close rate × case value</span>
+            <span class="math-value danger" id="math-revenue-loss">£23,040/mo lost</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 4: Recovery Potential</div>
+          <div class="math-row">
+            <span class="math-label">Google Ads (1 consult per £1,200)</span>
+            <span class="math-value success" id="math-google-recovery">+£4,500/mo</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">Meta Ads (1 consult per £1,500)</span>
+            <span class="math-value success" id="math-meta-recovery">+£1,800/mo</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">AI Intake (90% vs 15% capture)</span>
+            <span class="math-value success" id="math-ai-recovery">+£13,824/mo</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">Website optimisation (+15%)</span>
+            <span class="math-value success" id="math-website-recovery">multiplier</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">CRM automation (+10% close rate)</span>
+            <span class="math-value success" id="math-crm-recovery">multiplier</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Panel -->
+      <div class="results-panel">
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="result-value danger" id="result-losing">£16,000</div>
+            <div class="result-label">Losing/Month</div>
+          </div>
+          <div class="result-card">
+            <div class="result-value success" id="result-recover">£24,500</div>
+            <div class="result-label">Could Recover</div>
+          </div>
+          <div class="result-card">
+            <div class="result-value white" id="result-clients">+4</div>
+            <div class="result-label">New Clients/Mo</div>
+          </div>
+          <div class="result-card">
+            <div class="result-value gold" id="result-roi">5.2x</div>
+            <div class="result-label">ROI</div>
+          </div>
+        </div>
+        
+        <div class="results-total">
+          <div class="results-total-label">Annual Opportunity</div>
+          <div class="results-total-value" id="result-annual">£294,000</div>
+        </div>
+        
+        <div class="results-gut-punch">
+          While you're reading this, Gateley's AI is answering a call you should have taken.
+        </div>
+      </div>
+      
+      <p class="authority-flex">
+        These projections are based on industry benchmarks from professional services marketing. Across our portfolio, AI intake recovers an average of 35% of previously lost after-hours leads.
+      </p>
+    </section>
+
+    <!-- Playbook Section -->
+    <section class="playbook-section">
+      <div class="section-header" style="text-align: center; margin-bottom: 50px;">
+        <span class="calc-label">📋 The Playbook</span>
+        <h2 class="calc-title">How to Close Each Gap</h2>
+      </div>
+      
+      <p class="playbook-intro">
+        Here's exactly how to fix each gap yourself—no gatekeeping. Fair warning: marketing isn't a one-time project. It's ongoing. These steps don't stop.
+      </p>
+
+      <!-- Gap 1: Google Ads -->
+      <div class="playbook-card reveal">
+        <div class="playbook-card-header">
+          <div class="playbook-number">01</div>
+          <div>
+            <div class="playbook-card-title">Get Found — Google Ads</div>
+            <div class="playbook-card-problem">The Problem: You're invisible when employees search "employment solicitor Birmingham" at 9 PM.</div>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Setup (One-Time)</div>
+              <div class="playbook-step"><span class="playbook-step-num">1</span> Create Google Ads account at ads.google.com</div>
+              <div class="playbook-step"><span class="playbook-step-num">2</span> Set up conversion tracking (calls, form fills)</div>
+              <div class="playbook-step"><span class="playbook-step-num">3</span> Research keywords: "employment solicitor Birmingham", "unfair dismissal lawyer", "settlement agreement solicitor"</div>
+              <div class="playbook-step"><span class="playbook-step-num">4</span> Build campaign structure: 3-5 ad groups by intent</div>
+              <div class="playbook-step"><span class="playbook-step-num">5</span> Write 3 ad variations per group</div>
+              <div class="playbook-step"><span class="playbook-step-num">6</span> Create dedicated landing pages</div>
+            </div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Weekly (Forever)</div>
+              <div class="playbook-step"><span class="playbook-step-num">7</span> Review search terms, add negative keywords</div>
+              <div class="playbook-step"><span class="playbook-step-num">8</span> Pause underperforming ads, create fresh creative</div>
+              <div class="playbook-step"><span class="playbook-step-num">9</span> Monitor competitor ads</div>
+              <div class="playbook-step"><span class="playbook-step-num">10</span> Adjust bids and budgets</div>
+            </div>
+            
+            <div class="playbook-time">
+              <span>⏱️ Setup: 15-20 hours</span>
+              <span>🔄 Ongoing: 6-10 hours/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Keyword research (500+ terms analysed)</li>
+              <li>Campaign architecture & ad group structure</li>
+              <li>Ad copywriting — 3-5 variations per group</li>
+              <li>Landing page design & optimisation</li>
+              <li>Conversion tracking setup & monitoring</li>
+              <li>Negative keyword management (weekly)</li>
+              <li>Bid adjustments & budget optimisation (weekly)</li>
+              <li>Fresh ad creative (weekly)</li>
+              <li>A/B testing headlines, CTAs, images</li>
+              <li>Competitor ad monitoring</li>
+              <li>Monthly performance reporting</li>
+              <li>Quarterly strategy reviews</li>
+            </ul>
+            <div class="playbook-dfy-result">You approve the budget and take consultations. That's it.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap 2: AI Intake -->
+      <div class="playbook-card reveal">
+        <div class="playbook-card-header">
+          <div class="playbook-number">02</div>
+          <div>
+            <div class="playbook-card-title">Get Answered — 24/7 Intake</div>
+            <div class="playbook-card-problem">The Problem: 35%+ of calls come after hours. Voicemail loses 85% of them.</div>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Setup (One-Time)</div>
+              <div class="playbook-step"><span class="playbook-step-num">1</span> Research answering services (Ruby, Smith.ai, Moneypenny)</div>
+              <div class="playbook-step"><span class="playbook-step-num">2</span> Request demos, compare legal experience</div>
+              <div class="playbook-step"><span class="playbook-step-num">3</span> Write intake scripts for every scenario</div>
+              <div class="playbook-step"><span class="playbook-step-num">4</span> Create FAQ document for common questions</div>
+              <div class="playbook-step"><span class="playbook-step-num">5</span> Set up call forwarding rules</div>
+              <div class="playbook-step"><span class="playbook-step-num">6</span> Test with mock calls</div>
+            </div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Weekly (Forever)</div>
+              <div class="playbook-step"><span class="playbook-step-num">7</span> Review call recordings for quality</div>
+              <div class="playbook-step"><span class="playbook-step-num">8</span> Update scripts based on new questions</div>
+              <div class="playbook-step"><span class="playbook-step-num">9</span> Retrain staff when turnover happens (every 3-6 months)</div>
+            </div>
+            
+            <div class="playbook-time">
+              <span>⏱️ Setup: 8-12 hours</span>
+              <span>🔄 Ongoing: 2-4 hours/week + retraining cycles</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>AI receptionist setup & configuration</li>
+              <li>Custom intake scripts for employment law</li>
+              <li>Qualification logic (urgency, case type, budget)</li>
+              <li>Calendar integration for direct booking</li>
+              <li>CRM integration for lead delivery</li>
+              <li>30+ language support</li>
+              <li>< 5 minute response time, 24/7/365</li>
+              <li>Call recording & transcription</li>
+              <li>Lead scoring & prioritisation</li>
+              <li>Ongoing optimisation & improvements</li>
+              <li>No retraining when "staff" turns over (AI doesn't quit)</li>
+            </ul>
+            <div class="playbook-dfy-result">You take qualified appointments. That's it.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap 3: Website & SEO -->
+      <div class="playbook-card reveal">
+        <div class="playbook-card-header">
+          <div class="playbook-number">03</div>
+          <div>
+            <div class="playbook-card-title">Get Chosen — Website & SEO</div>
+            <div class="playbook-card-problem">The Problem: Visitors land but leave without contacting you. And you're not ranking for critical searches.</div>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Setup (One-Time)</div>
+              <div class="playbook-step"><span class="playbook-step-num">1</span> Run Google PageSpeed Insights, fix critical issues</div>
+              <div class="playbook-step"><span class="playbook-step-num">2</span> Check mobile experience (50%+ searches are mobile)</div>
+              <div class="playbook-step"><span class="playbook-step-num">3</span> Add clear CTAs: "Free Consultation" > "Contact Us"</div>
+              <div class="playbook-step"><span class="playbook-step-num">4</span> Put phone number in header, click-to-call on mobile</div>
+              <div class="playbook-step"><span class="playbook-step-num">5</span> Add trust signals: your Law Society leadership, 5.0 rating</div>
+            </div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Weekly (Forever)</div>
+              <div class="playbook-step"><span class="playbook-step-num">6</span> PUBLISH NEW CONTENT — Google rewards fresh content</div>
+              <div class="playbook-step"><span class="playbook-step-num">7</span> Update existing pages with new Employment Rights Act info</div>
+              <div class="playbook-step"><span class="playbook-step-num">8</span> Request Google reviews (review velocity matters)</div>
+              <div class="playbook-step"><span class="playbook-step-num">9</span> Build backlinks through directories and PR</div>
+            </div>
+            
+            <div class="playbook-time">
+              <span>⏱️ Setup: 20-30 hours</span>
+              <span>🔄 Ongoing: 6-10 hours/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Technical SEO audit & fixes</li>
+              <li>Page speed optimisation</li>
+              <li>Mobile experience optimisation</li>
+              <li>Contact form implementation</li>
+              <li>Trust signal placement (your perfect rating, Law Society role)</li>
+              <li>Practice area landing pages</li>
+              <li>Weekly content publishing (blogs, FAQs on ERA 2025)</li>
+              <li>Google Business Profile management</li>
+              <li>Review generation & response</li>
+              <li>Backlink building & outreach</li>
+              <li>Ranking monitoring & reporting</li>
+              <li>Quarterly competitive analysis</li>
+            </ul>
+            <div class="playbook-dfy-result">Your site climbs while you practise law.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gap 4: CRM -->
+      <div class="playbook-card reveal">
+        <div class="playbook-card-header">
+          <div class="playbook-number">04</div>
+          <div>
+            <div class="playbook-card-title">Get Closed — CRM & Follow-Up</div>
+            <div class="playbook-card-problem">The Problem: Leads go cold because follow-up is manual and inconsistent.</div>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Setup (One-Time)</div>
+              <div class="playbook-step"><span class="playbook-step-num">1</span> Choose a CRM: Clio Grow, Lawmatics, or HubSpot</div>
+              <div class="playbook-step"><span class="playbook-step-num">2</span> Map your intake workflow: lead → qualification → consult → client</div>
+              <div class="playbook-step"><span class="playbook-step-num">3</span> Build automated email sequences (immediate, 24hr, 72hr, 7-day)</div>
+              <div class="playbook-step"><span class="playbook-step-num">4</span> Set up task reminders for phone follow-ups</div>
+              <div class="playbook-step"><span class="playbook-step-num">5</span> Configure lead source tracking</div>
+            </div>
+            
+            <div class="playbook-diy-section">
+              <div class="playbook-diy-section-title">Daily (Forever)</div>
+              <div class="playbook-step"><span class="playbook-step-num">6</span> Respond to new leads within 5 minutes during business hours</div>
+              <div class="playbook-step"><span class="playbook-step-num">7</span> Complete follow-up tasks assigned by system</div>
+              <div class="playbook-step"><span class="playbook-step-num">8</span> Update lead statuses, log all interactions</div>
+            </div>
+            
+            <div class="playbook-time">
+              <span>⏱️ Setup: 15-25 hours</span>
+              <span>🔄 Ongoing: 5-8 hours/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>CRM setup & configuration</li>
+              <li>Intake workflow mapping</li>
+              <li>Automated email sequences (immediate, 24hr, 72hr, 7-day)</li>
+              <li>SMS follow-up automation</li>
+              <li>Task & reminder system setup</li>
+              <li>Lead source tracking</li>
+              <li>Pipeline reporting & analytics</li>
+              <li>Dead lead reactivation campaigns</li>
+              <li>Template creation & optimisation</li>
+              <li>Ongoing sequence refinement</li>
+              <li>Monthly conversion analysis</li>
+            </ul>
+            <div class="playbook-dfy-result">You show up to consultations. Leads are already warmed up.</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="authority-flex" style="max-width: 800px; margin: 40px auto; text-align: center;">
+        You can absolutely do this yourself—many successful firms do. But be honest about the time commitment: this isn't a weekend project. It's 20-35 hours/week of ongoing work, forever. That's a part-time job on top of your full-time practice. If you'd rather spend that time winning employment cases and advising your long-term clients like Thornbridge, that's exactly why we exist.
+      </p>
+    </section>
+
+    <!-- Vision Section -->
+    <div class="vision-section reveal">
+      <h2 class="vision-title">What Changes</h2>
+      <p class="vision-text">
+        You spent 20+ years earning your reputation. You built a "Jerry McGuire" firm—fewer clients, more personal attention. You serve on the Birmingham Law Society Employment Committee. You have clients who've trusted you for over a decade.
+      </p>
+      <p class="vision-text">
+        We've spent a decade perfecting legal marketing.
+      </p>
+      <p class="vision-quote">"You do what you're known for. We do what we're known for."</p>
+      
+      <div class="vision-list">
+        <div class="vision-list-item">→ You won't learn Google Ads</div>
+        <div class="vision-list-item">→ You won't manage Facebook campaigns</div>
+        <div class="vision-list-item">→ You won't obsess over conversion rates</div>
+        <div class="vision-list-item">→ You'll advise on the ERA 2025 changes</div>
+        <div class="vision-list-item">→ Your calendar will fill</div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section reveal">
+      <div class="cta-urgency" id="cta-daily-loss">Revenue walking out the door TODAY: £533</div>
+      
+      <h2 class="cta-title">Ready to Capture What You're Missing?</h2>
+      <p class="cta-subtitle">
+        15 minutes. No commitment. See exactly how we'd recover the revenue you're leaving on the table.
+      </p>
+      
+      <div class="cta-comparison">
+        <div class="cta-comparison-col">
+          <div class="cta-comparison-title">What We Found</div>
+          <div class="cta-comparison-item">❌ No Google Ads visibility</div>
+          <div class="cta-comparison-item">❌ After-hours → voicemail</div>
+          <div class="cta-comparison-item">❌ No systematic follow-up</div>
+          <div class="cta-comparison-item">❌ £192K/year lost revenue</div>
+        </div>
+        <div class="cta-comparison-col">
+          <div class="cta-comparison-title">What Changes</div>
+          <div class="cta-comparison-item">✓ Top of search results</div>
+          <div class="cta-comparison-item">✓ 24/7 AI intake</div>
+          <div class="cta-comparison-item">✓ Automated nurture sequences</div>
+          <div class="cta-comparison-item">✓ £294K/year recoverable</div>
+        </div>
+      </div>
+      
+      <div class="calendly-container">
+        <h3>Book Your 15-Minute Strategy Call</h3>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+        <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+          Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank" style="color: var(--accent-light);">Book directly here →</a>
+        </p>
+      </div>
+      
+      <p class="cta-guarantee">
+        No long-term contracts. Month-to-month. Results-focused.<br>
+        <em>We've helped firms like yours recover six figures in missed revenue—without adding a single hour to their workweek.</em>
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">U</div>
+        <span class="footer-name">WSI Utopiads</span>
+      </div>
+      <p>
+        Prepared by Heidi Veronica Schwende<br>
+        <a href="https://utopiads.com/">utopiads.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Service toggle states
+    const services = {
+      googleads: true,
+      metaads: true,
+      aiintake: true,
+      website: true,
+      crm: true
+    };
+
+    function toggleService(service) {
+      services[service] = !services[service];
+      const toggle = document.getElementById(`toggle-${service}`);
+      const btn = document.getElementById(`toggle-btn-${service}`);
+      
+      if (services[service]) {
+        toggle.classList.add('active');
+        btn.classList.remove('off');
+      } else {
+        toggle.classList.remove('active');
+        btn.classList.add('off');
+      }
+      
+      calculateResults();
+    }
+
+    function formatCurrency(value) {
+      return '£' + Math.round(value).toLocaleString();
+    }
+
+    function calculateResults() {
+      // Get slider values
+      const inquiries = parseInt(document.getElementById('slider-inquiries').value);
+      const afterHoursPct = parseInt(document.getElementById('slider-afterhours').value) / 100;
+      const caseValue = parseInt(document.getElementById('slider-casevalue').value);
+      const closeRate = parseInt(document.getElementById('slider-closerate').value) / 100;
+      const googleAdsSpend = parseInt(document.getElementById('slider-googleads').value);
+      const metaAdsSpend = parseInt(document.getElementById('slider-metaads').value);
+
+      // Update display values
+      document.getElementById('val-inquiries').textContent = inquiries;
+      document.getElementById('val-afterhours').textContent = (afterHoursPct * 100) + '%';
+      document.getElementById('val-casevalue').textContent = formatCurrency(caseValue);
+      document.getElementById('val-closerate').textContent = (closeRate * 100) + '%';
+      document.getElementById('val-googleads').textContent = formatCurrency(googleAdsSpend);
+      document.getElementById('val-metaads').textContent = formatCurrency(metaAdsSpend);
+
+      // Calculate base metrics
+      const monthlyInquiries = inquiries * 4.3;
+      const afterHoursInquiries = monthlyInquiries * afterHoursPct;
+      const voicemailCapture = 0.15;
+      const currentCapture = afterHoursInquiries * voicemailCapture;
+      const afterHoursLost = afterHoursInquiries * (1 - voicemailCapture);
+      
+      // Monthly loss from after-hours
+      const monthlyLossAfterHours = afterHoursLost * closeRate * caseValue;
+
+      // Service impacts
+      // Google Ads: ~1 consult per £1,200 spend for employment law
+      const googleAdsLeads = services.googleads ? (googleAdsSpend / 1200) : 0;
+      const googleAdsRevenue = googleAdsLeads * closeRate * caseValue;
+
+      // Meta Ads: ~1 consult per £1,500 spend
+      const metaAdsLeads = services.metaads ? (metaAdsSpend / 1500) : 0;
+      const metaAdsRevenue = metaAdsLeads * closeRate * caseValue;
+
+      // AI Intake: captures 90% vs 15% voicemail
+      const aiCaptureRate = 0.90;
+      const aiRecoveredLeads = services.aiintake ? afterHoursInquiries * (aiCaptureRate - voicemailCapture) : 0;
+      const aiRecoveredRevenue = aiRecoveredLeads * closeRate * caseValue;
+
+      // Website: 15% conversion improvement
+      const websiteMultiplier = services.website ? 1.15 : 1;
+
+      // CRM: 10% close rate improvement
+      const crmMultiplier = services.crm ? 1.10 : 1;
+
+      // Total recovery
+      const baseRecovery = googleAdsRevenue + metaAdsRevenue + aiRecoveredRevenue;
+      const totalRecovery = baseRecovery * websiteMultiplier * crmMultiplier;
+
+      // Total investment
+      const managementFee = 2500; // Approximate management fee
+      const aiCost = services.aiintake ? 2000 : 0;
+      const totalInvestment = (services.googleads ? googleAdsSpend : 0) + (services.metaads ? metaAdsSpend : 0) + managementFee + aiCost;
+
+      // ROI
+      const roi = totalInvestment > 0 ? totalRecovery / totalInvestment : 0;
+
+      // New clients per month
+      const newClients = Math.round((googleAdsLeads + metaAdsLeads + aiRecoveredLeads) * closeRate * websiteMultiplier * crmMultiplier);
+
+      // Annual opportunity
+      const annualOpportunity = totalRecovery * 12;
+
+      // Update math section
+      document.getElementById('math-monthly').textContent = monthlyInquiries.toFixed(1) + '/mo';
+      document.getElementById('math-afterhours').textContent = afterHoursInquiries.toFixed(1) + ' after-hours/mo';
+      document.getElementById('math-capture').textContent = currentCapture.toFixed(1) + ' captured';
+      document.getElementById('math-lost').textContent = afterHoursLost.toFixed(1) + ' lost/mo';
+      document.getElementById('math-revenue-loss').textContent = formatCurrency(monthlyLossAfterHours) + '/mo lost';
+      document.getElementById('math-google-recovery').textContent = services.googleads ? '+' + formatCurrency(googleAdsRevenue) + '/mo' : '—';
+      document.getElementById('math-meta-recovery').textContent = services.metaads ? '+' + formatCurrency(metaAdsRevenue) + '/mo' : '—';
+      document.getElementById('math-ai-recovery').textContent = services.aiintake ? '+' + formatCurrency(aiRecoveredRevenue) + '/mo' : '—';
+      document.getElementById('math-website-recovery').textContent = services.website ? '+15% multiplier' : '—';
+      document.getElementById('math-crm-recovery').textContent = services.crm ? '+10% multiplier' : '—';
+
+      // Update results panel
+      document.getElementById('result-losing').textContent = formatCurrency(monthlyLossAfterHours);
+      document.getElementById('result-recover').textContent = formatCurrency(totalRecovery);
+      document.getElementById('result-clients').textContent = '+' + newClients;
+      document.getElementById('result-roi').textContent = roi.toFixed(1) + 'x';
+      document.getElementById('result-annual').textContent = formatCurrency(annualOpportunity);
+
+      // Update hero stats
+      document.getElementById('hero-lost').textContent = formatCurrency(monthlyLossAfterHours);
+      document.getElementById('hero-recovered').textContent = formatCurrency(totalRecovery);
+      document.getElementById('hero-roi').textContent = roi.toFixed(1) + 'x';
+
+      // Update CTA daily loss
+      const dailyLoss = monthlyLossAfterHours / 30;
+      document.getElementById('cta-daily-loss').textContent = 'Revenue walking out the door TODAY: ' + formatCurrency(dailyLoss);
+    }
+
+    // Add event listeners to all sliders
+    document.querySelectorAll('.calc-slider').forEach(slider => {
+      slider.addEventListener('input', calculateResults);
+    });
+
+    // Scroll progress indicator
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Initial calculation
+    calculateResults();
+  </script>
+</body>
+</html>
