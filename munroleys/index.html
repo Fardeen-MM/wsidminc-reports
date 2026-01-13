@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Gap Analysis | Richard Naidu | Munro Leys</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #1e293b;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --warm-white: #f8fafc;
+      --white: #ffffff;
+      --brand-primary: #1e3a5f;
+      --brand-blue: #2563eb;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      --pacific-teal: #0d9488;
+      --pacific-light: #ccfbf1;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: 'Outfit', -apple-system, system-ui, sans-serif; 
+      background: var(--warm-white); 
+      color: var(--ink); 
+      line-height: 1.65; 
+      font-size: 16px; 
+      -webkit-font-smoothing: antialiased; 
+      overflow-x: hidden; 
+    }
+    h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+
+    /* Background */
+    .bg-grid { 
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+      background-image: linear-gradient(rgba(13,148,136,0.03) 1px, transparent 1px), 
+                        linear-gradient(90deg, rgba(13,148,136,0.03) 1px, transparent 1px); 
+      background-size: 60px 60px; 
+      pointer-events: none; z-index: 0; 
+    }
+    .orbs { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--pacific-teal); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--brand-blue); }
+    .scroll-indicator { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--pacific-teal), var(--brand-blue)); z-index: 9999; width: 0%; }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    @media (max-width: 600px) { .container { padding: 0 20px; } }
+
+    /* Header */
+    .header { 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 32px 0; border-bottom: 1px solid var(--border); 
+      margin-bottom: 50px; flex-wrap: wrap; gap: 24px; 
+    }
+    .brand-mark { display: flex; align-items: center; gap: 14px; }
+    .logo { 
+      width: 56px; height: 56px; background: var(--brand-blue); border-radius: 16px; 
+      display: flex; align-items: center; justify-content: center; 
+      font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: white; 
+      transition: all 0.4s var(--ease-out-expo); 
+    }
+    .logo:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 12px 40px rgba(37,99,235,0.3); }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); }
+    .brand-sub { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .prepared-for { text-align: right; }
+    .prepared-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-light); margin-bottom: 6px; font-weight: 500; }
+    .prepared-name { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+    .prepared-firm { font-size: 0.9rem; color: var(--pacific-teal); font-weight: 500; }
+    .prepared-date { font-size: 0.8rem; color: var(--slate-light); margin-top: 6px; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 50px 0 70px; }
+    .hero-badge { 
+      display: inline-flex; align-items: center; gap: 10px; 
+      padding: 12px 26px; background: var(--white); border: 1px solid var(--border); 
+      border-radius: 100px; font-size: 0.75rem; font-weight: 700; color: var(--ink); 
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; 
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04); 
+    }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.2); } }
+    .hero-title { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 26px; }
+    .hero-title em { font-style: italic; background: linear-gradient(135deg, var(--pacific-teal) 0%, var(--brand-blue) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--slate); max-width: 720px; margin: 0 auto 50px; line-height: 1.75; }
+
+    /* Hero Stats */
+    .hero-stats { 
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; 
+      padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); 
+    }
+    @media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+    .hero-stat { 
+      text-align: center; padding: 24px 16px; background: var(--white); 
+      border: 1px solid var(--border); border-radius: 16px; 
+      transition: all 0.4s var(--ease-out-expo); 
+    }
+    .hero-stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--pacific-teal); }
+    .hero-stat-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 10px; }
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+    .hero-stat-value.teal { color: var(--pacific-teal); }
+    .hero-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-label { 
+      display: inline-block; padding: 10px 22px; background: var(--ink); color: var(--white); 
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; 
+      border-radius: 100px; margin-bottom: 22px; font-weight: 600; 
+    }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin-bottom: 14px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+
+    /* Cards */
+    .card { 
+      background: var(--white); border: 1px solid var(--border); border-radius: 20px; 
+      padding: 32px; transition: all 0.4s var(--ease-out-expo); 
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.08); border-color: var(--pacific-teal); }
+
+    /* Story Section */
+    .story-section {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--brand-primary) 100%);
+      border-radius: 24px;
+      padding: 50px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 70%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(13,148,136,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .story-text {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .story-text strong {
+      color: var(--accent-light);
+    }
+
+    /* Market Banner */
+    .market-banner {
+      background: var(--pacific-light);
+      border: 1px solid rgba(13,148,136,0.2);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px 0;
+    }
+    .market-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 768px) { .market-stats { grid-template-columns: repeat(2, 1fr); } }
+    .market-stat {
+      text-align: center;
+    }
+    .market-stat-value {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--pacific-teal);
+      margin-bottom: 4px;
+    }
+    .market-stat-label {
+      font-size: 0.75rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+    .market-context {
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 1rem;
+    }
+
+    /* Comparison Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 30px 0;
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .comparison-table th {
+      background: var(--ink);
+      color: var(--white);
+      padding: 16px 20px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .comparison-table th:first-child {
+      border-top-left-radius: 16px;
+    }
+    .comparison-table th:last-child {
+      border-top-right-radius: 16px;
+    }
+    .comparison-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+    .comparison-table tr:hover td {
+      background: var(--warm-white);
+    }
+    .check { color: var(--success); font-weight: 700; }
+    .cross { color: var(--danger); font-weight: 700; }
+    .partial { color: var(--gold); font-weight: 700; }
+
+    /* Calculator */
+    .calculator-section { 
+      background: var(--white); border: 1px solid var(--border); border-radius: 24px; 
+      padding: 50px; margin: 80px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.04); 
+    }
+    @media (max-width: 600px) { .calculator-section { padding: 30px 24px; } }
+    .calc-header { text-align: center; margin-bottom: 50px; }
+    
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 800px) { .calc-grid { grid-template-columns: 1fr; } }
+    
+    .calc-inputs {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .calc-input-group {
+      margin-bottom: 24px;
+    }
+    .calc-input-group:last-child {
+      margin-bottom: 0;
+    }
+    .calc-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .calc-value {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      color: var(--pacific-teal);
+    }
+    .calc-slider { 
+      width: 100%; height: 8px; border-radius: 4px; background: var(--border); 
+      -webkit-appearance: none; cursor: pointer; 
+    }
+    .calc-slider::-webkit-slider-thumb { 
+      -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; 
+      background: var(--ink); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); 
+    }
+    
+    .calc-services {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .calc-service {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .calc-service:last-child {
+      border-bottom: none;
+    }
+    .calc-service-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .calc-service-name {
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .calc-service-impact {
+      font-size: 0.8rem;
+      color: var(--slate);
+    }
+    .toggle-switch {
+      position: relative;
+      width: 48px;
+      height: 26px;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--border);
+      transition: 0.3s;
+      border-radius: 26px;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+    input:checked + .toggle-slider {
+      background-color: var(--pacific-teal);
+    }
+    input:checked + .toggle-slider:before {
+      transform: translateX(22px);
+    }
+
+    /* Results */
+    .calc-results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 768px) { .calc-results { grid-template-columns: repeat(2, 1fr); } }
+    .calc-result-card { 
+      background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; 
+      padding: 26px; text-align: center; transition: all 0.3s var(--ease-out-expo); 
+    }
+    .calc-result-card:hover { border-color: var(--pacific-teal); transform: translateY(-3px); }
+    .calc-result-value { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; }
+    .calc-result-value.danger { color: var(--danger); }
+    .calc-result-value.success { color: var(--success); }
+    .calc-result-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 6px; }
+    
+    .calc-total { background: var(--ink); border-radius: 18px; padding: 32px; text-align: center; }
+    .calc-total-label { font-size: 0.8rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+    .calc-total-value { font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 600; color: var(--white); }
+    .calc-total-sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 8px; }
+
+    /* Math Section */
+    .math-section {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 30px;
+    }
+    .math-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      color: var(--ink);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .math-step {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .math-step:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    .math-step-title {
+      font-weight: 600;
+      color: var(--pacific-teal);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .math-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--slate);
+      padding: 4px 0;
+    }
+    .math-row.result {
+      font-weight: 600;
+      color: var(--ink);
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+      padding-top: 8px;
+    }
+
+    /* Playbook Cards */
+    .playbook-grid {
+      display: grid;
+      gap: 30px;
+    }
+    .playbook-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+    .playbook-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.06);
+      border-color: var(--pacific-teal);
+    }
+    .playbook-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .playbook-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--pacific-teal), var(--brand-blue));
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .playbook-title-area {
+      flex: 1;
+    }
+    .playbook-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .playbook-problem {
+      font-size: 0.9rem;
+      color: var(--slate);
+    }
+    .playbook-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 768px) { .playbook-content { grid-template-columns: 1fr; } }
+    .playbook-diy {
+      background: var(--warm-white);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .playbook-done-for-you {
+      background: var(--pacific-light);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .playbook-column-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--ink);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .playbook-steps {
+      list-style: none;
+    }
+    .playbook-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+    .playbook-step-num {
+      width: 20px;
+      height: 20px;
+      background: var(--white);
+      color: var(--pacific-teal);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .playbook-dfy-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px 0;
+    }
+    .playbook-dfy-list li {
+      padding: 6px 0;
+      font-size: 0.85rem;
+      color: var(--ink);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .playbook-dfy-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 700;
+    }
+    .playbook-dfy-result {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--pacific-teal);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(13,148,136,0.2);
+    }
+    .playbook-meta {
+      display: flex;
+      gap: 20px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--slate);
+    }
+
+    /* Vision Section */
+    .vision-section {
+      background: linear-gradient(135deg, var(--pacific-teal), var(--brand-primary));
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      margin: 60px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .vision-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .vision-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2rem);
+      color: var(--white);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .vision-quote {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.95);
+      max-width: 700px;
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .vision-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 32px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* CTA */
+    .cta-section { 
+      background: var(--ink); border-radius: 24px; padding: 70px 50px; 
+      text-align: center; margin: 80px 0; position: relative; overflow: hidden; 
+    }
+    .cta-section::before { 
+      content: ''; position: absolute; inset: 0; 
+      background: radial-gradient(circle at 20% 30%, rgba(13,148,136,0.15) 0%, transparent 50%), 
+                  radial-gradient(circle at 80% 70%, rgba(59,130,246,0.1) 0%, transparent 40%); 
+      pointer-events: none; 
+    }
+    .cta-urgency {
+      background: rgba(220,38,38,0.15);
+      border: 1px solid rgba(220,38,38,0.3);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: inline-block;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-urgency-value {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #fca5a5;
+    }
+    .cta-urgency-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 4px;
+    }
+    .cta-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--white); margin-bottom: 16px; position: relative; z-index: 1; }
+    .cta-subtitle {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 600px;
+      margin: 0 auto 32px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cta-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 600px) { .cta-columns { grid-template-columns: 1fr; } }
+    .cta-column {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+    }
+    .cta-column-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+    .cta-column ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .cta-column li {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Calendly Container */
+    .calendly-container {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 32px;
+      margin: 32px 0;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .calendly-container h3 {
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 24px;
+      font-family: 'Fraunces', serif;
+    }
+    .calendly-inline-widget {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .calendly-fallback {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .calendly-fallback a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+    .calendly-fallback a:hover {
+      text-decoration: underline;
+    }
+
+    .cta-guarantee {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Footer */
+    .footer { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); margin-top: 80px; }
+    .footer-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .footer-logo { 
+      width: 40px; height: 40px; background: var(--brand-blue); border-radius: 12px; 
+      display: flex; align-items: center; justify-content: center; 
+      font-family: 'Fraunces', serif; font-size: 12px; color: var(--white); 
+    }
+    .footer-name { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Authority flex */
+    .authority-flex {
+      background: var(--warm-white);
+      border-left: 3px solid var(--pacific-teal);
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 0.9rem;
+      color: var(--slate);
+      font-style: italic;
+    }
+
+    /* Insight Box */
+    .insight-box {
+      background: linear-gradient(135deg, var(--pacific-light), rgba(37,99,235,0.05));
+      border: 1px solid rgba(13,148,136,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 24px 0;
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+    }
+    .insight-box strong {
+      color: var(--pacific-teal);
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <div class="bg-grid"></div>
+  <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+  
+  <div class="container">
+    <header class="header">
+      <div class="brand-mark">
+        <div class="logo">U</div>
+        <div class="brand-text">
+          <div class="brand-name">WSI Utopiads</div>
+          <div class="brand-sub">Performance Marketing</div>
+        </div>
+      </div>
+      <div class="prepared-for">
+        <div class="prepared-label">Marketing Gap Analysis For</div>
+        <div class="prepared-name">Richard Naidu</div>
+        <div class="prepared-firm">Munro Leys</div>
+        <div class="prepared-date">January 2026</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        International Client Acquisition Analysis
+      </div>
+      <h1 class="hero-title">
+        <em>$420,000/year</em><br>
+        in international mandates—going elsewhere.
+      </h1>
+      <p class="hero-subtitle">
+        Your 14-year Chambers Band 1 streak means nothing if Australian investors can't find you at midnight Sydney time. Right now, Siwatibau & Sloan appears first.
+      </p>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value danger">$35K</div>
+          <div class="hero-stat-label">Lost Monthly</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value success">$52K</div>
+          <div class="hero-stat-label">Recoverable</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value gold">4.8x</div>
+          <div class="hero-stat-label">Potential ROI</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value teal">1M</div>
+          <div class="hero-stat-label">Fiji Visitors 2024</div>
+        </div>
+      </div>
+      
+      <p style="margin-top: 30px; color: var(--slate); font-size: 0.95rem;">This report shows you how to capture international discovery. DIY or done-for-you.</p>
+    </section>
+
+    <!-- STORY -->
+    <div class="story-section reveal">
+      <p class="story-text">
+        Tuesday, 11:47 PM Sydney. An Australian resort developer researches "commercial lawyer Fiji foreign investment." <strong>You don't appear in the first 10 results.</strong> By Wednesday morning, they've emailed your competitor. That $75,000 mandate? Gone before you knew it existed.
+      </p>
+    </div>
+
+    <p class="insight-box">
+      This happens weekly to firms without digital visibility—even market leaders. <strong>The firms that win internationally show up first in search, regardless of reputation.</strong>
+    </p>
+
+    <!-- MARKET -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Why Now</span>
+        <h2 class="section-title">Fiji's Foreign Investment Surge</h2>
+      </div>
+      
+      <div class="market-banner">
+        <div class="market-stats">
+          <div class="market-stat">
+            <div class="market-stat-value">960K</div>
+            <div class="market-stat-label">Tourists 2024</div>
+          </div>
+          <div class="market-stat">
+            <div class="market-stat-value">$200M</div>
+            <div class="market-stat-label">World Bank Tourism Fund</div>
+          </div>
+          <div class="market-stat">
+            <div class="market-stat-value">800+</div>
+            <div class="market-stat-label">Work Permits/Month</div>
+          </div>
+          <div class="market-stat">
+            <div class="market-stat-value">3.4%</div>
+            <div class="market-stat-label">GDP Growth 2025</div>
+          </div>
+        </div>
+        <p class="market-context">
+          Fiji is the South Pacific's economic hub. International investors are researching opportunities online—and choosing counsel based on who they find first.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMPETITIVE -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Competitive Reality</span>
+        <h2 class="section-title">Who's Winning International Discovery</h2>
+      </div>
+      
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Digital Presence</th>
+            <th>Siwatibau & Sloan</th>
+            <th>Howards</th>
+            <th>Munro Leys</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Ads (International)</td>
+            <td><span class="cross">✗ None</span></td>
+            <td><span class="cross">✗ None</span></td>
+            <td><span class="cross">✗ None</span></td>
+          </tr>
+          <tr>
+            <td>SEO for "Fiji lawyer" searches</td>
+            <td><span class="check">✓ Strong</span></td>
+            <td><span class="partial">◐ Moderate</span></td>
+            <td><span class="partial">◐ Moderate</span></td>
+          </tr>
+          <tr>
+            <td>LinkedIn Content Strategy</td>
+            <td><span class="partial">◐ Occasional</span></td>
+            <td><span class="cross">✗ Minimal</span></td>
+            <td><span class="partial">◐ Occasional</span></td>
+          </tr>
+          <tr>
+            <td>International Timezone Coverage</td>
+            <td><span class="cross">✗ No</span></td>
+            <td><span class="cross">✗ No</span></td>
+            <td><span class="cross">✗ No</span></td>
+          </tr>
+          <tr>
+            <td>Content Marketing (Thought Leadership)</td>
+            <td><span class="check">✓ Regular bulletins</span></td>
+            <td><span class="cross">✗ Limited</span></td>
+            <td><span class="check">✓ Alerts published</span></td>
+          </tr>
+          <tr>
+            <td>Mobile-Optimized Website</td>
+            <td><span class="check">✓ Yes</span></td>
+            <td><span class="partial">◐ Dated</span></td>
+            <td><span class="partial">◐ Functional</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="insight-box">
+        <strong>What you have that they don't:</strong> 140 years of history, Chambers Band 1 for 14 consecutive years, Richard Naidu's international recognition, and the largest team in Fiji.<br><br>
+        <strong>What they're doing that you're not:</strong> Showing up when international investors search.
+      </p>
+    </section>
+
+    <!-- CALCULATOR -->
+    <div class="calculator-section reveal">
+      <div class="calc-header">
+        <span class="section-label">Your Numbers</span>
+        <h2 class="section-title">See the Math for Yourself</h2>
+        <p class="section-subtitle">Adjust the sliders to match your practice. Watch the revenue opportunity update in real-time.</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <h3 style="font-family: 'Fraunces', serif; margin-bottom: 20px; font-size: 1.1rem;">Practice Baseline</h3>
+          
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>International Inquiries Per Month</span>
+              <span class="calc-value" id="inquiriesValue">12</span>
+            </div>
+            <input type="range" class="calc-slider" id="inquiries" min="4" max="40" value="12">
+          </div>
+          
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>After-Hours / Off-Timezone %</span>
+              <span class="calc-value" id="afterHoursValue">45%</span>
+            </div>
+            <input type="range" class="calc-slider" id="afterHours" min="20" max="70" value="45">
+          </div>
+          
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Average Mandate Value (FJD)</span>
+              <span class="calc-value" id="caseValueDisplay">$50,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="caseValue" min="15000" max="200000" value="50000" step="5000">
+          </div>
+          
+          <div class="calc-input-group">
+            <div class="calc-label">
+              <span>Current Conversion Rate</span>
+              <span class="calc-value" id="closeRateValue">30%</span>
+            </div>
+            <input type="range" class="calc-slider" id="closeRate" min="15" max="60" value="30">
+          </div>
+        </div>
+
+        <div class="calc-services">
+          <h3 style="font-family: 'Fraunces', serif; margin-bottom: 20px; font-size: 1.1rem;">Services to Model</h3>
+          
+          <div class="calc-service">
+            <div class="calc-service-info">
+              <div>
+                <div class="calc-service-name">International SEO</div>
+                <div class="calc-service-impact">+40% discovery from AU/NZ/US</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="seoToggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="calc-service">
+            <div class="calc-service-info">
+              <div>
+                <div class="calc-service-name">Google Ads (Targeted)</div>
+                <div class="calc-service-impact">+25% qualified inquiries</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="adsToggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="calc-service">
+            <div class="calc-service-info">
+              <div>
+                <div class="calc-service-name">AI Inquiry Response</div>
+                <div class="calc-service-impact">24/7 timezone coverage</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="aiToggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="calc-service">
+            <div class="calc-service-info">
+              <div>
+                <div class="calc-service-name">Website Optimization</div>
+                <div class="calc-service-impact">+15% conversion rate</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="webToggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="calc-service">
+            <div class="calc-service-info">
+              <div>
+                <div class="calc-service-name">CRM & Follow-Up</div>
+                <div class="calc-service-impact">+20% close rate improvement</div>
+              </div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="crmToggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-result-card">
+          <div class="calc-result-value danger" id="currentLoss">$35,100</div>
+          <div class="calc-result-label">Currently Losing/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value success" id="recovery">$52,650</div>
+          <div class="calc-result-label">Could Recover/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value" style="color: var(--pacific-teal);" id="newClients">1.1</div>
+          <div class="calc-result-label">New Mandates/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value gold" id="roi">4.8x</div>
+          <div class="calc-result-label">Projected ROI</div>
+        </div>
+      </div>
+
+      <div class="calc-total">
+        <div class="calc-total-label">Annual Opportunity</div>
+        <div class="calc-total-value" id="annualTotal">$631,800</div>
+        <div class="calc-total-sub" id="gutPunch">That's international mandates going to competitors while you sleep.</div>
+      </div>
+
+      <!-- MATH SECTION - VISIBLE BY DEFAULT -->
+      <div class="math-section">
+        <div class="math-title">📊 Step-by-Step Calculation</div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 1: Current Baseline</div>
+          <div class="math-row">
+            <span>Monthly international inquiries:</span>
+            <span id="mathInquiries">12</span>
+          </div>
+          <div class="math-row">
+            <span>× Conversion rate:</span>
+            <span id="mathConversion">× 30%</span>
+          </div>
+          <div class="math-row">
+            <span>× Average mandate value:</span>
+            <span id="mathValue">× $50,000</span>
+          </div>
+          <div class="math-row result">
+            <span>= Current monthly revenue:</span>
+            <span id="mathCurrentRev">$180,000</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 2: The Off-Timezone Gap</div>
+          <div class="math-row">
+            <span>Monthly inquiries:</span>
+            <span id="mathInq2">12</span>
+          </div>
+          <div class="math-row">
+            <span>× Off-timezone percentage:</span>
+            <span id="mathOffTz">× 45%</span>
+          </div>
+          <div class="math-row">
+            <span>= Off-timezone inquiries:</span>
+            <span id="mathOffInq">5.4/mo</span>
+          </div>
+          <div class="math-row">
+            <span>Current capture rate (no 24/7 coverage):</span>
+            <span>35%</span>
+          </div>
+          <div class="math-row result">
+            <span>= Off-timezone inquiries LOST:</span>
+            <span id="mathLost">3.5/mo</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 3: Revenue Impact</div>
+          <div class="math-row">
+            <span>Lost inquiries × Close rate × Mandate value:</span>
+            <span></span>
+          </div>
+          <div class="math-row result">
+            <span>= Monthly revenue walking away:</span>
+            <span id="mathMonthlyLoss">$35,100</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 4: Recovery with All Services</div>
+          <div class="math-row">
+            <span>International SEO (+40% discovery):</span>
+            <span id="mathSeo">+$14,040</span>
+          </div>
+          <div class="math-row">
+            <span>Google Ads (+25% inquiries):</span>
+            <span id="mathAds">+$8,775</span>
+          </div>
+          <div class="math-row">
+            <span>AI Response (recover 85% off-timezone):</span>
+            <span id="mathAi">+$17,888</span>
+          </div>
+          <div class="math-row">
+            <span>Website optimization (+15% conversion):</span>
+            <span id="mathWeb">+$5,265</span>
+          </div>
+          <div class="math-row">
+            <span>CRM & Follow-up (+20% close rate):</span>
+            <span id="mathCrm">+$7,020</span>
+          </div>
+          <div class="math-row result">
+            <span>= TOTAL MONTHLY RECOVERY:</span>
+            <span id="mathTotalRecovery">$52,988</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="authority-flex">
+        These projections are based on industry benchmarks from international professional services marketing. Actual results vary based on market conditions and implementation quality.
+      </div>
+    </div>
+
+    <!-- AI COMPARISON -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">The 24/7 Challenge</span>
+        <h2 class="section-title">Your Off-Timezone Options</h2>
+        <p class="section-subtitle">Australian investors research at 10 PM Sydney. That's 8 PM Suva—after hours. Here's how different solutions compare:</p>
+      </div>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Email Only</th>
+            <th>Answering Service</th>
+            <th>AI Inquiry System</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Response Time</td>
+            <td>Next business day</td>
+            <td>Minutes</td>
+            <td><strong>&lt;5 minutes</strong></td>
+          </tr>
+          <tr>
+            <td>24/7/365 Coverage</td>
+            <td><span class="cross">✗ No</span></td>
+            <td><span class="partial">◐ Extra cost</span></td>
+            <td><span class="check">✓ Always</span></td>
+          </tr>
+          <tr>
+            <td>Legal Intake Qualification</td>
+            <td><span class="cross">✗ None</span></td>
+            <td><span class="partial">◐ Basic</span></td>
+            <td><span class="check">✓ Sophisticated</span></td>
+          </tr>
+          <tr>
+            <td>Languages</td>
+            <td>English only</td>
+            <td>1-2</td>
+            <td><strong>30+</strong></td>
+          </tr>
+          <tr>
+            <td>Staff Turnover Risk</td>
+            <td>N/A</td>
+            <td>Every 3-6 months</td>
+            <td><strong>Never</strong></td>
+          </tr>
+          <tr>
+            <td>Inquiry Capture Rate</td>
+            <td>~40%</td>
+            <td>~65%</td>
+            <td><strong>90%+</strong></td>
+          </tr>
+          <tr>
+            <td>Calendar Integration</td>
+            <td><span class="cross">✗ No</span></td>
+            <td><span class="partial">◐ Manual</span></td>
+            <td><span class="check">✓ Direct booking</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="authority-flex">
+        Across our portfolio, AI intake recovers an average of 35% of previously lost after-hours and off-timezone inquiries for B2B professional services firms.
+      </div>
+    </section>
+
+    <!-- DIY PLAYBOOK -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">The Playbook</span>
+        <h2 class="section-title">How to Close Each Gap (Step by Step)</h2>
+        <p class="section-subtitle">Here's exactly how to capture international discovery yourself—no gatekeeping. Fair warning: this isn't a one-time project. It's ongoing.</p>
+      </div>
+
+      <div class="playbook-grid">
+        <!-- GAP 1 -->
+        <div class="playbook-card">
+          <div class="playbook-header">
+            <div class="playbook-number">01</div>
+            <div class="playbook-title-area">
+              <h3 class="playbook-title">Get Found — International SEO</h3>
+              <p class="playbook-problem">Australian and NZ investors can't find you when they search "Fiji commercial lawyer."</p>
+            </div>
+          </div>
+          
+          <div class="playbook-content">
+            <div class="playbook-diy">
+              <div class="playbook-column-title">🛠️ DIY Fix</div>
+              <ul class="playbook-steps">
+                <li><span class="playbook-step-num">1</span> Research keywords: "Fiji corporate lawyer," "foreign investment Fiji," "Fiji tourism development lawyer"</li>
+                <li><span class="playbook-step-num">2</span> Optimize title tags and meta descriptions for each practice area page</li>
+                <li><span class="playbook-step-num">3</span> Create dedicated landing pages for AU/NZ/US investors</li>
+                <li><span class="playbook-step-num">4</span> Build backlinks from international legal directories</li>
+                <li><span class="playbook-step-num">5</span> Publish weekly content on Fiji business law topics</li>
+                <li><span class="playbook-step-num">6</span> Submit to international lawyer directories (Chambers, Legal 500, etc.)</li>
+              </ul>
+              <div class="playbook-meta">
+                <span>⏱️ Setup: 20-30 hrs</span>
+                <span>🔄 Ongoing: 6-10 hrs/week</span>
+              </div>
+            </div>
+            
+            <div class="playbook-done-for-you">
+              <div class="playbook-column-title">✨ We Handle All of This:</div>
+              <ul class="playbook-dfy-list">
+                <li>International keyword research (500+ terms)</li>
+                <li>Technical SEO audit & implementation</li>
+                <li>Content strategy for international discovery</li>
+                <li>Landing pages for AU/NZ/US markets</li>
+                <li>Weekly content creation & publishing</li>
+                <li>Directory submissions & backlink building</li>
+                <li>Google Business Profile optimization</li>
+                <li>Monthly ranking reports & adjustments</li>
+                <li>Competitor monitoring</li>
+              </ul>
+              <p class="playbook-dfy-result">You practice law. Your international visibility climbs.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAP 2 -->
+        <div class="playbook-card">
+          <div class="playbook-header">
+            <div class="playbook-number">02</div>
+            <div class="playbook-title-area">
+              <h3 class="playbook-title">Get Answered — 24/7 International Coverage</h3>
+              <p class="playbook-problem">45%+ of international inquiries arrive outside Fiji business hours. Voicemail loses 60% of them.</p>
+            </div>
+          </div>
+          
+          <div class="playbook-content">
+            <div class="playbook-diy">
+              <div class="playbook-column-title">🛠️ DIY Fix</div>
+              <ul class="playbook-steps">
+                <li><span class="playbook-step-num">1</span> Research answering services with international legal experience</li>
+                <li><span class="playbook-step-num">2</span> Write intake scripts for each practice area (foreign investment, tourism, IP, immigration)</li>
+                <li><span class="playbook-step-num">3</span> Set up after-hours call forwarding</li>
+                <li><span class="playbook-step-num">4</span> Create qualification criteria for different inquiry types</li>
+                <li><span class="playbook-step-num">5</span> Configure lead delivery to email/CRM</li>
+                <li><span class="playbook-step-num">6</span> Monitor call quality weekly</li>
+                <li><span class="playbook-step-num">7</span> Retrain when staff turn over (every 3-6 months)</li>
+              </ul>
+              <div class="playbook-meta">
+                <span>⏱️ Setup: 10-15 hrs</span>
+                <span>🔄 Ongoing: 3-5 hrs/week + retraining</span>
+              </div>
+            </div>
+            
+            <div class="playbook-done-for-you">
+              <div class="playbook-column-title">✨ We Handle All of This:</div>
+              <ul class="playbook-dfy-list">
+                <li>AI receptionist setup & configuration</li>
+                <li>Custom intake for commercial law practice areas</li>
+                <li>Sophisticated qualification logic</li>
+                <li>Calendar integration for direct booking</li>
+                <li>CRM integration for lead delivery</li>
+                <li>30+ language support</li>
+                <li>&lt;5 minute response time, 24/7/365</li>
+                <li>No retraining, no turnover, no sick days</li>
+                <li>Ongoing optimization & improvements</li>
+              </ul>
+              <p class="playbook-dfy-result">You take qualified consultations. That's it.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAP 3 -->
+        <div class="playbook-card">
+          <div class="playbook-header">
+            <div class="playbook-number">03</div>
+            <div class="playbook-title-area">
+              <h3 class="playbook-title">Get Chosen — Website & Conversion</h3>
+              <p class="playbook-problem">International visitors land on your site but leave without reaching out.</p>
+            </div>
+          </div>
+          
+          <div class="playbook-content">
+            <div class="playbook-diy">
+              <div class="playbook-column-title">🛠️ DIY Fix</div>
+              <ul class="playbook-steps">
+                <li><span class="playbook-step-num">1</span> Run PageSpeed Insights—fix critical issues</li>
+                <li><span class="playbook-step-num">2</span> Optimize mobile experience (50%+ searches are mobile)</li>
+                <li><span class="playbook-step-num">3</span> Add prominent CTAs on every page</li>
+                <li><span class="playbook-step-num">4</span> Highlight Chambers rankings, credentials prominently</li>
+                <li><span class="playbook-step-num">5</span> Create practice area landing pages with clear value propositions</li>
+                <li><span class="playbook-step-num">6</span> Add international client testimonials</li>
+                <li><span class="playbook-step-num">7</span> Install heatmap tracking to identify drop-off points</li>
+              </ul>
+              <div class="playbook-meta">
+                <span>⏱️ Setup: 25-40 hrs</span>
+                <span>🔄 Ongoing: 4-6 hrs/week</span>
+              </div>
+            </div>
+            
+            <div class="playbook-done-for-you">
+              <div class="playbook-column-title">✨ We Handle All of This:</div>
+              <ul class="playbook-dfy-list">
+                <li>Comprehensive site audit</li>
+                <li>Page speed optimization</li>
+                <li>Mobile experience enhancement</li>
+                <li>Conversion-focused redesign elements</li>
+                <li>Trust signal implementation</li>
+                <li>Practice area landing pages</li>
+                <li>A/B testing headlines, CTAs, forms</li>
+                <li>Heatmap analysis & optimization</li>
+                <li>Monthly conversion reports</li>
+              </ul>
+              <p class="playbook-dfy-result">Your site converts international visitors into consultations.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAP 4 -->
+        <div class="playbook-card">
+          <div class="playbook-header">
+            <div class="playbook-number">04</div>
+            <div class="playbook-title-area">
+              <h3 class="playbook-title">Get Closed — CRM & Follow-Up</h3>
+              <p class="playbook-problem">International inquiries go cold because follow-up across time zones is manual and inconsistent.</p>
+            </div>
+          </div>
+          
+          <div class="playbook-content">
+            <div class="playbook-diy">
+              <div class="playbook-column-title">🛠️ DIY Fix</div>
+              <ul class="playbook-steps">
+                <li><span class="playbook-step-num">1</span> Choose a CRM (Clio Grow, HubSpot, or spreadsheet)</li>
+                <li><span class="playbook-step-num">2</span> Map intake workflow for international clients</li>
+                <li><span class="playbook-step-num">3</span> Build automated email sequences (immediate, 24hr, 72hr)</li>
+                <li><span class="playbook-step-num">4</span> Create timezone-aware follow-up reminders</li>
+                <li><span class="playbook-step-num">5</span> Configure lead source tracking</li>
+                <li><span class="playbook-step-num">6</span> Train team on daily CRM usage</li>
+                <li><span class="playbook-step-num">7</span> Review pipeline weekly, run reactivation campaigns monthly</li>
+              </ul>
+              <div class="playbook-meta">
+                <span>⏱️ Setup: 15-25 hrs</span>
+                <span>🔄 Ongoing: 5-8 hrs/week</span>
+              </div>
+            </div>
+            
+            <div class="playbook-done-for-you">
+              <div class="playbook-column-title">✨ We Handle All of This:</div>
+              <ul class="playbook-dfy-list">
+                <li>CRM setup & configuration</li>
+                <li>International client intake workflows</li>
+                <li>Timezone-aware automated sequences</li>
+                <li>Task & reminder system setup</li>
+                <li>Lead source tracking & attribution</li>
+                <li>Pipeline reporting & analytics</li>
+                <li>Dead lead reactivation campaigns</li>
+                <li>Template creation & optimization</li>
+                <li>Monthly conversion analysis</li>
+              </ul>
+              <p class="playbook-dfy-result">International leads are nurtured automatically. You show up to consultations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="authority-flex" style="margin-top: 40px;">
+        You can absolutely do this yourself—many leading firms do. But be honest about the time commitment: this is 20-30 hours/week of ongoing work, forever. That's a part-time marketing director on top of your full-time practice. If you'd rather spend that time on mandates, that's exactly why we exist.
+      </div>
+    </section>
+
+    <!-- VISION -->
+    <div class="vision-section reveal">
+      <h2 class="vision-title">What Changes</h2>
+      <p class="vision-quote">
+        "You spent 30 years building Fiji's most respected commercial practice. You've argued before the highest courts, advised the largest investors, defended the rule of law. We've spent a decade perfecting digital visibility for professional services."
+      </p>
+      <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 24px; position: relative; z-index: 1;">
+        You do what you're known for. We do what we're known for.
+      </p>
+      <div class="vision-list">
+        <span>→ You won't learn Google Ads</span>
+        <span>→ You won't manage SEO campaigns</span>
+        <span>→ You won't obsess over conversion rates</span>
+      </div>
+      <p style="color: rgba(255,255,255,0.9); margin-top: 24px; font-size: 1.05rem; position: relative; z-index: 1;">
+        You'll practice law. International clients will find you. That's the partnership.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section reveal">
+      <div class="cta-urgency">
+        <div class="cta-urgency-value" id="dailyLoss">$1,170</div>
+        <div class="cta-urgency-label">Revenue walking out TODAY while competitors answer first</div>
+      </div>
+      
+      <h2 class="cta-title">Let's Fix This</h2>
+      <p class="cta-subtitle">15 minutes. No pitch. Just a clear-eyed look at where international clients are going—and how to redirect them.</p>
+      
+      <div class="cta-columns">
+        <div class="cta-column">
+          <div class="cta-column-title">What We Found</div>
+          <ul>
+            <li><span style="color: var(--danger);">✗</span> No Google Ads presence</li>
+            <li><span style="color: var(--danger);">✗</span> SEO gaps for international searches</li>
+            <li><span style="color: var(--danger);">✗</span> No 24/7 inquiry coverage</li>
+            <li><span style="color: var(--danger);">✗</span> Competitors capturing discovery</li>
+          </ul>
+        </div>
+        <div class="cta-column">
+          <div class="cta-column-title">What Changes</div>
+          <ul>
+            <li><span style="color: var(--success);">✓</span> First-page visibility internationally</li>
+            <li><span style="color: var(--success);">✓</span> 24/7 qualified inquiry capture</li>
+            <li><span style="color: var(--success);">✓</span> Automated international follow-up</li>
+            <li><span style="color: var(--success);">✓</span> +$420K annual opportunity</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 20px; max-width: 600px; margin: 0 auto 32px; position: relative; z-index: 1;">
+        <div style="color: rgba(255,255,255,0.5); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Why This Works</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 0.9rem;">
+          <div style="color: rgba(255,255,255,0.7);">
+            <strong style="color: var(--white);">You Focus On:</strong><br>
+            Commercial mandates<br>
+            International clients<br>
+            Complex transactions<br>
+            Your legacy
+          </div>
+          <div style="color: rgba(255,255,255,0.7);">
+            <strong style="color: var(--white);">We Handle:</strong><br>
+            Google Ads & SEO<br>
+            24/7 AI intake<br>
+            Website optimization<br>
+            CRM & follow-up
+          </div>
+        </div>
+      </div>
+
+      <div class="calendly-container">
+        <h3>Book Your 15-Minute Strategy Call</h3>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+        <p class="calendly-fallback">
+          Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank">Book directly here →</a>
+        </p>
+      </div>
+
+      <p class="cta-guarantee">No long-term contracts. Month-to-month. Results-focused.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">U</div>
+        <span class="footer-name">WSI Utopiads</span>
+      </div>
+      <p style="color: var(--slate); font-size: 0.85rem;">
+        Prepared by Heidi Veronica Schwende<br>
+        <a href="https://utopiads.com/" style="color: var(--pacific-teal);">utopiads.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Calculator Logic
+    function formatCurrency(num) {
+      return '$' + Math.round(num).toLocaleString();
+    }
+
+    function calculate() {
+      // Get inputs
+      const inquiries = parseInt(document.getElementById('inquiries').value);
+      const afterHours = parseInt(document.getElementById('afterHours').value) / 100;
+      const caseValue = parseInt(document.getElementById('caseValue').value);
+      const closeRate = parseInt(document.getElementById('closeRate').value) / 100;
+      
+      // Get toggles
+      const seoOn = document.getElementById('seoToggle').checked;
+      const adsOn = document.getElementById('adsToggle').checked;
+      const aiOn = document.getElementById('aiToggle').checked;
+      const webOn = document.getElementById('webToggle').checked;
+      const crmOn = document.getElementById('crmToggle').checked;
+
+      // Update display values
+      document.getElementById('inquiriesValue').textContent = inquiries;
+      document.getElementById('afterHoursValue').textContent = (afterHours * 100) + '%';
+      document.getElementById('caseValueDisplay').textContent = formatCurrency(caseValue);
+      document.getElementById('closeRateValue').textContent = (closeRate * 100) + '%';
+
+      // Calculate baseline
+      const monthlyInquiries = inquiries;
+      const offTimezoneInquiries = monthlyInquiries * afterHours;
+      const currentCaptureRate = 0.35; // 35% capture without 24/7
+      const lostInquiries = offTimezoneInquiries * (1 - currentCaptureRate);
+      const currentLoss = lostInquiries * closeRate * caseValue;
+
+      // Calculate recovery from each service
+      let seoRecovery = seoOn ? currentLoss * 0.40 : 0; // +40% discovery
+      let adsRecovery = adsOn ? currentLoss * 0.25 : 0; // +25% inquiries
+      let aiRecovery = aiOn ? (offTimezoneInquiries * 0.85 - offTimezoneInquiries * currentCaptureRate) * closeRate * caseValue * 0.6 : 0; // Recover 85% vs 35%
+      let webRecovery = webOn ? currentLoss * 0.15 : 0; // +15% conversion
+      let crmRecovery = crmOn ? currentLoss * 0.20 : 0; // +20% close rate
+
+      const totalRecovery = seoRecovery + adsRecovery + aiRecovery + webRecovery + crmRecovery;
+      
+      // Estimate investment and ROI
+      const estimatedInvestment = 11000; // Monthly investment estimate
+      const roi = totalRecovery > 0 ? (totalRecovery / estimatedInvestment) : 0;
+      const newClients = totalRecovery / caseValue;
+
+      // Update results
+      document.getElementById('currentLoss').textContent = formatCurrency(currentLoss);
+      document.getElementById('recovery').textContent = formatCurrency(totalRecovery);
+      document.getElementById('newClients').textContent = newClients.toFixed(1);
+      document.getElementById('roi').textContent = roi.toFixed(1) + 'x';
+      document.getElementById('annualTotal').textContent = formatCurrency(totalRecovery * 12);
+      document.getElementById('dailyLoss').textContent = formatCurrency(currentLoss / 30);
+
+      // Update math section
+      document.getElementById('mathInquiries').textContent = monthlyInquiries;
+      document.getElementById('mathConversion').textContent = '× ' + (closeRate * 100) + '%';
+      document.getElementById('mathValue').textContent = '× ' + formatCurrency(caseValue);
+      document.getElementById('mathCurrentRev').textContent = formatCurrency(monthlyInquiries * closeRate * caseValue);
+      document.getElementById('mathInq2').textContent = monthlyInquiries;
+      document.getElementById('mathOffTz').textContent = '× ' + (afterHours * 100) + '%';
+      document.getElementById('mathOffInq').textContent = offTimezoneInquiries.toFixed(1) + '/mo';
+      document.getElementById('mathLost').textContent = lostInquiries.toFixed(1) + '/mo';
+      document.getElementById('mathMonthlyLoss').textContent = formatCurrency(currentLoss);
+      document.getElementById('mathSeo').textContent = seoOn ? '+' + formatCurrency(seoRecovery) : '$0';
+      document.getElementById('mathAds').textContent = adsOn ? '+' + formatCurrency(adsRecovery) : '$0';
+      document.getElementById('mathAi').textContent = aiOn ? '+' + formatCurrency(aiRecovery) : '$0';
+      document.getElementById('mathWeb').textContent = webOn ? '+' + formatCurrency(webRecovery) : '$0';
+      document.getElementById('mathCrm').textContent = crmOn ? '+' + formatCurrency(crmRecovery) : '$0';
+      document.getElementById('mathTotalRecovery').textContent = formatCurrency(totalRecovery);
+
+      // Update gut punch
+      const competitors = ['Siwatibau & Sloan', 'Howards', 'Cromptons'];
+      const randomComp = competitors[Math.floor(Math.random() * competitors.length)];
+      document.getElementById('gutPunch').textContent = "That's international mandates going to " + randomComp + " while you sleep.";
+    }
+
+    // Add event listeners
+    document.querySelectorAll('.calc-slider').forEach(slider => {
+      slider.addEventListener('input', calculate);
+    });
+    document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+      toggle.addEventListener('change', calculate);
+    });
+
+    // Initial calculation
+    calculate();
+  </script>
+</body>
+</html>
