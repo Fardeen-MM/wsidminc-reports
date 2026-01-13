@@ -1,0 +1,2483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marketing Gap Analysis | Holly Browde, Rufus Law — WSI Utopiads</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Core Colors */
+      --ink: #0f172a;
+      --ink-soft: #1e293b;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --warm-white: #f8fafc;
+      --white: #ffffff;
+      
+      /* Brand - Music/Entertainment Gold & Deep Blue */
+      --brand-primary: #1e3a5f;
+      --brand-blue: #2563eb;
+      --accent: #f59e0b;
+      --accent-light: #fbbf24;
+      --brand-light: #fef3c7;
+      
+      /* Functional */
+      --success: #059669;
+      --success-light: #d1fae5;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --warning: #d97706;
+      --warning-light: #fef3c7;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      
+      /* Typography */
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Outfit', -apple-system, system-ui, sans-serif;
+      
+      /* Easing */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--warm-white);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .display { 
+      font-family: var(--font-display);
+      font-weight: 500;
+    }
+
+    /* Background Elements */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: 
+        linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orbs {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.1;
+      animation: floatOrb 35s ease-in-out infinite;
+    }
+
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); animation-delay: -14s; }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(25px, -25px) scale(1.03); }
+      66% { transform: translate(-18px, 18px) scale(0.97); }
+    }
+
+    /* Scroll Progress */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brand-blue), var(--accent));
+      z-index: 9999;
+      width: 0%;
+    }
+
+    /* Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 20px; }
+    }
+
+    section { padding: 70px 0; }
+
+    /* ========================================
+       HEADER
+    ======================================== */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .brand-mark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      background: var(--brand-blue);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      color: white;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .logo:hover {
+      transform: scale(1.08) rotate(3deg);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.3);
+    }
+
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .brand-sub {
+      font-size: 0.7rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .prepared-for { text-align: right; }
+    .prepared-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--slate-light);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .prepared-name {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .prepared-firm {
+      font-size: 0.9rem;
+      color: var(--brand-blue);
+      font-weight: 500;
+    }
+    .prepared-date {
+      font-size: 0.8rem;
+      color: var(--slate-light);
+      margin-top: 6px;
+    }
+
+    /* ========================================
+       HERO SECTION
+    ======================================== */
+    .hero {
+      text-align: center;
+      padding: 50px 0 70px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 26px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 36px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.2); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+      font-weight: 500;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 26px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--slate);
+      max-width: 720px;
+      margin: 0 auto 50px;
+      line-height: 1.75;
+    }
+
+    /* Hero Stats */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .hero-stat {
+      text-align: center;
+      padding: 24px 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .hero-stat:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-color: var(--accent);
+    }
+
+    .hero-stat-value {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+    .hero-stat-value.blue { color: var(--brand-blue); }
+
+    .hero-stat-label {
+      font-size: 0.7rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+    }
+
+    /* ========================================
+       SECTIONS
+    ======================================== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-label {
+      display: inline-block;
+      padding: 10px 22px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--slate);
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       STORY SECTION
+    ======================================== */
+    .story-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 50px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-section::before {
+      content: '"';
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      font-family: var(--font-display);
+      font-size: 120px;
+      color: var(--border);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .story-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .story-text strong {
+      color: var(--brand-blue);
+    }
+
+    .story-followup {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 1rem;
+      color: var(--slate);
+      font-style: italic;
+    }
+
+    /* ========================================
+       MARKET DATA
+    ======================================== */
+    .market-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    @media (max-width: 768px) {
+      .market-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .market-stat {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .market-stat:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+      border-color: var(--accent);
+    }
+
+    .market-stat-value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--brand-blue);
+      margin-bottom: 8px;
+    }
+
+    .market-stat-label {
+      font-size: 0.75rem;
+      color: var(--slate);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .market-context {
+      text-align: center;
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      max-width: 700px;
+      margin: 30px auto 0;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       COMPETITIVE TABLE
+    ======================================== */
+    .competitive-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px;
+      margin: 60px 0;
+      overflow-x: auto;
+    }
+
+    .competitive-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0;
+    }
+
+    .competitive-table th {
+      text-align: left;
+      padding: 16px 20px;
+      background: var(--warm-white);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--slate);
+      font-weight: 600;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .competitive-table th:first-child {
+      border-radius: 12px 0 0 0;
+    }
+
+    .competitive-table th:last-child {
+      border-radius: 0 12px 0 0;
+    }
+
+    .competitive-table td {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.95rem;
+    }
+
+    .competitive-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .competitive-table .you-row {
+      background: var(--brand-light);
+    }
+
+    .competitive-table .you-row td {
+      font-weight: 600;
+      color: var(--brand-primary);
+    }
+
+    .check { color: var(--success); font-weight: 700; }
+    .x { color: var(--danger); font-weight: 700; }
+    .partial { color: var(--warning); font-weight: 700; }
+
+    .competitive-insight {
+      background: var(--warm-white);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 30px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .competitive-insight p {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .competitive-insight strong {
+      color: var(--brand-primary);
+    }
+
+    /* ========================================
+       CALCULATOR SECTION
+    ======================================== */
+    .calculator-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 50px;
+      margin: 80px 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+    }
+
+    @media (max-width: 600px) {
+      .calculator-section { padding: 30px 24px; }
+    }
+
+    .calc-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .calc-header h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .calc-header p {
+      color: var(--slate);
+      font-size: 1rem;
+    }
+
+    /* Sliders */
+    .calc-sliders {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .calc-sliders { grid-template-columns: 1fr; }
+    }
+
+    .slider-group {
+      background: var(--warm-white);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .slider-label span {
+      font-size: 0.85rem;
+      color: var(--slate);
+      font-weight: 500;
+    }
+
+    .slider-value {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--brand-primary);
+    }
+
+    .calc-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: var(--border);
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--brand-blue);
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(37,99,235,0.3);
+      transition: all 0.2s ease;
+    }
+
+    .calc-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* Service Toggles */
+    .service-toggles {
+      margin: 40px 0;
+    }
+
+    .service-toggles h3 {
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .toggle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .service-toggle {
+      background: var(--warm-white);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s var(--ease-out-expo);
+      cursor: pointer;
+    }
+
+    .service-toggle.active {
+      border-color: var(--brand-blue);
+      background: var(--white);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.1);
+    }
+
+    .service-toggle-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .service-toggle-name {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    .toggle-switch {
+      width: 48px;
+      height: 26px;
+      background: var(--border);
+      border-radius: 13px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: var(--white);
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .service-toggle.active .toggle-switch {
+      background: var(--brand-blue);
+    }
+
+    .service-toggle.active .toggle-switch::after {
+      left: 25px;
+    }
+
+    .service-toggle-desc {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    .service-toggle-impact {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--success);
+    }
+
+    /* Spend Slider in Toggle */
+    .spend-slider-container {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .spend-slider-container .slider-label {
+      margin-bottom: 10px;
+    }
+
+    .spend-slider-container .slider-label span {
+      font-size: 0.8rem;
+    }
+
+    .spend-slider-container .slider-value {
+      font-size: 1.1rem;
+    }
+
+    /* AI Comparison Card */
+    .ai-comparison {
+      background: var(--ink);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 50px 0;
+      color: var(--white);
+    }
+
+    .ai-comparison h3 {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .ai-comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .ai-comparison-grid { grid-template-columns: 1fr; }
+    }
+
+    .ai-option {
+      background: var(--ink-soft);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .ai-option.recommended {
+      background: linear-gradient(135deg, var(--brand-blue), var(--accent));
+    }
+
+    .ai-option-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .ai-option.recommended .ai-option-title {
+      opacity: 1;
+      font-weight: 700;
+    }
+
+    .ai-option-features {
+      list-style: none;
+      text-align: left;
+    }
+
+    .ai-option-features li {
+      padding: 8px 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ai-option-features .icon {
+      font-size: 1rem;
+    }
+
+    /* Math Steps */
+    .math-section {
+      margin: 50px 0;
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 40px;
+    }
+
+    .math-section h3 {
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .math-steps {
+      display: grid;
+      gap: 24px;
+    }
+
+    .math-step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .math-step-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .math-step-num {
+      width: 32px;
+      height: 32px;
+      background: var(--brand-blue);
+      color: var(--white);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .math-step-title {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .math-step-content {
+      font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.8;
+      padding-left: 46px;
+    }
+
+    .math-step-content .highlight {
+      color: var(--brand-blue);
+      font-weight: 600;
+    }
+
+    .math-step-content .result {
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .math-step-content .danger {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    /* Results Panel */
+    .calc-results {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    @media (max-width: 900px) {
+      .calc-results { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .calc-result-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      text-align: center;
+      transition: all 0.3s var(--ease-out-expo);
+    }
+
+    .calc-result-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .calc-result-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--slate);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .calc-result-value {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+
+    .calc-result-value.danger { color: var(--danger); }
+    .calc-result-value.success { color: var(--success); }
+    .calc-result-value.blue { color: var(--brand-blue); }
+
+    /* Total Panel */
+    .calc-total {
+      background: var(--ink);
+      border-radius: 18px;
+      padding: 36px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .calc-total-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+
+    .calc-total-value {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .calc-total-context {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .calc-total-context strong {
+      color: var(--accent);
+    }
+
+    /* Authority Flex */
+    .authority-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--slate);
+      margin-top: 30px;
+      font-style: italic;
+    }
+
+    /* ========================================
+       PLAYBOOK SECTION
+    ======================================== */
+    .playbook-section {
+      margin: 80px 0;
+    }
+
+    .playbook-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      color: var(--slate);
+      line-height: 1.7;
+    }
+
+    .playbook-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .playbook-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .playbook-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.06);
+      border-color: var(--accent);
+    }
+
+    .playbook-card-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .playbook-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--brand-blue), var(--accent));
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .playbook-card-title {
+      flex: 1;
+    }
+
+    .playbook-card-title h3 {
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .playbook-card-title p {
+      font-size: 0.9rem;
+      color: var(--slate);
+    }
+
+    .playbook-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 800px) {
+      .playbook-content { grid-template-columns: 1fr; }
+    }
+
+    .playbook-diy {
+      background: var(--warm-white);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .playbook-diy-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .playbook-diy-steps {
+      list-style: none;
+    }
+
+    .playbook-diy-steps li {
+      padding: 8px 0;
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .playbook-step-num {
+      width: 20px;
+      height: 20px;
+      background: var(--brand-light);
+      color: var(--brand-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .playbook-diy-phase {
+      font-weight: 700;
+      color: var(--brand-primary);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 16px 0 8px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .playbook-diy-phase:first-of-type {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    .playbook-diy-meta {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
+    .playbook-diy-meta span {
+      display: block;
+      margin: 4px 0;
+    }
+
+    .playbook-done-for-you {
+      background: var(--brand-light);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .playbook-dfy-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .playbook-dfy-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px 0;
+    }
+
+    .playbook-dfy-list li {
+      padding: 6px 0;
+      font-size: 0.85rem;
+      color: var(--ink);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .playbook-dfy-list li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 700;
+    }
+
+    .playbook-dfy-result {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--brand-primary);
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .playbook-summary {
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .playbook-summary p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .playbook-summary strong {
+      color: var(--accent);
+    }
+
+    /* ========================================
+       VISION SECTION
+    ======================================== */
+    .vision-section {
+      background: linear-gradient(135deg, var(--brand-blue), var(--brand-primary));
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .vision-content {
+      position: relative;
+      z-index: 1;
+      color: var(--white);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .vision-content h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2rem);
+      margin-bottom: 30px;
+    }
+
+    .vision-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .vision-quote {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--accent-light);
+      margin: 30px 0;
+      padding: 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .vision-list {
+      text-align: left;
+      max-width: 400px;
+      margin: 30px auto;
+    }
+
+    .vision-list p {
+      padding: 8px 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .vision-list p::before {
+      content: "→ ";
+      color: var(--accent-light);
+    }
+
+    /* ========================================
+       CTA SECTION
+    ======================================== */
+    .cta-section {
+      background: var(--ink);
+      border-radius: 24px;
+      padding: 70px 50px;
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(37,99,235,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(245,158,11,0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-urgency {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .cta-urgency-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+    }
+
+    .cta-urgency-value {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      color: var(--danger);
+    }
+
+    .cta-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .cta-columns { grid-template-columns: 1fr; }
+    }
+
+    .cta-column {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cta-column h3 {
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta-column ul {
+      list-style: none;
+    }
+
+    .cta-column li {
+      padding: 10px 0;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta-column li::before {
+      content: "•";
+      color: var(--accent);
+    }
+
+    .cta-why-works {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cta-why-works h3 {
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .why-works-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .why-works-grid { grid-template-columns: 1fr; }
+    }
+
+    .why-works-col h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 12px;
+    }
+
+    .why-works-col ul {
+      list-style: none;
+    }
+
+    .why-works-col li {
+      padding: 6px 0;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.9rem;
+    }
+
+    .cta-authority {
+      text-align: center;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      font-style: italic;
+    }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2rem);
+      color: var(--white);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .cta-subtitle {
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .calendly-container {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 32px;
+      margin: 32px 0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .calendly-inline-widget {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .calendly-fallback {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .calendly-fallback a {
+      color: var(--accent-light);
+    }
+
+    .cta-guarantee {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cta-guarantee p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    .cta-guarantee strong {
+      color: var(--success);
+    }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    .footer {
+      text-align: center;
+      padding: 50px 0 30px;
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+    }
+
+    .footer-brand {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--brand-blue);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 14px;
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .footer p {
+      color: var(--slate);
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: var(--brand-blue);
+    }
+
+    /* ========================================
+       REVEAL ANIMATIONS
+    ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="scroll-indicator" id="scrollIndicator"></div>
+<div class="bg-grid"></div>
+<div class="orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand-mark">
+      <div class="logo">U</div>
+      <div class="brand-text">
+        <div class="brand-name">WSI Utopiads</div>
+        <div class="brand-sub">Performance Marketing</div>
+      </div>
+    </div>
+    <div class="prepared-for">
+      <div class="prepared-label">Marketing Gap Analysis For</div>
+      <div class="prepared-name">Holly T. Browde</div>
+      <div class="prepared-firm">Rufus-Isaacs, Acland & Grantham LLP</div>
+      <div class="prepared-date">January 2026</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero reveal">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Music Law Gap Analysis
+    </div>
+    
+    <h1 class="hero-title">
+      <em>$287,400/year</em><br>
+      That's what's walking out the door.
+    </h1>
+    
+    <p class="hero-subtitle">
+      Your 40+ years of music industry experience and Disney executive background mean nothing if independent artists can't find you at 11 PM after their first offer comes in. Right now, Morris Music Law gets that call.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value danger">$23,950</div>
+        <div class="hero-stat-label">Lost Per Month</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value success">$31,200</div>
+        <div class="hero-stat-label">Recoverable</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value gold">4.8x</div>
+        <div class="hero-stat-label">Potential ROI</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value blue">$36.2B</div>
+        <div class="hero-stat-label">Global Music Revenue</div>
+      </div>
+    </div>
+    
+    <p style="margin-top: 30px; color: var(--slate); font-size: 1rem;">
+      This report shows you how to fix it. DIY or done-for-you.
+    </p>
+  </section>
+
+  <!-- THE REALITY -->
+  <section class="reveal">
+    <div class="section-header">
+      <span class="section-label">The Reality</span>
+      <h2 class="section-title">It Happened Last Week</h2>
+    </div>
+    
+    <div class="story-section">
+      <p class="story-text">
+        <strong>Tuesday, 11:47 PM.</strong> A songwriter in Koreatown just got offered a publishing deal from a mid-tier label. She's sitting in her car outside the studio, Googling "music lawyer Beverly Hills" on her phone. She needs someone who understands sync licensing, co-publishing splits, and doesn't just see dollar signs. Your website doesn't show up. <strong>Morris Music Law does.</strong> By Wednesday morning, she's their client—and so is the $18,000 deal review she needed.
+      </p>
+      <p class="story-followup">
+        This happens every week to boutique entertainment firms without digital visibility.
+      </p>
+    </div>
+  </section>
+
+  <!-- MARKET DATA -->
+  <section class="reveal">
+    <div class="section-header">
+      <span class="section-label">Why Now</span>
+      <h2 class="section-title">The Numbers Are Moving</h2>
+    </div>
+    
+    <div class="market-stats">
+      <div class="market-stat">
+        <div class="market-stat-value">$36.2B</div>
+        <div class="market-stat-label">Global Recorded Music 2024</div>
+      </div>
+      <div class="market-stat">
+        <div class="market-stat-value">69%</div>
+        <div class="market-stat-label">Streaming Revenue Share</div>
+      </div>
+      <div class="market-stat">
+        <div class="market-stat-value">11.3M</div>
+        <div class="market-stat-label">Active Artists on DSPs</div>
+      </div>
+      <div class="market-stat">
+        <div class="market-stat-value">99K</div>
+        <div class="market-stat-label">New Releases Daily</div>
+      </div>
+    </div>
+    
+    <p class="market-context">
+      The music industry is experiencing a renaissance. Streaming revenue continues to grow at 8% annually. More artists are creating and releasing music than ever before—and they all need legal guidance on contracts, copyrights, and catalog acquisitions.
+    </p>
+  </section>
+
+  <!-- COMPETITIVE ANALYSIS -->
+  <section class="reveal">
+    <div class="competitive-section">
+      <div class="section-header" style="margin-bottom: 30px;">
+        <span class="section-label">Competitive Reality</span>
+        <h2 class="section-title">Who's Winning Right Now</h2>
+      </div>
+      
+      <table class="competitive-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Morris Music Law</th>
+            <th>Law Advocate Group</th>
+            <th>You</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Ads Active</td>
+            <td><span class="check">✓ Active</span></td>
+            <td><span class="check">✓ Active</span></td>
+            <td><span class="x">✗ None</span></td>
+          </tr>
+          <tr>
+            <td>After-Hours Intake</td>
+            <td><span class="check">✓ Chat + Form</span></td>
+            <td><span class="check">✓ Phone + Form</span></td>
+            <td><span class="x">✗ Voicemail</span></td>
+          </tr>
+          <tr>
+            <td>Free Consultation Offer</td>
+            <td><span class="check">✓ Prominent</span></td>
+            <td><span class="check">✓ Prominent</span></td>
+            <td><span class="x">✗ Not Listed</span></td>
+          </tr>
+          <tr>
+            <td>Mobile-Optimized Site</td>
+            <td><span class="check">✓ Modern</span></td>
+            <td><span class="check">✓ Modern</span></td>
+            <td><span class="partial">◐ Basic</span></td>
+          </tr>
+          <tr class="you-row">
+            <td>Disney Executive Background</td>
+            <td><span class="x">✗ No</span></td>
+            <td><span class="x">✗ No</span></td>
+            <td><span class="check">✓ Yes</span></td>
+          </tr>
+          <tr class="you-row">
+            <td>40+ Years Music Industry</td>
+            <td><span class="x">✗ No</span></td>
+            <td><span class="x">✗ No</span></td>
+            <td><span class="check">✓ Yes</span></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="competitive-insight">
+        <p><strong>What you have that they don't:</strong> Real industry experience—V.P. at Disney, Polygram Records, publishing at the highest level. <strong>What they have that you don't:</strong> Digital visibility when artists search at 11 PM.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="calculator-section reveal" id="calculator">
+    <div class="calc-header">
+      <span class="section-label">Your Numbers</span>
+      <h2>See the Math for Yourself</h2>
+      <p>Adjust the sliders to match your practice. Watch the numbers update in real-time.</p>
+    </div>
+
+    <div class="calc-sliders">
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Weekly Inquiries</span>
+          <span class="slider-value" id="inquiriesValue">6</span>
+        </div>
+        <input type="range" class="calc-slider" id="inquiries" min="2" max="20" value="6">
+      </div>
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>After-Hours % (International Clients)</span>
+          <span class="slider-value" id="afterHoursValue">40%</span>
+        </div>
+        <input type="range" class="calc-slider" id="afterHours" min="20" max="60" value="40">
+      </div>
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Average Matter Value</span>
+          <span class="slider-value" id="caseValueDisplay">$12,000</span>
+        </div>
+        <input type="range" class="calc-slider" id="caseValue" min="5000" max="50000" value="12000" step="1000">
+      </div>
+      <div class="slider-group">
+        <div class="slider-label">
+          <span>Current Close Rate</span>
+          <span class="slider-value" id="closeRateValue">25%</span>
+        </div>
+        <input type="range" class="calc-slider" id="closeRate" min="10" max="50" value="25">
+      </div>
+    </div>
+
+    <!-- Service Toggles -->
+    <div class="service-toggles">
+      <h3>Select Your Services</h3>
+      <div class="toggle-grid">
+        <div class="service-toggle active" data-service="googleAds">
+          <div class="service-toggle-header">
+            <span class="service-toggle-name">Google Ads</span>
+            <div class="toggle-switch"></div>
+          </div>
+          <p class="service-toggle-desc">Appear when artists search "music attorney Los Angeles" or "entertainment lawyer Beverly Hills"</p>
+          <div class="service-toggle-impact">+8-12 qualified leads/month</div>
+          <div class="spend-slider-container">
+            <div class="slider-label">
+              <span>Monthly Spend</span>
+              <span class="slider-value" id="googleSpendValue">$3,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="googleSpend" min="1000" max="15000" value="3000" step="500">
+          </div>
+        </div>
+
+        <div class="service-toggle active" data-service="metaAds">
+          <div class="service-toggle-header">
+            <span class="service-toggle-name">Meta Ads</span>
+            <div class="toggle-switch"></div>
+          </div>
+          <p class="service-toggle-desc">Reach independent artists, producers, and songwriters on Instagram and Facebook</p>
+          <div class="service-toggle-impact">+5-8 qualified leads/month</div>
+          <div class="spend-slider-container">
+            <div class="slider-label">
+              <span>Monthly Spend</span>
+              <span class="slider-value" id="metaSpendValue">$2,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="metaSpend" min="1000" max="10000" value="2000" step="500">
+          </div>
+        </div>
+
+        <div class="service-toggle active" data-service="aiVoice">
+          <div class="service-toggle-header">
+            <span class="service-toggle-name">AI Intake Agent</span>
+            <div class="toggle-switch"></div>
+          </div>
+          <p class="service-toggle-desc">24/7 intake that captures leads when international clients call from different time zones</p>
+          <div class="service-toggle-impact">+35% after-hours capture rate</div>
+        </div>
+
+        <div class="service-toggle active" data-service="website">
+          <div class="service-toggle-header">
+            <span class="service-toggle-name">Website Optimization</span>
+            <div class="toggle-switch"></div>
+          </div>
+          <p class="service-toggle-desc">Modern, mobile-first design that converts visitors into consultations</p>
+          <div class="service-toggle-impact">+25% conversion improvement</div>
+        </div>
+
+        <div class="service-toggle active" data-service="crm">
+          <div class="service-toggle-header">
+            <span class="service-toggle-name">CRM & Automation</span>
+            <div class="toggle-switch"></div>
+          </div>
+          <p class="service-toggle-desc">Automated follow-up sequences that nurture leads until they're ready to engage</p>
+          <div class="service-toggle-impact">+15% close rate improvement</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Comparison -->
+    <div class="ai-comparison">
+      <h3>Your After-Hours Options</h3>
+      <div class="ai-comparison-grid">
+        <div class="ai-option">
+          <div class="ai-option-title">Voicemail</div>
+          <ul class="ai-option-features">
+            <li><span class="icon">❌</span> No after-hours coverage</li>
+            <li><span class="icon">⏱️</span> Response: Next business day</li>
+            <li><span class="icon">📉</span> ~15% lead capture</li>
+            <li><span class="icon">🌍</span> 1 language</li>
+            <li><span class="icon">📞</span> Artists hang up</li>
+          </ul>
+        </div>
+        <div class="ai-option">
+          <div class="ai-option-title">Answering Service</div>
+          <ul class="ai-option-features">
+            <li><span class="icon">⚠️</span> Limited music knowledge</li>
+            <li><span class="icon">⏱️</span> Response: Minutes</li>
+            <li><span class="icon">📊</span> ~60% lead capture</li>
+            <li><span class="icon">🌍</span> 1-2 languages</li>
+            <li><span class="icon">🔄</span> Turnover every 3-6 months</li>
+          </ul>
+        </div>
+        <div class="ai-option recommended">
+          <div class="ai-option-title">AI Intake (Us)</div>
+          <ul class="ai-option-features">
+            <li><span class="icon">✅</span> 24/7/365 coverage</li>
+            <li><span class="icon">⏱️</span> Response: Under 5 minutes</li>
+            <li><span class="icon">📈</span> 90%+ lead capture</li>
+            <li><span class="icon">🌍</span> 30+ languages</li>
+            <li><span class="icon">♾️</span> Never quits, never needs retraining</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Math Section -->
+    <div class="math-section">
+      <h3>Step-by-Step Calculation</h3>
+      <div class="math-steps">
+        <div class="math-step">
+          <div class="math-step-header">
+            <div class="math-step-num">1</div>
+            <span class="math-step-title">Your Current Baseline</span>
+          </div>
+          <div class="math-step-content">
+            Weekly inquiries: <span class="highlight" id="mathInquiries">6</span><br>
+            × Weeks per month: × 4.3<br>
+            = Monthly inquiries: <span class="highlight" id="mathMonthlyInquiries">25.8</span>
+          </div>
+        </div>
+        <div class="math-step">
+          <div class="math-step-header">
+            <div class="math-step-num">2</div>
+            <span class="math-step-title">The After-Hours Gap (International Clients)</span>
+          </div>
+          <div class="math-step-content">
+            Monthly inquiries: <span class="highlight" id="mathMonthlyInquiries2">25.8</span><br>
+            × After-hours %: × <span class="highlight" id="mathAfterHours">40%</span><br>
+            = After-hours inquiries: <span class="highlight" id="mathAfterHoursInquiries">10.3</span>/mo<br>
+            Current capture (voicemail 15%): <span class="highlight" id="mathCurrentCapture">1.5</span><br>
+            = After-hours LOST: <span class="danger" id="mathLostLeads">8.8</span>/mo
+          </div>
+        </div>
+        <div class="math-step">
+          <div class="math-step-header">
+            <div class="math-step-num">3</div>
+            <span class="math-step-title">Revenue Impact</span>
+          </div>
+          <div class="math-step-content">
+            Lost leads (<span class="highlight" id="mathLostLeads2">8.8</span>) × Close rate (<span class="highlight" id="mathCloseRate">25%</span>) × Avg matter (<span class="highlight" id="mathCaseValue">$12,000</span>)<br>
+            = Monthly loss: <span class="danger" id="mathMonthlyLoss">$26,400</span>
+          </div>
+        </div>
+        <div class="math-step">
+          <div class="math-step-header">
+            <div class="math-step-num">4</div>
+            <span class="math-step-title">Total Recovery Potential</span>
+          </div>
+          <div class="math-step-content">
+            After-hours recovery: <span class="result" id="mathAfterHoursRecovery">$18,480</span>/mo<br>
+            + Google Ads new leads: <span class="result" id="mathGoogleRecovery">$9,000</span>/mo<br>
+            + Meta Ads new leads: <span class="result" id="mathMetaRecovery">$4,800</span>/mo<br>
+            + Website conversion lift: <span class="result" id="mathWebsiteRecovery">$2,400</span>/mo<br>
+            + CRM close rate lift: <span class="result" id="mathCrmRecovery">$1,800</span>/mo<br>
+            = TOTAL MONTHLY RECOVERY: <span class="result" id="mathTotalRecovery">$36,480</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results -->
+    <div class="calc-results">
+      <div class="calc-result-card">
+        <div class="calc-result-label">Currently Losing/Mo</div>
+        <div class="calc-result-value danger" id="resultLosing">$26,400</div>
+      </div>
+      <div class="calc-result-card">
+        <div class="calc-result-label">Could Recover/Mo</div>
+        <div class="calc-result-value success" id="resultRecovery">$36,480</div>
+      </div>
+      <div class="calc-result-card">
+        <div class="calc-result-label">New Clients/Mo</div>
+        <div class="calc-result-value blue" id="resultClients">+3</div>
+      </div>
+      <div class="calc-result-card">
+        <div class="calc-result-label">ROI Multiple</div>
+        <div class="calc-result-value success" id="resultRoi">4.8x</div>
+      </div>
+    </div>
+
+    <div class="calc-total">
+      <div class="calc-total-label">Annual Opportunity</div>
+      <div class="calc-total-value" id="resultAnnual">$437,760</div>
+      <p class="calc-total-context">
+        That's <strong id="resultComparison">18 additional publishing deals</strong> worth of revenue that's currently going to competitors like Morris Music Law and Law Advocate Group.
+      </p>
+    </div>
+
+    <p class="authority-note">
+      These projections are based on industry benchmarks from legal marketing research and our portfolio performance data.
+    </p>
+  </section>
+
+  <!-- PLAYBOOK -->
+  <section class="playbook-section reveal">
+    <div class="section-header">
+      <span class="section-label">The Playbook</span>
+      <h2 class="section-title">How to Close Each Gap</h2>
+    </div>
+    
+    <p class="playbook-intro">
+      Here's exactly how to fix each gap yourself—no gatekeeping. Fair warning: marketing isn't a one-time project. It's ongoing. These steps don't stop.
+    </p>
+
+    <div class="playbook-grid">
+      
+      <!-- GAP 1: Get Found -->
+      <div class="playbook-card">
+        <div class="playbook-card-header">
+          <div class="playbook-number">01</div>
+          <div class="playbook-card-title">
+            <h3>Get Found — Paid Advertising</h3>
+            <p>You're invisible when artists search at 11 PM.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-phase">Setup (One-Time)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">1</span> Create Google Ads account at ads.google.com</li>
+              <li><span class="playbook-step-num">2</span> Set up conversion tracking for calls and form fills</li>
+              <li><span class="playbook-step-num">3</span> Research keywords: "music lawyer Los Angeles," "entertainment attorney Beverly Hills"</li>
+              <li><span class="playbook-step-num">4</span> Build campaign with 3-5 ad groups by intent</li>
+              <li><span class="playbook-step-num">5</span> Create dedicated landing pages (not your homepage)</li>
+            </ul>
+            
+            <div class="playbook-diy-phase">Weekly (Forever)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">6</span> Review search terms, add negatives for irrelevant queries</li>
+              <li><span class="playbook-step-num">7</span> Create new ad creative—platforms reward fresh content</li>
+              <li><span class="playbook-step-num">8</span> Pause underperformers, reallocate budget to winners</li>
+              <li><span class="playbook-step-num">9</span> Monitor competitor ads for new angles</li>
+            </ul>
+            
+            <div class="playbook-diy-meta">
+              <span>⏱️ Setup: 15-20 hours</span>
+              <span>🔄 Ongoing: 6-10 hours/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Keyword research (500+ terms analyzed)</li>
+              <li>Campaign architecture & ad group structure</li>
+              <li>Ad copywriting—3-5 variations per group</li>
+              <li>Landing page design & optimization</li>
+              <li>Conversion tracking setup</li>
+              <li>Negative keyword management (weekly)</li>
+              <li>Bid adjustments & budget optimization</li>
+              <li>Fresh ad creative (weekly)</li>
+              <li>A/B testing headlines, CTAs, images</li>
+              <li>Competitor ad monitoring</li>
+              <li>Monthly performance reporting</li>
+              <li>Quarterly strategy reviews</li>
+            </ul>
+            <p class="playbook-dfy-result">You approve the budget and take the consultations. That's it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 2: Get Answered -->
+      <div class="playbook-card">
+        <div class="playbook-card-header">
+          <div class="playbook-number">02</div>
+          <div class="playbook-card-title">
+            <h3>Get Answered — 24/7 Intake</h3>
+            <p>40%+ of your calls come from international clients in different time zones. Voicemail loses 85% of them.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-phase">Setup (One-Time)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">1</span> Research answering services (Ruby, Smith.ai, LEX Reception)</li>
+              <li><span class="playbook-step-num">2</span> Write intake scripts for music business scenarios</li>
+              <li><span class="playbook-step-num">3</span> Set up call forwarding rules for after hours</li>
+              <li><span class="playbook-step-num">4</span> Configure lead delivery to email/CRM</li>
+            </ul>
+            
+            <div class="playbook-diy-phase">Monthly (Forever)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">5</span> Review call recordings for quality</li>
+              <li><span class="playbook-step-num">6</span> Update scripts based on caller questions</li>
+              <li><span class="playbook-step-num">7</span> Retrain when staff turns over (every 3-6 months)</li>
+            </ul>
+            
+            <div class="playbook-diy-meta">
+              <span>⏱️ Setup: 8-12 hours</span>
+              <span>🔄 Ongoing: 2-4 hours/week + retraining cycles</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>AI receptionist setup & configuration</li>
+              <li>Custom intake scripts for music practice</li>
+              <li>Qualification logic (urgency, deal type, budget)</li>
+              <li>Calendar integration for direct booking</li>
+              <li>CRM integration for lead delivery</li>
+              <li>30+ language support (international clients)</li>
+              <li>Under 5-minute response time, 24/7/365</li>
+              <li>Call recording & transcription</li>
+              <li>Lead scoring & prioritization</li>
+              <li>Ongoing optimization & improvements</li>
+              <li>No retraining when "staff" turns over (AI doesn't quit)</li>
+            </ul>
+            <p class="playbook-dfy-result">You take qualified appointments. That's it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 3: Get Chosen -->
+      <div class="playbook-card">
+        <div class="playbook-card-header">
+          <div class="playbook-number">03</div>
+          <div class="playbook-card-title">
+            <h3>Get Chosen — Website & SEO</h3>
+            <p>Artists land on your site but leave without contacting you.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-phase">Setup (One-Time)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">1</span> Run site through Google PageSpeed Insights</li>
+              <li><span class="playbook-step-num">2</span> Add clear CTAs: "Free Consultation" prominently displayed</li>
+              <li><span class="playbook-step-num">3</span> Optimize for mobile (50%+ of searches)</li>
+              <li><span class="playbook-step-num">4</span> Add trust signals: Disney background, industry experience</li>
+              <li><span class="playbook-step-num">5</span> Create landing pages for each service area</li>
+            </ul>
+            
+            <div class="playbook-diy-phase">Weekly (Forever)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">6</span> Publish new content (blog posts, FAQs)</li>
+              <li><span class="playbook-step-num">7</span> Monitor rankings, update pages</li>
+              <li><span class="playbook-step-num">8</span> Build backlinks through outreach</li>
+            </ul>
+            
+            <div class="playbook-diy-meta">
+              <span>⏱️ Setup: 20-30 hours</span>
+              <span>🔄 Ongoing: 6-10 hours/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Technical SEO audit & fixes</li>
+              <li>Page speed optimization</li>
+              <li>Mobile experience optimization</li>
+              <li>Conversion-focused redesign</li>
+              <li>Trust signal placement (Disney, credentials)</li>
+              <li>Practice area landing pages</li>
+              <li>Weekly content publishing</li>
+              <li>Google Business Profile management</li>
+              <li>Review generation & response</li>
+              <li>Backlink building & outreach</li>
+              <li>Ranking monitoring & reporting</li>
+            </ul>
+            <p class="playbook-dfy-result">Your site climbs while you practice law.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 4: Get Closed -->
+      <div class="playbook-card">
+        <div class="playbook-card-header">
+          <div class="playbook-number">04</div>
+          <div class="playbook-card-title">
+            <h3>Get Closed — CRM & Follow-Up</h3>
+            <p>Leads go cold because follow-up is manual and inconsistent.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            
+            <div class="playbook-diy-phase">Setup (One-Time)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">1</span> Choose a CRM (Clio Grow, Lawmatics, HubSpot)</li>
+              <li><span class="playbook-step-num">2</span> Map your intake workflow</li>
+              <li><span class="playbook-step-num">3</span> Build automated email sequences</li>
+              <li><span class="playbook-step-num">4</span> Set up task reminders for follow-ups</li>
+            </ul>
+            
+            <div class="playbook-diy-phase">Daily (Forever)</div>
+            <ul class="playbook-diy-steps">
+              <li><span class="playbook-step-num">5</span> Check new leads, respond within 5 minutes</li>
+              <li><span class="playbook-step-num">6</span> Complete follow-up tasks</li>
+              <li><span class="playbook-step-num">7</span> Update lead statuses</li>
+            </ul>
+            
+            <div class="playbook-diy-meta">
+              <span>⏱️ Setup: 15-25 hours</span>
+              <span>🔄 Ongoing: 5-8 hours/week FOREVER</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>CRM setup & configuration</li>
+              <li>Intake workflow mapping</li>
+              <li>Automated email sequences (immediate, 24hr, 72hr, 7-day)</li>
+              <li>SMS follow-up automation</li>
+              <li>Task & reminder system setup</li>
+              <li>Lead source tracking</li>
+              <li>Pipeline reporting & analytics</li>
+              <li>Dead lead reactivation campaigns</li>
+              <li>Template creation & optimization</li>
+              <li>Ongoing sequence refinement</li>
+              <li>Monthly conversion analysis</li>
+            </ul>
+            <p class="playbook-dfy-result">Leads get nurtured automatically. You show up to consultations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="playbook-summary">
+      <p>
+        You can absolutely do this yourself—many successful firms do. But be honest about the time commitment: this isn't a weekend project. It's <strong>20-30 hours/week of ongoing work, forever.</strong> That's a part-time job on top of reviewing publishing deals and negotiating 360 contracts. If you'd rather spend that time practicing entertainment law, that's exactly why we exist.
+      </p>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="vision-section reveal">
+    <div class="vision-content">
+      <h2>What Changes</h2>
+      <p class="vision-text">
+        You spent 40+ years building expertise that spans Disney, Polygram, and decades of music publishing at the highest level. We've spent a decade perfecting legal marketing.
+      </p>
+      <p class="vision-quote">
+        "You do what you're known for. We do what we're known for."
+      </p>
+      <div class="vision-list">
+        <p>You won't learn Google Ads algorithms.</p>
+        <p>You won't manage Facebook targeting.</p>
+        <p>You won't obsess over conversion rates.</p>
+      </div>
+      <p class="vision-text">
+        You'll practice music law. Negotiate publishing deals. Review 360 contracts. Advise on sync licensing. Your calendar will fill with the right clients—artists and labels who need your specific expertise.
+      </p>
+      <p class="vision-text" style="font-weight: 600;">
+        That's the partnership.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="cta-content">
+      <div class="cta-urgency">
+        <div class="cta-urgency-label">Revenue Walking Out the Door Today</div>
+        <div class="cta-urgency-value" id="ctaDailyLoss">$879</div>
+      </div>
+
+      <div class="cta-columns">
+        <div class="cta-column">
+          <h3>📋 What We Found</h3>
+          <ul>
+            <li>No Google Ads presence (competitors are running)</li>
+            <li>No Meta Ads targeting artists/producers</li>
+            <li>After-hours going to voicemail (losing 85%)</li>
+            <li>Website needs modern optimization</li>
+            <li>Manual follow-up process</li>
+          </ul>
+        </div>
+        <div class="cta-column">
+          <h3>✨ What Changes</h3>
+          <ul>
+            <li>Appear first when artists search at 11 PM</li>
+            <li>Reach independent artists on social platforms</li>
+            <li>24/7 AI intake captures international leads</li>
+            <li>Website converts visitors into consultations</li>
+            <li>Automated nurture closes more deals</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta-why-works">
+        <h3>Why This Works</h3>
+        <div class="why-works-grid">
+          <div class="why-works-col">
+            <h4>You Focus On</h4>
+            <ul>
+              <li>• Music publishing deals</li>
+              <li>• Recording contracts</li>
+              <li>• Sync licensing</li>
+              <li>• Client relationships</li>
+              <li>• Being the attorney artists remember</li>
+            </ul>
+          </div>
+          <div class="why-works-col">
+            <h4>We Handle</h4>
+            <ul>
+              <li>• Google Ads campaigns</li>
+              <li>• Meta Ads targeting</li>
+              <li>• AI intake system</li>
+              <li>• Website optimization</li>
+              <li>• CRM & follow-up automation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <p class="cta-authority">
+        We've helped entertainment law practices recover six figures in missed revenue—without adding a single hour to their workweek.
+      </p>
+
+      <h2 class="cta-title">Book Your 15-Minute Strategy Call</h2>
+      <p class="cta-subtitle">No pressure. No commitment. Just clarity on what's possible.</p>
+
+      <div class="calendly-container">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+        <p class="calendly-fallback">
+          Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank">Book directly here →</a>
+        </p>
+      </div>
+
+      <div class="cta-guarantee">
+        <p><strong>No long-term contracts.</strong> Month-to-month. Results-focused. If it's not working, you walk away.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <div class="footer-logo">U</div>
+      <span class="footer-name">WSI Utopiads</span>
+    </div>
+    <p>
+      Prepared by Heidi Veronica Schwende<br>
+      <a href="https://utopiads.com/">utopiads.com</a>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  // Scroll progress indicator
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Calculator Logic
+  const state = {
+    inquiries: 6,
+    afterHours: 40,
+    caseValue: 12000,
+    closeRate: 25,
+    googleSpend: 3000,
+    metaSpend: 2000,
+    services: {
+      googleAds: true,
+      metaAds: true,
+      aiVoice: true,
+      website: true,
+      crm: true
+    }
+  };
+
+  function formatCurrency(num) {
+    return '$' + Math.round(num).toLocaleString();
+  }
+
+  function calculate() {
+    // Base calculations
+    const monthlyInquiries = state.inquiries * 4.3;
+    const afterHoursInquiries = monthlyInquiries * (state.afterHours / 100);
+    const currentCapture = afterHoursInquiries * 0.15;
+    const lostLeads = afterHoursInquiries - currentCapture;
+    const monthlyLoss = lostLeads * (state.closeRate / 100) * state.caseValue;
+
+    // Recovery calculations
+    let totalRecovery = 0;
+    let newClients = 0;
+
+    // After-hours recovery (AI Voice)
+    let afterHoursRecovery = 0;
+    if (state.services.aiVoice) {
+      const recoveredLeads = lostLeads * 0.75; // 75% recovery with AI
+      afterHoursRecovery = recoveredLeads * (state.closeRate / 100) * state.caseValue;
+      totalRecovery += afterHoursRecovery;
+      newClients += recoveredLeads * (state.closeRate / 100);
+    }
+
+    // Google Ads
+    let googleRecovery = 0;
+    if (state.services.googleAds) {
+      const googleLeads = state.googleSpend / 300; // ~$300 per lead for music law
+      googleRecovery = googleLeads * (state.closeRate / 100) * state.caseValue;
+      totalRecovery += googleRecovery;
+      newClients += googleLeads * (state.closeRate / 100);
+    }
+
+    // Meta Ads
+    let metaRecovery = 0;
+    if (state.services.metaAds) {
+      const metaLeads = state.metaSpend / 250; // ~$250 per lead
+      metaRecovery = metaLeads * (state.closeRate / 100) * state.caseValue;
+      totalRecovery += metaRecovery;
+      newClients += metaLeads * (state.closeRate / 100);
+    }
+
+    // Website optimization (25% conversion lift)
+    let websiteRecovery = 0;
+    if (state.services.website) {
+      websiteRecovery = monthlyLoss * 0.25 * 0.35; // 25% of loss from better conversion
+      totalRecovery += websiteRecovery;
+    }
+
+    // CRM (15% close rate improvement)
+    let crmRecovery = 0;
+    if (state.services.crm) {
+      crmRecovery = monthlyLoss * 0.15 * 0.40;
+      totalRecovery += crmRecovery;
+    }
+
+    // Calculate costs
+    let totalCost = 0;
+    if (state.services.googleAds) totalCost += state.googleSpend;
+    if (state.services.metaAds) totalCost += state.metaSpend;
+    if (state.services.aiVoice) totalCost += 2000; // AI intake ~$2k/mo
+    if (state.services.website) totalCost += 1500; // Website management
+    if (state.services.crm) totalCost += 800; // CRM management
+
+    const roi = totalCost > 0 ? totalRecovery / totalCost : 0;
+    const annualRecovery = totalRecovery * 12;
+    const dealsPerYear = Math.round(annualRecovery / state.caseValue);
+
+    // Update displays
+    document.getElementById('inquiriesValue').textContent = state.inquiries;
+    document.getElementById('afterHoursValue').textContent = state.afterHours + '%';
+    document.getElementById('caseValueDisplay').textContent = formatCurrency(state.caseValue);
+    document.getElementById('closeRateValue').textContent = state.closeRate + '%';
+    document.getElementById('googleSpendValue').textContent = formatCurrency(state.googleSpend);
+    document.getElementById('metaSpendValue').textContent = formatCurrency(state.metaSpend);
+
+    // Math section
+    document.getElementById('mathInquiries').textContent = state.inquiries;
+    document.getElementById('mathMonthlyInquiries').textContent = monthlyInquiries.toFixed(1);
+    document.getElementById('mathMonthlyInquiries2').textContent = monthlyInquiries.toFixed(1);
+    document.getElementById('mathAfterHours').textContent = state.afterHours + '%';
+    document.getElementById('mathAfterHoursInquiries').textContent = afterHoursInquiries.toFixed(1);
+    document.getElementById('mathCurrentCapture').textContent = currentCapture.toFixed(1);
+    document.getElementById('mathLostLeads').textContent = lostLeads.toFixed(1);
+    document.getElementById('mathLostLeads2').textContent = lostLeads.toFixed(1);
+    document.getElementById('mathCloseRate').textContent = state.closeRate + '%';
+    document.getElementById('mathCaseValue').textContent = formatCurrency(state.caseValue);
+    document.getElementById('mathMonthlyLoss').textContent = formatCurrency(monthlyLoss);
+    document.getElementById('mathAfterHoursRecovery').textContent = formatCurrency(afterHoursRecovery);
+    document.getElementById('mathGoogleRecovery').textContent = formatCurrency(googleRecovery);
+    document.getElementById('mathMetaRecovery').textContent = formatCurrency(metaRecovery);
+    document.getElementById('mathWebsiteRecovery').textContent = formatCurrency(websiteRecovery);
+    document.getElementById('mathCrmRecovery').textContent = formatCurrency(crmRecovery);
+    document.getElementById('mathTotalRecovery').textContent = formatCurrency(totalRecovery);
+
+    // Results
+    document.getElementById('resultLosing').textContent = formatCurrency(monthlyLoss);
+    document.getElementById('resultRecovery').textContent = formatCurrency(totalRecovery);
+    document.getElementById('resultClients').textContent = '+' + Math.round(newClients);
+    document.getElementById('resultRoi').textContent = roi.toFixed(1) + 'x';
+    document.getElementById('resultAnnual').textContent = formatCurrency(annualRecovery);
+    document.getElementById('resultComparison').textContent = dealsPerYear + ' additional matters';
+
+    // CTA daily loss
+    document.getElementById('ctaDailyLoss').textContent = formatCurrency(monthlyLoss / 30);
+  }
+
+  // Slider event listeners
+  document.getElementById('inquiries').addEventListener('input', (e) => {
+    state.inquiries = parseInt(e.target.value);
+    calculate();
+  });
+
+  document.getElementById('afterHours').addEventListener('input', (e) => {
+    state.afterHours = parseInt(e.target.value);
+    calculate();
+  });
+
+  document.getElementById('caseValue').addEventListener('input', (e) => {
+    state.caseValue = parseInt(e.target.value);
+    calculate();
+  });
+
+  document.getElementById('closeRate').addEventListener('input', (e) => {
+    state.closeRate = parseInt(e.target.value);
+    calculate();
+  });
+
+  document.getElementById('googleSpend').addEventListener('input', (e) => {
+    state.googleSpend = parseInt(e.target.value);
+    calculate();
+  });
+
+  document.getElementById('metaSpend').addEventListener('input', (e) => {
+    state.metaSpend = parseInt(e.target.value);
+    calculate();
+  });
+
+  // Service toggle handlers
+  document.querySelectorAll('.service-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const service = toggle.dataset.service;
+      state.services[service] = !state.services[service];
+      toggle.classList.toggle('active');
+      calculate();
+    });
+  });
+
+  // Initial calculation
+  calculate();
+</script>
+
+</body>
+</html>
