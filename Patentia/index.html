@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Gap Analysis | Patentia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #1e293b;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --warm-white: #f8fafc;
+      --white: #ffffff;
+      --brand-primary: #1e3a5f;
+      --brand-blue: #2563eb;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', -apple-system, system-ui, sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+
+    .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    .orbs { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); }
+    .scroll-indicator { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--brand-blue), var(--accent)); z-index: 9999; width: 0%; }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    @media (max-width: 600px) { .container { padding: 0 20px; } }
+
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--border); margin-bottom: 50px; flex-wrap: wrap; gap: 24px; }
+    .brand-mark { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 56px; height: 56px; background: var(--brand-blue); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: white; transition: all 0.4s var(--ease-out-expo); }
+    .logo:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 12px 40px rgba(37,99,235,0.3); }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); }
+    .brand-sub { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .prepared-for { text-align: right; }
+    .prepared-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-light); margin-bottom: 6px; font-weight: 500; }
+    .prepared-name { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+    .prepared-firm { font-size: 0.9rem; color: var(--brand-blue); font-weight: 500; }
+    .prepared-date { font-size: 0.8rem; color: var(--slate-light); margin-top: 6px; }
+
+    .hero { text-align: center; padding: 50px 0 70px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-size: 0.75rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.2); } }
+    .hero-title { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 26px; }
+    .hero-title em { font-style: italic; background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--slate); max-width: 720px; margin: 0 auto 50px; line-height: 1.75; }
+
+    .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    @media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+    .hero-stat { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; transition: all 0.4s var(--ease-out-expo); }
+    .hero-stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .hero-stat-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 10px; }
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+    .hero-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-label { display: inline-block; padding: 10px 22px; background: var(--ink); color: var(--white); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 22px; font-weight: 600; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin-bottom: 14px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+
+    .story-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 48px; margin: 40px 0; }
+    .story-time { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--brand-blue); font-weight: 600; margin-bottom: 16px; }
+    .story-text { font-size: 1.15rem; color: var(--ink); line-height: 1.8; }
+    .story-text strong { color: var(--danger); }
+    .story-cta { margin-top: 24px; font-size: 0.95rem; color: var(--slate); font-style: italic; }
+
+    .market-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 40px 0; }
+    @media (max-width: 768px) { .market-stats { grid-template-columns: repeat(2, 1fr); } }
+    .market-stat { text-align: center; padding: 28px 20px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; }
+    .market-stat-value { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--brand-blue); margin-bottom: 8px; }
+    .market-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    .market-context { text-align: center; font-size: 1.05rem; color: var(--slate); max-width: 700px; margin: 0 auto; }
+
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 40px 0; background: var(--white); border-radius: 20px; overflow: hidden; border: 1px solid var(--border); }
+    .comparison-table th { background: var(--ink); color: var(--white); padding: 20px 16px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; text-align: center; }
+    .comparison-table th:first-child { text-align: left; }
+    .comparison-table td { padding: 18px 16px; border-bottom: 1px solid var(--border); text-align: center; font-size: 0.95rem; }
+    .comparison-table td:first-child { text-align: left; font-weight: 500; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table .check { color: var(--success); font-weight: 700; }
+    .comparison-table .cross { color: var(--danger); font-weight: 700; }
+    .comparison-table .partial { color: var(--gold); font-weight: 700; }
+    .comparison-table .highlight-col { background: var(--brand-blue); color: var(--white); }
+    .comparison-table td.highlight-col { background: rgba(37,99,235,0.05); }
+    .comparison-insight { text-align: center; font-size: 1rem; color: var(--ink); margin-top: 24px; font-style: italic; }
+
+    .calculator-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 50px; margin: 80px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.04); }
+    @media (max-width: 600px) { .calculator-section { padding: 30px 24px; } }
+    .calc-header { text-align: center; margin-bottom: 50px; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+    @media (max-width: 800px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-inputs { display: flex; flex-direction: column; gap: 28px; }
+    .calc-input-group label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+    .calc-input-row { display: flex; align-items: center; gap: 16px; }
+    .calc-slider { flex: 1; height: 8px; border-radius: 4px; background: var(--border); -webkit-appearance: none; cursor: pointer; }
+    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .calc-value { min-width: 80px; text-align: right; font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; color: var(--brand-blue); }
+    .calc-services { display: flex; flex-direction: column; gap: 16px; }
+    .calc-service { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; background: var(--warm-white); border: 1px solid var(--border); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; }
+    .calc-service:hover { border-color: var(--accent); }
+    .calc-service.active { border-color: var(--brand-blue); background: rgba(37,99,235,0.05); }
+    .calc-service-info { display: flex; align-items: center; gap: 12px; }
+    .calc-service-toggle { width: 48px; height: 26px; background: var(--border); border-radius: 13px; position: relative; transition: all 0.3s ease; }
+    .calc-service-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: var(--white); border-radius: 50%; transition: all 0.3s ease; }
+    .calc-service.active .calc-service-toggle { background: var(--success); }
+    .calc-service.active .calc-service-toggle::after { left: 25px; }
+    .calc-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+    @media (max-width: 600px) { .calc-results { grid-template-columns: 1fr; } }
+    .calc-result-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 26px; text-align: center; transition: all 0.3s var(--ease-out-expo); }
+    .calc-result-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .calc-result-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--slate); margin-bottom: 10px; font-weight: 600; }
+    .calc-result-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; }
+    .calc-result-value.danger { color: var(--danger); }
+    .calc-result-value.success { color: var(--success); }
+    .calc-result-value.gold { color: var(--gold); }
+    .calc-total { background: var(--ink); border-radius: 18px; padding: 32px; text-align: center; }
+    .calc-total-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+    .calc-total-value { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 600; color: var(--white); }
+    .calc-total-sub { font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 8px; }
+
+    .math-section { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-top: 40px; }
+    .math-title { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .math-step { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .math-step:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .math-step-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--brand-blue); font-weight: 600; margin-bottom: 12px; }
+    .math-step-content { font-family: 'Outfit', monospace; font-size: 0.95rem; color: var(--ink); line-height: 1.8; }
+    .math-step-result { font-weight: 600; color: var(--brand-blue); }
+
+    .options-comparison { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+    @media (max-width: 800px) { .options-comparison { grid-template-columns: 1fr; } }
+    .option-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 28px; transition: all 0.4s ease; }
+    .option-card.recommended { border-color: var(--brand-blue); box-shadow: 0 10px 40px rgba(37,99,235,0.15); position: relative; }
+    .option-card.recommended::before { content: 'RECOMMENDED'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--brand-blue); color: white; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; padding: 6px 16px; border-radius: 100px; }
+    .option-title { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 16px; text-align: center; }
+    .option-list { list-style: none; }
+    .option-list li { padding: 10px 0; font-size: 0.85rem; color: var(--slate); display: flex; align-items: flex-start; gap: 10px; border-bottom: 1px solid var(--border-light); }
+    .option-list li:last-child { border-bottom: none; }
+    .option-list li::before { content: ''; flex-shrink: 0; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; }
+    .option-list.bad li::before { content: '✗'; background: var(--danger-light); color: var(--danger); }
+    .option-list.partial li::before { content: '◐'; background: var(--gold-light); color: var(--gold); }
+    .option-list.good li::before { content: '✓'; background: var(--success-light); color: var(--success); }
+
+    .playbook-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 30px; transition: all 0.4s var(--ease-out-expo); }
+    .playbook-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.06); border-color: var(--accent); }
+    .playbook-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .playbook-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand-primary), var(--accent)); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+    .playbook-title-wrap { flex: 1; }
+    .playbook-title { font-family: 'Fraunces', serif; font-size: 1.25rem; color: var(--ink); margin-bottom: 4px; }
+    .playbook-problem { font-size: 0.9rem; color: var(--slate); }
+    .playbook-content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 800px) { .playbook-content { grid-template-columns: 1fr; } }
+    .playbook-diy { background: var(--warm-white); border-radius: 14px; padding: 22px; }
+    .playbook-done-for-you { background: rgba(37,99,235,0.05); border-radius: 14px; padding: 22px; }
+    .playbook-column-title { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .playbook-diy .playbook-column-title { color: var(--ink); }
+    .playbook-done-for-you .playbook-column-title { color: var(--brand-blue); }
+    .playbook-steps { list-style: none; }
+    .playbook-steps li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 0.85rem; color: var(--ink); }
+    .playbook-step-num { width: 20px; height: 20px; background: var(--border); color: var(--slate); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; flex-shrink: 0; }
+    .playbook-dfy-list { list-style: none; }
+    .playbook-dfy-list li { padding: 6px 0; font-size: 0.85rem; color: var(--ink); display: flex; align-items: flex-start; gap: 8px; }
+    .playbook-dfy-list li::before { content: "✓"; color: var(--success); font-weight: 700; }
+    .playbook-dfy-result { font-size: 0.9rem; font-weight: 600; color: var(--brand-blue); margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .playbook-meta { display: flex; gap: 24px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--slate); }
+    .playbook-meta span { display: flex; align-items: center; gap: 6px; }
+
+    .vision-section { background: linear-gradient(135deg, var(--brand-blue), var(--brand-primary)); border-radius: 24px; padding: 60px; text-align: center; margin: 60px 0; position: relative; overflow: hidden; color: white; }
+    .vision-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%); pointer-events: none; }
+    .vision-quote { font-family: 'Fraunces', serif; font-size: 1.5rem; font-style: italic; margin-bottom: 32px; line-height: 1.6; }
+    .vision-list { display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 0 auto 32px; text-align: left; }
+    .vision-list-item { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
+    .vision-list-item::before { content: '→'; color: var(--accent-light); }
+    .vision-bottom { font-size: 1.1rem; font-weight: 500; }
+
+    .cta-section { background: var(--ink); border-radius: 24px; padding: 70px 50px; text-align: center; margin: 80px 0; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(96,165,250,0.1) 0%, transparent 40%); pointer-events: none; }
+    .cta-urgency { display: inline-block; padding: 12px 24px; background: var(--danger); color: white; border-radius: 100px; font-size: 0.85rem; font-weight: 700; margin-bottom: 32px; }
+    .cta-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--white); margin-bottom: 16px; }
+    .cta-subtitle { font-size: 1.05rem; color: rgba(255,255,255,0.7); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .cta-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; text-align: left; }
+    @media (max-width: 700px) { .cta-columns { grid-template-columns: 1fr; } }
+    .cta-column { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 28px; border: 1px solid rgba(255,255,255,0.1); }
+    .cta-column-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+    .cta-column-list { list-style: none; }
+    .cta-column-list li { padding: 8px 0; font-size: 0.9rem; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 10px; }
+    .cta-column-list.gaps li::before { content: '✗'; color: var(--danger); font-weight: 700; }
+    .cta-column-list.fixes li::before { content: '✓'; color: var(--success); font-weight: 700; }
+    .calendly-container { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 32px; margin: 32px 0; border: 1px solid rgba(255,255,255,0.1); }
+    .calendly-inline-widget { border-radius: 12px; overflow: hidden; }
+    .cta-guarantee { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 24px; }
+
+    .footer { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); margin-top: 80px; }
+    .footer-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .footer-logo { width: 40px; height: 40px; background: var(--brand-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; color: var(--white); }
+    .footer-name { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .authority-flex { background: var(--warm-white); border-left: 3px solid var(--brand-blue); padding: 16px 20px; margin: 24px 0; font-size: 0.9rem; color: var(--slate); font-style: italic; border-radius: 0 8px 8px 0; }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <div class="bg-grid"></div>
+  <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+  
+  <div class="container">
+    <header class="header">
+      <div class="brand-mark">
+        <div class="logo">U</div>
+        <div class="brand-text">
+          <div class="brand-name">WSI Utopiads</div>
+          <div class="brand-sub">Performance Marketing</div>
+        </div>
+      </div>
+      <div class="prepared-for">
+        <div class="prepared-label">Growth Gap Analysis For</div>
+        <div class="prepared-name">Francisco Saez</div>
+        <div class="prepared-firm">Patentia</div>
+        <div class="prepared-date">January 2026</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        SaaS Growth Analysis
+      </div>
+      <h1 class="hero-title">
+        <em>$312K/year</em><br>
+        in pipeline is slipping through.
+      </h1>
+      <p class="hero-subtitle">
+        Your 15-year founder track record and Ricardo Baeza-Yates on your advisory board mean nothing if IP attorneys find PatSnap first. Right now, they do.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value danger">$26K</div>
+          <div class="hero-stat-label">Lost MRR/Mo</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value success">$18K</div>
+          <div class="hero-stat-label">Recoverable</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value gold">4.2x</div>
+          <div class="hero-stat-label">Potential ROI</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">13%</div>
+          <div class="hero-stat-label">Market CAGR</div>
+        </div>
+      </div>
+      <p style="margin-top: 32px; color: var(--slate); font-size: 0.95rem;">This report shows you how to capture it. DIY or done-for-you.</p>
+    </section>
+
+    <!-- THE STORY -->
+    <div class="story-section reveal">
+      <div class="story-time">Tuesday, 2:47 PM EST</div>
+      <p class="story-text">
+        An IP attorney in Boston just finished a client call about a provisional filing. She searches "AI patent search tool" to speed up prior art. Your Google Ad shows up—<strong>but so does PatSnap's</strong>. She clicks both. Your site loads. No live chat. No demo video above the fold. She bounces. PatSnap has a demo booked within 90 seconds.
+      </p>
+      <p class="story-cta">This happens dozens of times a week. Here's why—and how to fix it.</p>
+    </div>
+
+    <!-- MARKET DATA -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Why Now</span>
+        <h2 class="section-title">The Market Is Moving Fast</h2>
+      </div>
+      <div class="market-stats">
+        <div class="market-stat">
+          <div class="market-stat-value">$1.3B</div>
+          <div class="market-stat-label">Market Size 2025</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">3.7M</div>
+          <div class="market-stat-label">Patent Filings 2024</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">+4.9%</div>
+          <div class="market-stat-label">YoY Growth</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">68%</div>
+          <div class="market-stat-label">AI Tool Adoption</div>
+        </div>
+      </div>
+      <p class="market-context">
+        The patent analytics market hits $3B+ by 2032. Record filings. Exploding demand. The window to establish market position is <strong>now</strong>—before enterprise players consolidate.
+      </p>
+    </section>
+
+    <!-- COMPETITIVE REALITY -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Competitive Reality</span>
+        <h2 class="section-title">Who's Winning Right Now</h2>
+      </div>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>PatSnap</th>
+            <th>Cypris</th>
+            <th class="highlight-col">Patentia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Ads Presence</td>
+            <td class="check">✓ Aggressive</td>
+            <td class="check">✓ Active</td>
+            <td class="highlight-col partial">◐ Running</td>
+          </tr>
+          <tr>
+            <td>LinkedIn Thought Leadership</td>
+            <td class="check">✓ Weekly</td>
+            <td class="check">✓ Weekly</td>
+            <td class="highlight-col cross">✗ Sporadic</td>
+          </tr>
+          <tr>
+            <td>Comparison Pages (vs Competitors)</td>
+            <td class="check">✓ 8+ pages</td>
+            <td class="check">✓ 5+ pages</td>
+            <td class="highlight-col cross">✗ None</td>
+          </tr>
+          <tr>
+            <td>Live Demo/Chat on Site</td>
+            <td class="check">✓ Instant</td>
+            <td class="check">✓ Instant</td>
+            <td class="highlight-col cross">✗ Calendar only</td>
+          </tr>
+          <tr>
+            <td>Case Studies with ROI Numbers</td>
+            <td class="check">✓ 12+</td>
+            <td class="check">✓ 6+</td>
+            <td class="highlight-col partial">◐ Testimonials</td>
+          </tr>
+          <tr>
+            <td>Enterprise Security Badges</td>
+            <td class="check">✓ SOC 2</td>
+            <td class="check">✓ SOC 2</td>
+            <td class="highlight-col cross">✗ Not visible</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="comparison-insight">
+        <strong>What you have that they don't:</strong> Ricardo Baeza-Yates (Chilean National Prize winner), transparent pricing, Latin American market expertise.<br>
+        <strong>What they have that you don't:</strong> Conversion-optimized funnels. That's fixable.
+      </p>
+    </section>
+
+    <!-- CALCULATOR -->
+    <div class="calculator-section reveal">
+      <div class="calc-header">
+        <span class="section-label">Your Numbers</span>
+        <h2 class="section-title">See the Math for Yourself</h2>
+        <p class="section-subtitle">Adjust the sliders to match your current metrics</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-inputs">
+          <div class="calc-input-group">
+            <label>Monthly Website Visitors</label>
+            <div class="calc-input-row">
+              <input type="range" class="calc-slider" id="visitors" min="1000" max="50000" value="8000" step="500">
+              <span class="calc-value" id="visitorsValue">8,000</span>
+            </div>
+          </div>
+          <div class="calc-input-group">
+            <label>Current Trial Signup Rate</label>
+            <div class="calc-input-row">
+              <input type="range" class="calc-slider" id="trialRate" min="0.5" max="10" value="2" step="0.5">
+              <span class="calc-value" id="trialRateValue">2%</span>
+            </div>
+          </div>
+          <div class="calc-input-group">
+            <label>Trial-to-Paid Conversion</label>
+            <div class="calc-input-row">
+              <input type="range" class="calc-slider" id="conversionRate" min="5" max="40" value="15" step="1">
+              <span class="calc-value" id="conversionRateValue">15%</span>
+            </div>
+          </div>
+          <div class="calc-input-group">
+            <label>Average Customer Value (Annual)</label>
+            <div class="calc-input-row">
+              <input type="range" class="calc-slider" id="acv" min="200" max="5000" value="800" step="100">
+              <span class="calc-value" id="acvValue">$800</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-services">
+          <h3 style="font-size: 1rem; margin-bottom: 16px; color: var(--ink);">Growth Levers (toggle to see impact)</h3>
+          <div class="calc-service active" data-service="ads" onclick="toggleService(this)">
+            <div class="calc-service-info">
+              <span style="font-weight: 600;">🎯 Paid Acquisition Optimization</span>
+            </div>
+            <div class="calc-service-toggle"></div>
+          </div>
+          <div class="calc-service active" data-service="conversion" onclick="toggleService(this)">
+            <div class="calc-service-info">
+              <span style="font-weight: 600;">⚡ Website Conversion Optimization</span>
+            </div>
+            <div class="calc-service-toggle"></div>
+          </div>
+          <div class="calc-service active" data-service="nurture" onclick="toggleService(this)">
+            <div class="calc-service-info">
+              <span style="font-weight: 600;">📧 Email Nurture & Onboarding</span>
+            </div>
+            <div class="calc-service-toggle"></div>
+          </div>
+          <div class="calc-service active" data-service="enterprise" onclick="toggleService(this)">
+            <div class="calc-service-info">
+              <span style="font-weight: 600;">🏢 Enterprise Outbound System</span>
+            </div>
+            <div class="calc-service-toggle"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-result-card">
+          <div class="calc-result-label">Currently Losing/Mo</div>
+          <div class="calc-result-value danger" id="currentLoss">$26,400</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-label">Could Recover/Mo</div>
+          <div class="calc-result-value success" id="recovery">$18,200</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-label">New Customers/Mo</div>
+          <div class="calc-result-value gold" id="newCustomers">+23</div>
+        </div>
+      </div>
+
+      <div class="calc-total">
+        <div class="calc-total-label">Annual Opportunity</div>
+        <div class="calc-total-value" id="annualOpp">$218,400</div>
+        <div class="calc-total-sub">While PatSnap captures your market share</div>
+      </div>
+
+      <!-- STEP BY STEP MATH -->
+      <div class="math-section">
+        <h3 class="math-title">📊 Step-by-Step Math (Transparent)</h3>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 1: Your Current Baseline</div>
+          <div class="math-step-content" id="mathStep1">
+            Monthly visitors: 8,000<br>
+            × Trial signup rate: × 2%<br>
+            = Monthly trials: <span class="math-step-result">160</span>
+          </div>
+        </div>
+
+        <div class="math-step">
+          <div class="math-step-title">Step 2: Current Conversion</div>
+          <div class="math-step-content" id="mathStep2">
+            Monthly trials: 160<br>
+            × Trial-to-paid rate: × 15%<br>
+            = Monthly new customers: <span class="math-step-result">24</span><br>
+            × Average Customer Value: × $800<br>
+            = Current Monthly Revenue: <span class="math-step-result">$19,200</span>
+          </div>
+        </div>
+
+        <div class="math-step">
+          <div class="math-step-title">Step 3: The Gap (What You're Leaving on the Table)</div>
+          <div class="math-step-content" id="mathStep3">
+            Industry benchmark trial rate: 5% (vs your 2%)<br>
+            Industry benchmark conversion: 25% (vs your 15%)<br>
+            Potential monthly revenue at benchmarks: <span class="math-step-result">$80,000</span><br>
+            Your current: $19,200<br>
+            = <strong style="color: var(--danger);">Monthly gap: $60,800</strong>
+          </div>
+        </div>
+
+        <div class="math-step">
+          <div class="math-step-title">Step 4: Realistic Recovery (Conservative)</div>
+          <div class="math-step-content" id="mathStep4">
+            We don't promise benchmarks overnight.<br>
+            Realistic improvement: Trial rate to 3.5%, conversion to 20%<br>
+            New monthly revenue: $44,800<br>
+            Current: $19,200<br>
+            = <strong style="color: var(--success);">Recoverable: $25,600/month</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="authority-flex">
+        "These projections are based on SaaS industry benchmarks from OpenView Partners and ProfitWell research. Conservative estimates—many clients exceed these within 90 days."
+      </div>
+    </div>
+
+    <!-- OPTIONS COMPARISON -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Your Options</span>
+        <h2 class="section-title">Three Paths Forward</h2>
+      </div>
+      <div class="options-comparison">
+        <div class="option-card">
+          <h3 class="option-title">Stay the Course</h3>
+          <ul class="option-list bad">
+            <li>PatSnap continues capturing your keywords</li>
+            <li>Visitors bounce without converting</li>
+            <li>Trials go cold without nurture sequences</li>
+            <li>Enterprise deals go to competitors with SOC 2</li>
+            <li>Market window closes as players consolidate</li>
+          </ul>
+        </div>
+        <div class="option-card">
+          <h3 class="option-title">DIY Everything</h3>
+          <ul class="option-list partial">
+            <li>Hire growth marketer ($120K+/year)</li>
+            <li>Build conversion infrastructure (3-6 months)</li>
+            <li>Learn paid acquisition optimization</li>
+            <li>Create email sequences from scratch</li>
+            <li>Distracts from product development</li>
+          </ul>
+        </div>
+        <div class="option-card recommended">
+          <h3 class="option-title">Strategic Partnership</h3>
+          <ul class="option-list good">
+            <li>Launch optimized campaigns in 2 weeks</li>
+            <li>Conversion infrastructure day one</li>
+            <li>Enterprise-grade lead nurturing</li>
+            <li>Focus stays on product and customers</li>
+            <li>Results-based, month-to-month</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIY PLAYBOOK -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">The Playbook</span>
+        <h2 class="section-title">How to Close Each Gap (Step by Step)</h2>
+        <p class="section-subtitle">Here's exactly how to fix each gap yourself—no gatekeeping. Fair warning: SaaS growth isn't a weekend project. It's ongoing.</p>
+      </div>
+
+      <!-- GAP 1: GET FOUND -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">01</div>
+          <div class="playbook-title-wrap">
+            <h3 class="playbook-title">Get Found — Paid Acquisition</h3>
+            <p class="playbook-problem">You're running ads but competitors capture high-intent searches</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-column-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.8rem; color: var(--slate); margin-bottom: 12px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Audit current Google Ads structure—separate brand, competitor, and generic campaigns</li>
+              <li><span class="playbook-step-num">2</span> Build competitor conquest campaigns ("PatSnap alternative," "Cypris vs")</li>
+              <li><span class="playbook-step-num">3</span> Create dedicated landing pages for each campaign theme</li>
+              <li><span class="playbook-step-num">4</span> Set up LinkedIn Ads targeting IP attorneys, tech transfer officers</li>
+              <li><span class="playbook-step-num">5</span> Install conversion tracking across all touchpoints</li>
+            </ul>
+            <p style="font-size: 0.8rem; color: var(--slate); margin: 12px 0;"><strong>WEEKLY (Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">6</span> Review search terms, add negatives for irrelevant queries</li>
+              <li><span class="playbook-step-num">7</span> A/B test ad copy—new headlines every 2 weeks</li>
+              <li><span class="playbook-step-num">8</span> Adjust bids based on conversion data</li>
+              <li><span class="playbook-step-num">9</span> Refresh LinkedIn creative (algorithm rewards novelty)</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 20-30 hrs</span>
+              <span>🔄 Ongoing: 8-12 hrs/week</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-column-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Full account audit and restructure</li>
+              <li>Competitor conquest campaign buildout</li>
+              <li>Landing page design and optimization</li>
+              <li>LinkedIn Ads strategy for B2B SaaS</li>
+              <li>Conversion tracking and attribution setup</li>
+              <li>Weekly bid optimization and negative keyword management</li>
+              <li>Fresh ad creative every week (platforms reward this)</li>
+              <li>A/B testing headlines, CTAs, audiences</li>
+              <li>Monthly performance reporting with insights</li>
+              <li>Competitor ad monitoring and response</li>
+            </ul>
+            <p class="playbook-dfy-result">You approve spend and take demos. That's it.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 2: GET CAPTURED -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">02</div>
+          <div class="playbook-title-wrap">
+            <h3 class="playbook-title">Get Captured — Website Conversion</h3>
+            <p class="playbook-problem">Visitors land but bounce without signing up for trial</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-column-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.8rem; color: var(--slate); margin-bottom: 12px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Add live chat or AI chatbot (Intercom, Drift, or custom)</li>
+              <li><span class="playbook-step-num">2</span> Create product demo video, embed above the fold</li>
+              <li><span class="playbook-step-num">3</span> Build comparison pages: "Patentia vs PatSnap," "Patentia vs Cypris"</li>
+              <li><span class="playbook-step-num">4</span> Add social proof: case studies with ROI numbers, not just quotes</li>
+              <li><span class="playbook-step-num">5</span> Display security badges (SOC 2 process, data handling)</li>
+              <li><span class="playbook-step-num">6</span> Simplify signup flow—reduce friction to one click</li>
+            </ul>
+            <p style="font-size: 0.8rem; color: var(--slate); margin: 12px 0;"><strong>MONTHLY (Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">7</span> Review heatmaps—where do visitors drop off?</li>
+              <li><span class="playbook-step-num">8</span> A/B test headlines, CTAs, form placements</li>
+              <li><span class="playbook-step-num">9</span> Update case studies with fresh wins</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 30-50 hrs</span>
+              <span>🔄 Ongoing: 4-6 hrs/week</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-column-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Conversion audit with prioritized recommendations</li>
+              <li>Live chat/AI chatbot implementation</li>
+              <li>Product demo video production</li>
+              <li>Comparison page creation (SEO-optimized)</li>
+              <li>Case study development with ROI frameworks</li>
+              <li>Trust signal and social proof optimization</li>
+              <li>Signup flow optimization</li>
+              <li>Heatmap analysis and monthly CRO testing</li>
+              <li>Ongoing A/B testing program</li>
+            </ul>
+            <p class="playbook-dfy-result">Your site converts while you build product.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 3: GET NURTURED -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">03</div>
+          <div class="playbook-title-wrap">
+            <h3 class="playbook-title">Get Nurtured — Email & Onboarding</h3>
+            <p class="playbook-problem">Trial users don't convert because onboarding is passive</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-column-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.8rem; color: var(--slate); margin-bottom: 12px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Map user journey: signup → first value → conversion trigger</li>
+              <li><span class="playbook-step-num">2</span> Build email sequence: Welcome, Day 1, Day 3, Day 7, Day 14</li>
+              <li><span class="playbook-step-num">3</span> Create behavior-triggered emails (ran first search, generated report)</li>
+              <li><span class="playbook-step-num">4</span> Set up trial expiration reminders with urgency</li>
+              <li><span class="playbook-step-num">5</span> Build win-back sequence for expired trials</li>
+            </ul>
+            <p style="font-size: 0.8rem; color: var(--slate); margin: 12px 0;"><strong>WEEKLY (Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">6</span> Review open rates, click rates—optimize subject lines</li>
+              <li><span class="playbook-step-num">7</span> Update sequences based on user feedback</li>
+              <li><span class="playbook-step-num">8</span> Segment users by behavior for personalization</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 25-40 hrs</span>
+              <span>🔄 Ongoing: 3-5 hrs/week</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-column-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Complete email infrastructure setup</li>
+              <li>User journey mapping and optimization</li>
+              <li>Full onboarding sequence creation (8-12 emails)</li>
+              <li>Behavior-triggered email automation</li>
+              <li>Trial expiration and win-back sequences</li>
+              <li>A/B testing subject lines and content</li>
+              <li>Segmentation strategy and implementation</li>
+              <li>Monthly performance analysis and optimization</li>
+              <li>Integration with product analytics</li>
+            </ul>
+            <p class="playbook-dfy-result">Trials convert while you sleep.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAP 4: GET CLOSED -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">04</div>
+          <div class="playbook-title-wrap">
+            <h3 class="playbook-title">Get Closed — Enterprise Pipeline</h3>
+            <p class="playbook-problem">No systematic outbound to high-value enterprise accounts</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-column-title">🛠️ DIY Fix</div>
+            <p style="font-size: 0.8rem; color: var(--slate); margin-bottom: 12px;"><strong>SETUP (One-Time):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Define ICP: IP law firms, corporate IP departments, tech transfer offices</li>
+              <li><span class="playbook-step-num">2</span> Build target account list (100-500 accounts)</li>
+              <li><span class="playbook-step-num">3</span> Set up LinkedIn Sales Navigator</li>
+              <li><span class="playbook-step-num">4</span> Create outbound email sequences (3-5 touches)</li>
+              <li><span class="playbook-step-num">5</span> Build enterprise landing page with security/compliance info</li>
+            </ul>
+            <p style="font-size: 0.8rem; color: var(--slate); margin: 12px 0;"><strong>DAILY (Forever):</strong></p>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">6</span> Send 20-50 personalized outreach messages</li>
+              <li><span class="playbook-step-num">7</span> Follow up on responses within 2 hours</li>
+              <li><span class="playbook-step-num">8</span> Track pipeline in CRM, update stages</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 20-30 hrs</span>
+              <span>🔄 Ongoing: 10-15 hrs/week</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-column-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>ICP definition and target account identification</li>
+              <li>Prospect list building (verified contacts)</li>
+              <li>Multi-channel outbound sequences (email + LinkedIn)</li>
+              <li>Personalization at scale with AI assistance</li>
+              <li>Enterprise landing page and collateral</li>
+              <li>CRM setup and pipeline tracking</li>
+              <li>Daily outreach execution</li>
+              <li>Response handling and meeting booking</li>
+              <li>Weekly pipeline reporting</li>
+              <li>Account-based marketing campaigns</li>
+            </ul>
+            <p class="playbook-dfy-result">You show up to qualified enterprise demos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="authority-flex">
+        "These are the same frameworks we use with every SaaS client. No secrets, no gatekeeping—just the reality of what it takes. You can absolutely do this yourself. But be honest about the time: 25-40 hours/week of ongoing work on top of building product."
+      </div>
+    </section>
+
+    <!-- VISION -->
+    <div class="vision-section reveal">
+      <p class="vision-quote">
+        "You spent 15 years building products and scaling companies. You have a Chilean National Prize winner on your advisory board. Ricardo's co-authored the seminal book on information retrieval. We've spent a decade perfecting SaaS growth."
+      </p>
+      <div class="vision-list">
+        <div class="vision-list-item">You won't learn Google Ads optimization</div>
+        <div class="vision-list-item">You won't write email sequences</div>
+        <div class="vision-list-item">You won't build outbound infrastructure</div>
+        <div class="vision-list-item">You won't obsess over conversion rates</div>
+      </div>
+      <p class="vision-bottom">
+        You'll build the best AI patent platform. Your pipeline will fill.<br>
+        <strong>That's the partnership.</strong>
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section reveal">
+      <div class="cta-urgency">Revenue walking out TODAY: $867</div>
+      <h2 class="cta-title">Let's Fix This</h2>
+      <p class="cta-subtitle">15 minutes. No pitch deck. Just your numbers, your gaps, and a clear path forward.</p>
+      
+      <div class="cta-columns">
+        <div class="cta-column">
+          <div class="cta-column-title">What We Found</div>
+          <ul class="cta-column-list gaps">
+            <li>Paid ads running but not optimized for SaaS</li>
+            <li>No competitor comparison pages (PatSnap owns this)</li>
+            <li>No live chat or instant demo booking</li>
+            <li>Trial nurture sequences missing</li>
+            <li>No systematic enterprise outbound</li>
+          </ul>
+        </div>
+        <div class="cta-column">
+          <div class="cta-column-title">What Changes</div>
+          <ul class="cta-column-list fixes">
+            <li>Campaigns restructured for conversion</li>
+            <li>Comparison pages capturing "vs" searches</li>
+            <li>Instant engagement for every visitor</li>
+            <li>Automated sequences converting trials</li>
+            <li>Enterprise pipeline generating demos</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 28px; margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.1);">
+        <h3 style="color: white; font-family: 'Fraunces', serif; font-size: 1.1rem; margin-bottom: 16px; text-align: center;">Why This Works</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; font-size: 0.9rem;">
+          <div style="text-align: left;">
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">You Focus On:</div>
+            <ul style="list-style: none; color: rgba(255,255,255,0.85);">
+              <li style="padding: 6px 0;">→ AI/ML product development</li>
+              <li style="padding: 6px 0;">→ Patent database expansion</li>
+              <li style="padding: 6px 0;">→ Customer relationships</li>
+              <li style="padding: 6px 0;">→ Enterprise sales calls</li>
+            </ul>
+          </div>
+          <div style="text-align: left;">
+            <div style="color: rgba(255,255,255,0.5); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">We Handle:</div>
+            <ul style="list-style: none; color: rgba(255,255,255,0.85);">
+              <li style="padding: 6px 0;">→ Google & LinkedIn Ads</li>
+              <li style="padding: 6px 0;">→ Website conversion</li>
+              <li style="padding: 6px 0;">→ Email automation</li>
+              <li style="padding: 6px 0;">→ Enterprise outbound</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendly-container">
+        <h3 style="text-align: center; color: var(--white); margin-bottom: 24px; font-family: 'Fraunces', serif;">Book Your 15-Minute Strategy Call</h3>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+        <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+          Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank" style="color: var(--accent-light);">Book directly here →</a>
+        </p>
+      </div>
+
+      <p class="cta-guarantee">No long-term contracts. Month-to-month. Results-focused.</p>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">U</div>
+        <span class="footer-name">WSI Utopiads</span>
+      </div>
+      <p style="color: var(--slate); font-size: 0.85rem;">
+        Prepared by Heidi Veronica Schwende<br>
+        <a href="https://utopiads.com/" style="color: var(--brand-blue);">utopiads.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Calculator functionality
+    const sliders = {
+      visitors: document.getElementById('visitors'),
+      trialRate: document.getElementById('trialRate'),
+      conversionRate: document.getElementById('conversionRate'),
+      acv: document.getElementById('acv')
+    };
+
+    const values = {
+      visitors: document.getElementById('visitorsValue'),
+      trialRate: document.getElementById('trialRateValue'),
+      conversionRate: document.getElementById('conversionRateValue'),
+      acv: document.getElementById('acvValue')
+    };
+
+    const services = {
+      ads: true,
+      conversion: true,
+      nurture: true,
+      enterprise: true
+    };
+
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function formatCurrency(num) {
+      return '$' + formatNumber(Math.round(num));
+    }
+
+    function toggleService(el) {
+      const service = el.dataset.service;
+      services[service] = !services[service];
+      el.classList.toggle('active');
+      calculateResults();
+    }
+
+    function calculateResults() {
+      const visitors = parseInt(sliders.visitors.value);
+      const trialRate = parseFloat(sliders.trialRate.value) / 100;
+      const conversionRate = parseFloat(sliders.conversionRate.value) / 100;
+      const acv = parseInt(sliders.acv.value);
+
+      // Update display values
+      values.visitors.textContent = formatNumber(visitors);
+      values.trialRate.textContent = (trialRate * 100).toFixed(1) + '%';
+      values.conversionRate.textContent = (conversionRate * 100) + '%';
+      values.acv.textContent = formatCurrency(acv);
+
+      // Current performance
+      const currentTrials = visitors * trialRate;
+      const currentCustomers = currentTrials * conversionRate;
+      const currentRevenue = currentCustomers * acv;
+
+      // Industry benchmarks
+      const benchmarkTrialRate = 0.05;
+      const benchmarkConversion = 0.25;
+      const benchmarkTrials = visitors * benchmarkTrialRate;
+      const benchmarkCustomers = benchmarkTrials * benchmarkConversion;
+      const benchmarkRevenue = benchmarkCustomers * acv;
+
+      // Gap
+      const monthlyGap = benchmarkRevenue - currentRevenue;
+
+      // Improvements from each service
+      let improvedTrialRate = trialRate;
+      let improvedConversion = conversionRate;
+      let additionalCustomers = 0;
+
+      if (services.ads) {
+        improvedTrialRate += 0.01; // +1% trial rate from better ads
+      }
+      if (services.conversion) {
+        improvedTrialRate += 0.005; // +0.5% from conversion optimization
+        improvedConversion += 0.03; // +3% conversion from better site
+      }
+      if (services.nurture) {
+        improvedConversion += 0.05; // +5% conversion from email nurture
+      }
+      if (services.enterprise) {
+        additionalCustomers += 3; // +3 enterprise deals/month
+      }
+
+      const improvedTrials = visitors * improvedTrialRate;
+      const improvedCustomers = (improvedTrials * improvedConversion) + additionalCustomers;
+      const improvedRevenue = improvedCustomers * acv;
+      const recovery = improvedRevenue - currentRevenue;
+
+      // Update results
+      document.getElementById('currentLoss').textContent = formatCurrency(monthlyGap);
+      document.getElementById('recovery').textContent = formatCurrency(recovery);
+      document.getElementById('newCustomers').textContent = '+' + Math.round(improvedCustomers - currentCustomers);
+      document.getElementById('annualOpp').textContent = formatCurrency(recovery * 12);
+
+      // Update math section
+      document.getElementById('mathStep1').innerHTML = `
+        Monthly visitors: ${formatNumber(visitors)}<br>
+        × Trial signup rate: × ${(trialRate * 100).toFixed(1)}%<br>
+        = Monthly trials: <span class="math-step-result">${Math.round(currentTrials)}</span>
+      `;
+
+      document.getElementById('mathStep2').innerHTML = `
+        Monthly trials: ${Math.round(currentTrials)}<br>
+        × Trial-to-paid rate: × ${(conversionRate * 100)}%<br>
+        = Monthly new customers: <span class="math-step-result">${Math.round(currentCustomers)}</span><br>
+        × Average Customer Value: × ${formatCurrency(acv)}<br>
+        = Current Monthly Revenue: <span class="math-step-result">${formatCurrency(currentRevenue)}</span>
+      `;
+
+      document.getElementById('mathStep3').innerHTML = `
+        Industry benchmark trial rate: 5% (vs your ${(trialRate * 100).toFixed(1)}%)<br>
+        Industry benchmark conversion: 25% (vs your ${(conversionRate * 100)}%)<br>
+        Potential monthly revenue at benchmarks: <span class="math-step-result">${formatCurrency(benchmarkRevenue)}</span><br>
+        Your current: ${formatCurrency(currentRevenue)}<br>
+        = <strong style="color: var(--danger);">Monthly gap: ${formatCurrency(monthlyGap)}</strong>
+      `;
+
+      document.getElementById('mathStep4').innerHTML = `
+        With selected optimizations:<br>
+        Improved trial rate: ${(improvedTrialRate * 100).toFixed(1)}%, conversion: ${(improvedConversion * 100)}%<br>
+        ${services.enterprise ? 'Plus enterprise outbound: +3 deals/month<br>' : ''}
+        New monthly revenue: ${formatCurrency(improvedRevenue)}<br>
+        Current: ${formatCurrency(currentRevenue)}<br>
+        = <strong style="color: var(--success);">Recoverable: ${formatCurrency(recovery)}/month</strong>
+      `;
+    }
+
+    // Add event listeners to sliders
+    Object.keys(sliders).forEach(key => {
+      sliders[key].addEventListener('input', calculateResults);
+    });
+
+    // Initial calculation
+    calculateResults();
+  </script>
+</body>
+</html>
