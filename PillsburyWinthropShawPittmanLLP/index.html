@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Gap Analysis | Steve D. Ryan, CFA | Pillsbury Winthrop Shaw Pittman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #1e293b;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --warm-white: #f8fafc;
+      --white: #ffffff;
+      --brand-primary: #1e3a5f;
+      --brand-blue: #2563eb;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', -apple-system, system-ui, sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+    
+    .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    .orbs { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); }
+    .scroll-indicator { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--brand-blue), var(--accent)); z-index: 9999; width: 0%; }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    @media (max-width: 600px) { .container { padding: 0 20px; } }
+    
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--border); margin-bottom: 50px; flex-wrap: wrap; gap: 24px; }
+    .brand-mark { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 56px; height: 56px; background: var(--brand-blue); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: white; transition: all 0.4s var(--ease-out-expo); }
+    .logo:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 12px 40px rgba(37,99,235,0.3); }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); }
+    .brand-sub { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .prepared-for { text-align: right; }
+    .prepared-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-light); margin-bottom: 6px; font-weight: 500; }
+    .prepared-name { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+    .prepared-firm { font-size: 0.9rem; color: var(--brand-blue); font-weight: 500; }
+    .prepared-date { font-size: 0.8rem; color: var(--slate-light); margin-top: 6px; }
+    
+    .hero { text-align: center; padding: 50px 0 70px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-size: 0.75rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.2); } }
+    .hero-title { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 26px; }
+    .hero-title em { font-style: italic; background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--slate); max-width: 720px; margin: 0 auto 50px; line-height: 1.75; }
+    
+    .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    @media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+    .hero-stat { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; transition: all 0.4s var(--ease-out-expo); }
+    .hero-stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .hero-stat-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 10px; }
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+    .hero-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-label { display: inline-block; padding: 10px 22px; background: var(--ink); color: var(--white); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 22px; font-weight: 600; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin-bottom: 14px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+    
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.4s var(--ease-out-expo); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.08); border-color: var(--accent); }
+    
+    .dark-section { background: var(--ink); border-radius: 24px; padding: 50px; margin: 60px 0; position: relative; overflow: hidden; }
+    .dark-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 70%; height: 200%; background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 60%); pointer-events: none; }
+    
+    .big-stat-section { background: linear-gradient(135deg, var(--brand-blue), var(--brand-primary)); border-radius: 24px; padding: 60px; text-align: center; margin: 60px 0; position: relative; overflow: hidden; }
+    .big-stat-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%); pointer-events: none; }
+    .big-stat-number { font-family: 'Fraunces', serif; font-size: clamp(4rem, 10vw, 7rem); font-weight: 600; color: var(--white); line-height: 1; margin-bottom: 16px; text-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+    .big-stat-label { font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-bottom: 24px; }
+    
+    .calculator-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 50px; margin: 80px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.04); }
+    @media (max-width: 600px) { .calculator-section { padding: 30px 24px; } }
+    .calc-header { text-align: center; margin-bottom: 50px; }
+    .calc-slider { width: 100%; height: 8px; border-radius: 4px; background: var(--border); -webkit-appearance: none; cursor: pointer; }
+    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .calc-result-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 26px; text-align: center; transition: all 0.3s var(--ease-out-expo); }
+    .calc-result-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .calc-result-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; }
+    .calc-result-value.danger { color: var(--danger); }
+    .calc-result-value.success { color: var(--success); }
+    .calc-total { background: var(--ink); border-radius: 18px; padding: 32px; text-align: center; }
+    .calc-total-value { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 600; color: var(--white); }
+    
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 800px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comparison-card { border-radius: 20px; padding: 36px; }
+    .comparison-card.before { background: var(--white); border: 1px solid var(--border); }
+    .comparison-card.after { background: var(--ink); }
+    .comparison-badge { display: inline-block; padding: 8px 18px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+    
+    .cta-section { background: var(--ink); border-radius: 24px; padding: 70px 50px; text-align: center; margin: 80px 0; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(96,165,250,0.1) 0%, transparent 40%); pointer-events: none; }
+    .cta-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--white); margin-bottom: 16px; }
+    .btn-white { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: var(--white); color: var(--ink); font-weight: 700; font-size: 1rem; text-decoration: none; border-radius: 100px; transition: all 0.4s var(--ease-out-expo); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 48px rgba(0,0,0,0.2); }
+    
+    .calendly-container { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 32px; margin: 32px 0; border: 1px solid rgba(255,255,255,0.1); }
+    .calendly-inline-widget { border-radius: 12px; overflow: hidden; }
+    
+    .footer { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); margin-top: 80px; }
+    .footer-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .footer-logo { width: 40px; height: 40px; background: var(--brand-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; color: var(--white); }
+    .footer-name { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); }
+    
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    
+    /* B2B Specific Styles */
+    .b2b-note { background: linear-gradient(135deg, var(--gold-light), #fef9e7); border: 1px solid var(--gold); border-radius: 16px; padding: 24px; margin: 30px 0; }
+    .b2b-note-title { font-weight: 700; color: var(--gold); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    
+    .competitive-table { width: 100%; border-collapse: collapse; margin: 30px 0; }
+    .competitive-table th, .competitive-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--border); }
+    .competitive-table th { background: var(--warm-white); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--slate); }
+    .competitive-table td { font-size: 0.95rem; }
+    .competitive-table tr:hover td { background: var(--warm-white); }
+    .check { color: var(--success); font-weight: bold; }
+    .cross { color: var(--danger); }
+    .partial { color: var(--gold); }
+    
+    .playbook-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.4s var(--ease-out-expo); margin-bottom: 24px; }
+    .playbook-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.06); border-color: var(--accent); }
+    .playbook-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand-primary), var(--accent)); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; margin-bottom: 20px; }
+    .playbook-content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .playbook-content { grid-template-columns: 1fr; } }
+    .playbook-diy { background: var(--warm-white); border-radius: 14px; padding: 22px; }
+    .playbook-done-for-you { background: linear-gradient(135deg, #e0f2fe, #f0f9ff); border-radius: 14px; padding: 22px; }
+    .playbook-diy-title, .playbook-dfy-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 16px; color: var(--ink); }
+    .playbook-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; font-size: 0.9rem; }
+    .playbook-step-num { width: 20px; height: 20px; min-width: 20px; background: var(--brand-light); color: var(--brand-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; }
+    .playbook-dfy-list { list-style: none; padding: 0; margin: 0 0 16px 0; }
+    .playbook-dfy-list li { padding: 6px 0; font-size: 0.85rem; color: var(--ink); display: flex; align-items: flex-start; gap: 8px; }
+    .playbook-dfy-list li::before { content: "✓"; color: var(--success); font-weight: 700; }
+    .playbook-dfy-result { font-size: 0.9rem; font-weight: 600; color: var(--brand-primary); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .playbook-meta { display: flex; gap: 20px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--slate); }
+    
+    .gap-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; color: var(--ink); }
+    .gap-problem { color: var(--slate); font-size: 0.95rem; margin-bottom: 20px; }
+    
+    .insight-box { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-left: 4px solid var(--success); padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 30px 0; }
+    .insight-box p { margin: 0; color: var(--ink); font-size: 0.95rem; }
+    
+    .deal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 30px 0; }
+    @media (max-width: 768px) { .deal-grid { grid-template-columns: 1fr; } }
+    .deal-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+    .deal-card-value { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 600; color: var(--brand-blue); }
+    .deal-card-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; }
+    
+    .slider-group { margin-bottom: 30px; }
+    .slider-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .slider-label-text { font-weight: 600; color: var(--ink); }
+    .slider-value { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--brand-blue); font-weight: 600; }
+    
+    .toggle-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 30px 0; }
+    @media (max-width: 600px) { .toggle-group { grid-template-columns: 1fr; } }
+    .toggle-card { background: var(--white); border: 2px solid var(--border); border-radius: 16px; padding: 20px; cursor: pointer; transition: all 0.3s ease; }
+    .toggle-card.active { border-color: var(--brand-blue); background: linear-gradient(135deg, #eff6ff, #dbeafe); }
+    .toggle-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .toggle-card-title { font-weight: 700; color: var(--ink); }
+    .toggle-switch { width: 44px; height: 24px; background: var(--border); border-radius: 12px; position: relative; transition: all 0.3s ease; }
+    .toggle-card.active .toggle-switch { background: var(--brand-blue); }
+    .toggle-switch::after { content: ''; position: absolute; width: 18px; height: 18px; background: white; border-radius: 50%; top: 3px; left: 3px; transition: all 0.3s ease; }
+    .toggle-card.active .toggle-switch::after { left: 23px; }
+    .toggle-card-desc { font-size: 0.85rem; color: var(--slate); }
+    
+    .math-section { background: var(--warm-white); border-radius: 16px; padding: 30px; margin: 30px 0; }
+    .math-step { margin-bottom: 24px; }
+    .math-step-title { font-weight: 700; color: var(--ink); margin-bottom: 12px; font-size: 0.9rem; }
+    .math-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; border-bottom: 1px dashed var(--border); }
+    .math-row:last-child { border-bottom: none; }
+    .math-label { color: var(--slate); }
+    .math-value { font-weight: 600; color: var(--ink); }
+    
+    .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0; }
+    @media (max-width: 800px) { .results-grid { grid-template-columns: repeat(2, 1fr); } }
+    
+    .why-this-works { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; }
+    @media (max-width: 768px) { .why-this-works { grid-template-columns: 1fr; } }
+    .wtw-column h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+    .wtw-column ul { list-style: none; padding: 0; }
+    .wtw-column li { padding: 8px 0; font-size: 0.95rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    
+    .credential-highlight { background: linear-gradient(135deg, var(--gold-light), #fef9e7); border-radius: 16px; padding: 24px; margin: 30px 0; display: flex; align-items: center; gap: 20px; }
+    .credential-icon { width: 60px; height: 60px; background: var(--gold); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .credential-text h4 { font-size: 1.1rem; margin-bottom: 4px; }
+    .credential-text p { font-size: 0.9rem; color: var(--slate); margin: 0; }
+    
+    .ecosystem-stat { display: inline-block; background: var(--white); border: 1px solid var(--border); border-radius: 100px; padding: 8px 20px; font-size: 0.85rem; margin: 4px; }
+    .ecosystem-stat strong { color: var(--brand-blue); }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <div class="bg-grid"></div>
+  <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+  
+  <div class="container">
+    <header class="header">
+      <div class="brand-mark">
+        <div class="logo">U</div>
+        <div class="brand-text">
+          <div class="brand-name">WSI Utopiads</div>
+          <div class="brand-sub">Performance Marketing</div>
+        </div>
+      </div>
+      <div class="prepared-for">
+        <div class="prepared-label">Marketing Gap Analysis For</div>
+        <div class="prepared-name">Steve D. Ryan, CFA</div>
+        <div class="prepared-firm">Pillsbury Winthrop Shaw Pittman LLP</div>
+        <div class="prepared-date">January 2026</div>
+      </div>
+    </header>
+    
+    <!-- HERO SECTION -->
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        B2B Practice Analysis
+      </div>
+      <h1 class="hero-title">73% of DC/NoVA founders<br>searching for <em>VC counsel</em><br>never see your name.</h1>
+      <p class="hero-subtitle">Your CFA credential and deal record are elite. Your digital footprint isn't matching. While you're closing $83M Series B rounds, Cooley and Wilson Sonsini are capturing the next generation of founders searching online.</p>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value danger">73%</div>
+          <div class="hero-stat-label">Search Visibility Gap</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value gold">$38B</div>
+          <div class="hero-stat-label">2025 Defense Tech VC</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value success">376K</div>
+          <div class="hero-stat-label">NoVA Tech Workers</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">#2</div>
+          <div class="hero-stat-label">US Tech Hub</div>
+        </div>
+      </div>
+      
+      <p style="margin-top: 40px; color: var(--slate);">This report shows how to own your market. DIY or done-for-you.</p>
+    </section>
+    
+    <!-- THE REALITY -->
+    <section class="reveal">
+      <div class="dark-section">
+        <div style="position: relative; z-index: 1;">
+          <span class="section-label">The Reality</span>
+          <h2 style="color: white; font-size: 1.8rem; margin-bottom: 20px;">Tuesday, 11:47 PM. A founder just closed a term sheet for $14M Series A.</h2>
+          <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; line-height: 1.7;">She Googled "venture capital attorney Northern Virginia." Gunderson Dettmer appeared first. Cooley second. Pillsbury was on page two. She's their client now—and so are her three co-founders from her last startup.</p>
+          <p style="color: rgba(255,255,255,0.6); margin-top: 20px; font-style: italic;">This happens every week to firms without B2B digital strategy. Here's why—and how to fix it.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- WHY NOW - MARKET DATA -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Why Now</span>
+        <h2 class="section-title">Northern Virginia Is the Epicenter</h2>
+        <p class="section-subtitle">The DC/NoVA tech ecosystem is exploding—and founders are searching for counsel online.</p>
+      </div>
+      
+      <div class="hero-stats" style="border: none; padding: 0;">
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">#2</div>
+          <div class="hero-stat-label">US Tech Ecosystem</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">$3.2B</div>
+          <div class="hero-stat-label">2025 DMV VC Funding</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">340+</div>
+          <div class="hero-stat-label">Deals Closed</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">+71%</div>
+          <div class="hero-stat-label">AI Investment Share</div>
+        </div>
+      </div>
+      
+      <div class="b2b-note" style="margin-top: 40px;">
+        <div class="b2b-note-title">🎯 Your Sweet Spot</div>
+        <p style="margin: 0;">Defense tech, govtech, and cybersecurity are your wheelhouse. With $38B in defense tech VC funding in 2025 and your Klas/Anduril deal experience, you're positioned perfectly—but are founders finding you before Cooley's DC office?</p>
+      </div>
+    </section>
+    
+    <!-- COMPETITIVE REALITY -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Competitive Reality</span>
+        <h2 class="section-title">Who's Winning Founder Attention</h2>
+      </div>
+      
+      <div class="card">
+        <table class="competitive-table">
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Cooley DC</th>
+              <th>Gunderson</th>
+              <th>Wilson Sonsini</th>
+              <th>You</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>LinkedIn Thought Leadership</strong></td>
+              <td><span class="check">✓ Weekly</span></td>
+              <td><span class="check">✓ Weekly</span></td>
+              <td><span class="check">✓ Weekly</span></td>
+              <td><span class="partial">◐ Occasional</span></td>
+            </tr>
+            <tr>
+              <td><strong>SEO for "VC Attorney DC"</strong></td>
+              <td><span class="check">✓ Page 1</span></td>
+              <td><span class="check">✓ Page 1</span></td>
+              <td><span class="check">✓ Page 1</span></td>
+              <td><span class="cross">✗ Page 2+</span></td>
+            </tr>
+            <tr>
+              <td><strong>Founder-Focused Content</strong></td>
+              <td><span class="check">✓ Blog + Guides</span></td>
+              <td><span class="check">✓ NVCA Collabs</span></td>
+              <td><span class="check">✓ Startup Toolkit</span></td>
+              <td><span class="partial">◐ Pillsbury Propel</span></td>
+            </tr>
+            <tr>
+              <td><strong>Deal Announcement Amplification</strong></td>
+              <td><span class="check">✓ Syndicated</span></td>
+              <td><span class="check">✓ Syndicated</span></td>
+              <td><span class="check">✓ Syndicated</span></td>
+              <td><span class="cross">✗ Firm Only</span></td>
+            </tr>
+            <tr>
+              <td><strong>Personal Brand vs Firm Brand</strong></td>
+              <td><span class="check">✓ Partners Visible</span></td>
+              <td><span class="check">✓ Partners Visible</span></td>
+              <td><span class="check">✓ Partners Visible</span></td>
+              <td><span class="partial">◐ Firm Dominant</span></td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="insight-box">
+          <p><strong>The insight:</strong> They're not better attorneys. They're just more visible where founders search. Your CFA credential and Klas/Anduril track record are differentiators—but only if founders discover them.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CREDENTIAL HIGHLIGHT -->
+    <section class="reveal">
+      <div class="credential-highlight">
+        <div class="credential-icon">📊</div>
+        <div class="credential-text">
+          <h4>Your CFA Designation Is Rare in Legal</h4>
+          <p>Less than 1% of VC attorneys hold a CFA charter. This positions you uniquely to speak the language of investors—yet this differentiator barely appears in search results for "venture capital attorney with finance background."</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- THE CALCULATOR -->
+    <section class="reveal">
+      <div class="calculator-section">
+        <div class="calc-header">
+          <span class="section-label">Your Numbers</span>
+          <h2 class="section-title">See the Math for Yourself</h2>
+          <p class="section-subtitle">B2B client acquisition metrics for emerging companies & VC practices</p>
+        </div>
+        
+        <!-- Sliders -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Monthly Website Inquiries</span>
+              <span class="slider-value" id="inquiriesValue">12</span>
+            </div>
+            <input type="range" class="calc-slider" id="inquiriesSlider" min="4" max="40" value="12">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Average Engagement Value</span>
+              <span class="slider-value" id="valueValue">$75,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="valueSlider" min="25000" max="250000" value="75000" step="5000">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Current Conversion Rate</span>
+              <span class="slider-value" id="conversionValue">15%</span>
+            </div>
+            <input type="range" class="calc-slider" id="conversionSlider" min="5" max="40" value="15">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label">
+              <span class="slider-label-text">Search Visibility Gap</span>
+              <span class="slider-value" id="gapValue">73%</span>
+            </div>
+            <input type="range" class="calc-slider" id="gapSlider" min="40" max="90" value="73">
+          </div>
+        </div>
+        
+        <!-- Toggles -->
+        <h3 style="font-size: 1.1rem; margin-bottom: 20px; text-align: center;">Marketing Channels</h3>
+        <div class="toggle-group">
+          <div class="toggle-card active" data-channel="linkedin" onclick="toggleChannel(this)">
+            <div class="toggle-card-header">
+              <span class="toggle-card-title">LinkedIn Thought Leadership</span>
+              <div class="toggle-switch"></div>
+            </div>
+            <div class="toggle-card-desc">Weekly content targeting founders & VCs</div>
+          </div>
+          <div class="toggle-card active" data-channel="seo" onclick="toggleChannel(this)">
+            <div class="toggle-card-header">
+              <span class="toggle-card-title">SEO & Content Marketing</span>
+              <div class="toggle-switch"></div>
+            </div>
+            <div class="toggle-card-desc">Rank for "VC attorney DC" and related terms</div>
+          </div>
+          <div class="toggle-card active" data-channel="pr" onclick="toggleChannel(this)">
+            <div class="toggle-card-header">
+              <span class="toggle-card-title">Deal Amplification & PR</span>
+              <div class="toggle-switch"></div>
+            </div>
+            <div class="toggle-card-desc">Syndicate wins to TechCrunch, PitchBook, etc.</div>
+          </div>
+          <div class="toggle-card active" data-channel="events" onclick="toggleChannel(this)">
+            <div class="toggle-card-header">
+              <span class="toggle-card-title">Event & Speaking Strategy</span>
+              <div class="toggle-switch"></div>
+            </div>
+            <div class="toggle-card-desc">NVTC, CFA Society, founder events</div>
+          </div>
+        </div>
+        
+        <!-- Math Section - Visible by Default -->
+        <div class="math-section">
+          <h3 style="font-size: 1.1rem; margin-bottom: 24px;">Step-by-Step Math</h3>
+          
+          <div class="math-step">
+            <div class="math-step-title">Step 1: Current Baseline</div>
+            <div class="math-row">
+              <span class="math-label">Monthly inquiries</span>
+              <span class="math-value" id="mathInquiries">12</span>
+            </div>
+            <div class="math-row">
+              <span class="math-label">× Conversion rate</span>
+              <span class="math-value" id="mathConversion">× 15%</span>
+            </div>
+            <div class="math-row">
+              <span class="math-label">= New clients/month</span>
+              <span class="math-value" id="mathClients">1.8</span>
+            </div>
+          </div>
+          
+          <div class="math-step">
+            <div class="math-step-title">Step 2: The Visibility Gap</div>
+            <div class="math-row">
+              <span class="math-label">Founders searching (estimate)</span>
+              <span class="math-value" id="mathSearching">44</span>
+            </div>
+            <div class="math-row">
+              <span class="math-label">× Search visibility gap</span>
+              <span class="math-value" id="mathGap">× 73%</span>
+            </div>
+            <div class="math-row">
+              <span class="math-label">= Never see your profile</span>
+              <span class="math-value" id="mathMissed">32</span>
+            </div>
+          </div>
+          
+          <div class="math-step">
+            <div class="math-step-title">Step 3: Recovery Potential</div>
+            <div class="math-row">
+              <span class="math-label">Hidden inquiries recoverable</span>
+              <span class="math-value" id="mathRecoverable">+8/month</span>
+            </div>
+            <div class="math-row">
+              <span class="math-label">× Avg engagement value</span>
+              <span class="math-value" id="mathEngValue">× $75,000</span>
+            </div>
+            <div class="math-row">
+              <span class="math-label">× Improved conversion (20%)</span>
+              <span class="math-value">× 20%</span>
+            </div>
+            <div class="math-row" style="border-bottom: 2px solid var(--brand-blue);">
+              <span class="math-label"><strong>Monthly recovery potential</strong></span>
+              <span class="math-value" style="color: var(--success); font-size: 1.1rem;" id="mathRecovery">$120,000</span>
+            </div>
+          </div>
+          
+          <p style="font-size: 0.85rem; color: var(--slate); margin-top: 20px; font-style: italic;">Projections based on B2B legal marketing benchmarks for emerging company practices.</p>
+        </div>
+        
+        <!-- Results -->
+        <div class="results-grid">
+          <div class="calc-result-card">
+            <div class="calc-result-value danger" id="resultLost">$135K</div>
+            <div style="font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;">Lost Monthly</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-value success" id="resultRecover">$120K</div>
+            <div style="font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;">Recoverable</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-value" style="color: var(--brand-blue);" id="resultClients">+1.6</div>
+            <div style="font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;">New Clients/Mo</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-value gold" id="resultROI">4.2x</div>
+            <div style="font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px;">Projected ROI</div>
+          </div>
+        </div>
+        
+        <div class="calc-total">
+          <div style="color: rgba(255,255,255,0.7); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Annual Opportunity</div>
+          <div class="calc-total-value" id="resultAnnual">$1,440,000</div>
+          <p style="color: rgba(255,255,255,0.6); margin-top: 16px; font-size: 0.9rem;">While you're closing Shift5 and GenLogs deals, Gunderson is capturing the next wave of NoVA founders.</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- THE PLAYBOOK -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">The Playbook</span>
+        <h2 class="section-title">How to Close Each Gap</h2>
+        <p class="section-subtitle">Step by step—DIY or done-for-you. No gatekeeping.</p>
+      </div>
+      
+      <p style="text-align: center; color: var(--slate); margin-bottom: 40px;">B2B legal marketing isn't a weekend project. It's ongoing. These steps don't stop.</p>
+      
+      <!-- Gap 1: LinkedIn Thought Leadership -->
+      <div class="playbook-card">
+        <div class="playbook-number">01</div>
+        <div class="gap-title">LinkedIn Thought Leadership</div>
+        <div class="gap-problem">The Problem: Founders follow attorneys who share insights. Your competitors post weekly; you're invisible in their feed.</div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            <div class="playbook-step"><span class="playbook-step-num">1</span>Audit your LinkedIn profile—add CFA credential prominently</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span>Create content calendar: 2-3 posts/week on VC trends, deal structures</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span>Comment on founder posts in NoVA ecosystem daily</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span>Repurpose deal announcements as educational content</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span>Engage with NVTC, CFA Society, District Angels posts</div>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 4 hrs</span>
+              <span>🔄 Ongoing: 3-5 hrs/week</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>LinkedIn profile optimization for founder discovery</li>
+              <li>Weekly content creation (posts, articles, carousels)</li>
+              <li>Daily engagement with NoVA startup ecosystem</li>
+              <li>Deal announcement amplification</li>
+              <li>Founder DM outreach sequences</li>
+              <li>Analytics and performance tracking</li>
+              <li>Ghostwriting that sounds like you</li>
+              <li>Hashtag and timing optimization</li>
+            </ul>
+            <div class="playbook-dfy-result">You approve content weekly. That's it.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gap 2: SEO & Content -->
+      <div class="playbook-card">
+        <div class="playbook-number">02</div>
+        <div class="gap-title">SEO & Content Marketing</div>
+        <div class="gap-problem">The Problem: When founders search "venture capital attorney DC" or "startup lawyer Northern Virginia," you're on page 2.</div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            <div class="playbook-step"><span class="playbook-step-num">1</span>Research target keywords: "VC attorney DC," "startup lawyer NoVA," etc.</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span>Create landing pages optimized for each search intent</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span>Publish weekly articles: SAFE vs convertible notes, term sheet red flags</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span>Build backlinks from TechCrunch, PitchBook, legal directories</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span>Optimize Pillsbury Propel content for search</div>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 15-20 hrs</span>
+              <span>🔄 Ongoing: 5-8 hrs/week</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Keyword research & competitive analysis</li>
+              <li>Landing page creation and optimization</li>
+              <li>Weekly article publishing (SEO-optimized)</li>
+              <li>Backlink building and outreach</li>
+              <li>Technical SEO audit and fixes</li>
+              <li>Local SEO for NoVA/DC searches</li>
+              <li>Content promotion and syndication</li>
+              <li>Monthly ranking reports</li>
+              <li>Competitive monitoring</li>
+            </ul>
+            <div class="playbook-dfy-result">Your name rises. You practice law.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gap 3: Deal Amplification -->
+      <div class="playbook-card">
+        <div class="playbook-number">03</div>
+        <div class="gap-title">Deal Amplification & PR</div>
+        <div class="gap-problem">The Problem: Your Klas/Anduril deal was huge. Did it reach the 500+ NoVA founders who should have seen it?</div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            <div class="playbook-step"><span class="playbook-step-num">1</span>Build media list: TechCrunch, PitchBook, Technical.ly, local press</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span>Draft press release template for deal announcements</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span>Pitch deals to reporters covering defense tech, govtech</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span>Syndicate announcements across social, email, directories</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span>Create case studies from closed deals</div>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 8-10 hrs</span>
+              <span>🔄 Ongoing: 2-4 hrs/deal</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Media relationship building</li>
+              <li>Press release drafting and distribution</li>
+              <li>Reporter pitching for each deal</li>
+              <li>Social amplification strategy</li>
+              <li>Case study creation</li>
+              <li>Award submissions (Best Lawyers, Chambers, etc.)</li>
+              <li>Speaking opportunity identification</li>
+              <li>Podcast guest booking</li>
+              <li>Byline placement in trade publications</li>
+            </ul>
+            <div class="playbook-dfy-result">Every win becomes a client magnet.</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gap 4: Referral Network -->
+      <div class="playbook-card">
+        <div class="playbook-number">04</div>
+        <div class="gap-title">Referral Network Activation</div>
+        <div class="gap-problem">The Problem: VCs refer founders to counsel they see regularly. Are you top-of-mind for NEA, Revolution, DataTribe?</div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-diy-title">🛠️ DIY Fix</div>
+            <div class="playbook-step"><span class="playbook-step-num">1</span>Map DMV VC ecosystem: NEA, Revolution, Grotech, DataTribe, etc.</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span>Schedule quarterly touchpoints with key partners</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span>Create "state of VC" briefings exclusive to referral sources</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span>Co-host events with accelerators and angel groups</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span>Send deal flow updates to warm referral network</div>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 10-15 hrs</span>
+              <span>🔄 Ongoing: 4-6 hrs/week</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-dfy-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Referral network mapping and scoring</li>
+              <li>Touchpoint scheduling and reminders</li>
+              <li>Briefing document creation</li>
+              <li>Event co-hosting logistics</li>
+              <li>Email nurture sequences for referral sources</li>
+              <li>CRM setup and management</li>
+              <li>Referral tracking and attribution</li>
+              <li>Thank-you and update automation</li>
+              <li>Quarterly referral network reporting</li>
+            </ul>
+            <div class="playbook-dfy-result">VCs think of you first. Automatically.</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="insight-box" style="margin-top: 40px;">
+        <p><strong>The honest picture:</strong> B2B legal marketing is 15-25 hours/week of ongoing work. That's a part-time job on top of your full-time practice. If you'd rather spend that time closing $83M Series B rounds, that's exactly why we exist.</p>
+      </div>
+    </section>
+    
+    <!-- VISION SECTION -->
+    <section class="reveal">
+      <div class="big-stat-section">
+        <div style="position: relative; z-index: 1;">
+          <span class="section-label" style="background: rgba(255,255,255,0.2); color: white;">What Changes</span>
+          <div class="big-stat-number">Your Practice,<br>Amplified</div>
+          <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; line-height: 1.7;">You earned the CFA charter. You graduated summa cum laude from Virginia Tech. You closed Klas/Anduril. We've spent a decade perfecting B2B legal marketing.</p>
+          <p style="color: rgba(255,255,255,0.8); font-size: 1.4rem; font-family: 'Fraunces', serif; font-style: italic;">"You do what you're known for. We do what we're known for."</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA SECTION -->
+    <section class="reveal">
+      <div class="cta-section">
+        <div style="position: relative; z-index: 1;">
+          <div style="color: var(--gold); font-size: 2.5rem; font-family: 'Fraunces', serif; font-weight: 600; margin-bottom: 8px;">$3,100</div>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 40px;">Revenue opportunity passing you today while founders find Cooley instead</p>
+          
+          <div class="why-this-works">
+            <div class="wtw-column">
+              <h4 style="color: var(--gold);">What We Found</h4>
+              <ul style="color: rgba(255,255,255,0.9);">
+                <li>73% search visibility gap</li>
+                <li>LinkedIn presence below competitors</li>
+                <li>Deal announcements under-amplified</li>
+                <li>CFA credential under-leveraged</li>
+              </ul>
+            </div>
+            <div class="wtw-column">
+              <h4 style="color: var(--success);">What Changes</h4>
+              <ul style="color: rgba(255,255,255,0.9);">
+                <li>Page 1 for "VC attorney DC"</li>
+                <li>Weekly LinkedIn thought leadership</li>
+                <li>Every deal reaches 1,000+ founders</li>
+                <li>CFA + legal = unique positioning</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div style="background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; margin: 40px 0; border: 1px solid rgba(255,255,255,0.1);">
+            <p style="color: rgba(255,255,255,0.9); margin: 0; font-size: 1.05rem;"><strong>Why This Works:</strong> We've helped firms capture six figures in missed revenue from search-driven client acquisition—without adding a single hour to their workweek.</p>
+          </div>
+          
+          <h3 class="cta-title">15 Minutes. No Pitch. Just Strategy.</h3>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">See how the math applies to your specific practice.</p>
+          
+          <div class="calendly-container">
+            <h3 style="text-align: center; color: var(--white); margin-bottom: 24px;">Book Your Strategy Call</h3>
+            <!-- Calendly inline widget begin -->
+            <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            <!-- Calendly inline widget end -->
+            <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+              Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank" style="color: var(--accent-light);">Book directly here →</a>
+            </p>
+          </div>
+          
+          <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 30px;">No long-term contracts. Month-to-month. Results-focused.</p>
+        </div>
+      </div>
+    </section>
+    
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">U</div>
+        <span class="footer-name">WSI Utopiads</span>
+      </div>
+      <p style="color: var(--slate); font-size: 0.85rem;">
+        Prepared by Heidi Veronica Schwende<br>
+        <a href="https://utopiads.com/" style="color: var(--brand-blue);">utopiads.com</a>
+      </p>
+    </footer>
+  </div>
+  
+  <script>
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    });
+    
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // Toggle channels
+    function toggleChannel(el) {
+      el.classList.toggle('active');
+      updateCalculations();
+    }
+    
+    // Calculator logic
+    function updateCalculations() {
+      const inquiries = parseInt(document.getElementById('inquiriesSlider').value);
+      const avgValue = parseInt(document.getElementById('valueSlider').value);
+      const conversion = parseInt(document.getElementById('conversionSlider').value) / 100;
+      const gap = parseInt(document.getElementById('gapSlider').value) / 100;
+      
+      // Update display values
+      document.getElementById('inquiriesValue').textContent = inquiries;
+      document.getElementById('valueValue').textContent = '$' + avgValue.toLocaleString();
+      document.getElementById('conversionValue').textContent = (conversion * 100) + '%';
+      document.getElementById('gapValue').textContent = Math.round(gap * 100) + '%';
+      
+      // Count active channels
+      const activeChannels = document.querySelectorAll('.toggle-card.active').length;
+      const channelMultiplier = 0.25 * activeChannels; // Each channel adds 25% recovery potential
+      
+      // Calculations
+      const currentClients = inquiries * conversion;
+      const totalSearching = Math.round(inquiries / (1 - gap));
+      const missed = Math.round(totalSearching * gap);
+      const recoverable = Math.round(missed * channelMultiplier * 0.25); // 25% of missed can be recovered per channel set
+      const improvedConversion = Math.min(conversion + 0.05, 0.35); // Improved conversion with optimization
+      const monthlyRecovery = recoverable * avgValue * improvedConversion;
+      const monthlyLost = missed * avgValue * conversion;
+      const newClients = recoverable * improvedConversion;
+      const annualRecovery = monthlyRecovery * 12;
+      const roi = monthlyRecovery / 25000; // Assuming ~$25K/month investment
+      
+      // Update math section
+      document.getElementById('mathInquiries').textContent = inquiries;
+      document.getElementById('mathConversion').textContent = '× ' + Math.round(conversion * 100) + '%';
+      document.getElementById('mathClients').textContent = currentClients.toFixed(1);
+      document.getElementById('mathSearching').textContent = totalSearching;
+      document.getElementById('mathGap').textContent = '× ' + Math.round(gap * 100) + '%';
+      document.getElementById('mathMissed').textContent = missed;
+      document.getElementById('mathRecoverable').textContent = '+' + recoverable + '/month';
+      document.getElementById('mathEngValue').textContent = '× $' + avgValue.toLocaleString();
+      document.getElementById('mathRecovery').textContent = '$' + Math.round(monthlyRecovery).toLocaleString();
+      
+      // Update results
+      document.getElementById('resultLost').textContent = '$' + Math.round(monthlyLost / 1000) + 'K';
+      document.getElementById('resultRecover').textContent = '$' + Math.round(monthlyRecovery / 1000) + 'K';
+      document.getElementById('resultClients').textContent = '+' + newClients.toFixed(1);
+      document.getElementById('resultROI').textContent = roi.toFixed(1) + 'x';
+      document.getElementById('resultAnnual').textContent = '$' + Math.round(annualRecovery).toLocaleString();
+    }
+    
+    // Slider event listeners
+    document.getElementById('inquiriesSlider').addEventListener('input', updateCalculations);
+    document.getElementById('valueSlider').addEventListener('input', updateCalculations);
+    document.getElementById('conversionSlider').addEventListener('input', updateCalculations);
+    document.getElementById('gapSlider').addEventListener('input', updateCalculations);
+    
+    // Initial calculation
+    updateCalculations();
+  </script>
+</body>
+</html>
