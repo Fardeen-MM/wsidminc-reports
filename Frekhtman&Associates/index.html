@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Gap Analysis | Frekhtman & Associates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #1e293b;
+      --slate: #475569;
+      --slate-light: #64748b;
+      --muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --warm-white: #f8fafc;
+      --white: #ffffff;
+      --brand-primary: #1e3a5f;
+      --brand-blue: #2563eb;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --success: #059669;
+      --success-light: #d1fae5;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --gold: #f59e0b;
+      --gold-light: #fef3c7;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', -apple-system, system-ui, sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+
+    .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    .orbs { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); }
+    .scroll-indicator { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--brand-blue), var(--accent)); z-index: 9999; width: 0%; }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    @media (max-width: 600px) { .container { padding: 0 20px; } }
+
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--border); margin-bottom: 50px; flex-wrap: wrap; gap: 24px; }
+    .brand-mark { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 56px; height: 56px; background: var(--brand-blue); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: white; transition: all 0.4s var(--ease-out-expo); }
+    .logo:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 12px 40px rgba(37,99,235,0.3); }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); }
+    .brand-sub { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .prepared-for { text-align: right; }
+    .prepared-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-light); margin-bottom: 6px; font-weight: 500; }
+    .prepared-name { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+    .prepared-firm { font-size: 0.9rem; color: var(--brand-blue); font-weight: 500; }
+    .prepared-date { font-size: 0.8rem; color: var(--slate-light); margin-top: 6px; }
+
+    .hero { text-align: center; padding: 50px 0 70px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-size: 0.75rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.2); } }
+    .hero-title { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 26px; }
+    .hero-title em { font-style: italic; background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--slate); max-width: 720px; margin: 0 auto 50px; line-height: 1.75; }
+
+    .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    @media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+    .hero-stat { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; transition: all 0.4s var(--ease-out-expo); }
+    .hero-stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .hero-stat-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 10px; }
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+    .hero-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-label { display: inline-block; padding: 10px 22px; background: var(--ink); color: var(--white); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 22px; font-weight: 600; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin-bottom: 14px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.4s var(--ease-out-expo); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.08); border-color: var(--accent); }
+
+    .dark-section { background: var(--ink); border-radius: 24px; padding: 50px; margin: 60px 0; position: relative; overflow: hidden; }
+    .dark-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 70%; height: 200%; background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 60%); pointer-events: none; }
+
+    .big-stat-section { background: linear-gradient(135deg, var(--brand-blue), var(--brand-primary)); border-radius: 24px; padding: 60px; text-align: center; margin: 60px 0; position: relative; overflow: hidden; }
+    .big-stat-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%); pointer-events: none; }
+    .big-stat-number { font-family: 'Fraunces', serif; font-size: clamp(4rem, 10vw, 7rem); font-weight: 600; color: var(--white); line-height: 1; margin-bottom: 16px; text-shadow: 0 4px 30px rgba(0,0,0,0.2); }
+    .big-stat-label { font-size: 1.3rem; color: rgba(255,255,255,0.9); margin-bottom: 24px; }
+
+    .calculator-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 50px; margin: 80px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.04); }
+    @media (max-width: 600px) { .calculator-section { padding: 30px 24px; } }
+    .calc-header { text-align: center; margin-bottom: 50px; }
+    .calc-slider { width: 100%; height: 8px; border-radius: 4px; background: var(--border); -webkit-appearance: none; cursor: pointer; }
+    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .calc-result-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 26px; text-align: center; transition: all 0.3s var(--ease-out-expo); }
+    .calc-result-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .calc-result-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; }
+    .calc-result-value.danger { color: var(--danger); }
+    .calc-result-value.success { color: var(--success); }
+    .calc-total { background: var(--ink); border-radius: 18px; padding: 32px; text-align: center; }
+    .calc-total-value { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 600; color: var(--white); }
+
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 800px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comparison-card { border-radius: 20px; padding: 36px; }
+    .comparison-card.before { background: var(--white); border: 1px solid var(--border); }
+    .comparison-card.after { background: var(--ink); }
+    .comparison-badge { display: inline-block; padding: 8px 18px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+
+    .cta-section { background: var(--ink); border-radius: 24px; padding: 70px 50px; text-align: center; margin: 80px 0; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(96,165,250,0.1) 0%, transparent 40%); pointer-events: none; }
+    .cta-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--white); margin-bottom: 16px; }
+    .btn-white { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: var(--white); color: var(--ink); font-weight: 700; font-size: 1rem; text-decoration: none; border-radius: 100px; transition: all 0.4s var(--ease-out-expo); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .btn-white:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 48px rgba(0,0,0,0.2); }
+
+    .calendly-container { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 32px; margin: 32px 0; border: 1px solid rgba(255,255,255,0.1); }
+    .calendly-inline-widget { border-radius: 12px; overflow: hidden; }
+
+    .footer { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); margin-top: 80px; }
+    .footer-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .footer-logo { width: 40px; height: 40px; background: var(--brand-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; color: var(--white); }
+    .footer-name { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .story-block { background: var(--white); border-left: 4px solid var(--brand-blue); padding: 28px 32px; border-radius: 0 16px 16px 0; margin: 40px 0; }
+    .story-time { font-size: 0.85rem; color: var(--brand-blue); font-weight: 600; margin-bottom: 8px; }
+    .story-text { font-size: 1.1rem; color: var(--ink); line-height: 1.7; }
+
+    .market-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0; }
+    @media (max-width: 768px) { .market-stats { grid-template-columns: repeat(2, 1fr); } }
+    .market-stat { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; }
+    .market-stat-value { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 600; color: var(--brand-blue); margin-bottom: 8px; }
+    .market-stat-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+
+    .competitive-table { width: 100%; border-collapse: collapse; margin: 40px 0; background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .competitive-table th { background: var(--ink); color: var(--white); padding: 16px 20px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+    .competitive-table td { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+    .competitive-table tr:last-child td { border-bottom: none; }
+    .competitive-table .check { color: var(--success); font-weight: bold; }
+    .competitive-table .x { color: var(--danger); font-weight: bold; }
+    .competitive-table .partial { color: var(--gold); font-weight: bold; }
+
+    .slider-group { margin-bottom: 32px; }
+    .slider-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .slider-label-text { font-weight: 600; color: var(--ink); }
+    .slider-value { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 600; color: var(--brand-blue); }
+
+    .service-toggles { display: grid; gap: 16px; margin: 40px 0; }
+    .service-toggle { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: var(--warm-white); border: 1px solid var(--border); border-radius: 14px; transition: all 0.3s; }
+    .service-toggle:hover { border-color: var(--accent); }
+    .service-toggle.active { border-color: var(--success); background: var(--success-light); }
+    .service-toggle-info { flex: 1; }
+    .service-toggle-name { font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .service-toggle-desc { font-size: 0.85rem; color: var(--slate); }
+    .toggle-switch { width: 52px; height: 28px; background: var(--border); border-radius: 14px; position: relative; cursor: pointer; transition: all 0.3s; }
+    .toggle-switch.active { background: var(--success); }
+    .toggle-switch::after { content: ''; position: absolute; width: 22px; height: 22px; background: var(--white); border-radius: 50%; top: 3px; left: 3px; transition: all 0.3s; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    .toggle-switch.active::after { left: 27px; }
+
+    .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+    @media (max-width: 768px) { .results-grid { grid-template-columns: 1fr; } }
+
+    .math-section { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin: 40px 0; }
+    .math-step { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px dashed var(--border); }
+    .math-step:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .math-step-title { font-weight: 600; color: var(--ink); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .math-step-num { width: 28px; height: 28px; background: var(--brand-blue); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
+    .math-line { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 0.95rem; }
+    .math-line.total { background: var(--ink); color: var(--white); padding: 12px 16px; border-radius: 8px; margin-top: 8px; font-weight: 600; }
+
+    .ai-comparison { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+    @media (max-width: 800px) { .ai-comparison { grid-template-columns: 1fr; } }
+    .ai-option { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+    .ai-option.recommended { border: 2px solid var(--success); background: var(--success-light); }
+    .ai-option-title { font-weight: 700; font-size: 1rem; margin-bottom: 16px; color: var(--ink); }
+    .ai-option-feature { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 0.9rem; color: var(--slate); }
+    .ai-option-feature .icon { font-size: 1rem; }
+
+    .playbook-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 24px; transition: all 0.4s var(--ease-out-expo); }
+    .playbook-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.06); border-color: var(--accent); }
+    .playbook-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .playbook-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand-primary), var(--accent)); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; }
+    .playbook-title { flex: 1; }
+    .playbook-title h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 4px; }
+    .playbook-title p { font-size: 0.9rem; color: var(--slate); }
+    .playbook-content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 800px) { .playbook-content { grid-template-columns: 1fr; } }
+    .playbook-diy { background: var(--warm-white); border-radius: 14px; padding: 22px; }
+    .playbook-done-for-you { background: #e0f2fe; border-radius: 14px; padding: 22px; }
+    .playbook-section-title { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; color: var(--ink); }
+    .playbook-step { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 0.9rem; color: var(--ink); }
+    .playbook-step-num { width: 20px; height: 20px; background: var(--brand-light); color: var(--brand-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; background: #dbeafe; }
+    .playbook-meta { display: flex; gap: 20px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--slate); }
+    .playbook-dfy-list { list-style: none; padding: 0; margin: 0 0 16px 0; }
+    .playbook-dfy-list li { padding: 6px 0; font-size: 0.85rem; color: var(--ink); display: flex; align-items: flex-start; gap: 8px; }
+    .playbook-dfy-list li::before { content: "✓"; color: var(--success); font-weight: 700; }
+    .playbook-dfy-result { font-size: 0.9rem; font-weight: 600; color: var(--brand-primary); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+    .vision-block { background: linear-gradient(135deg, var(--ink), var(--brand-primary)); border-radius: 24px; padding: 60px; margin: 60px 0; text-align: center; color: var(--white); position: relative; overflow: hidden; }
+    .vision-block::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 40%, rgba(59,130,246,0.2) 0%, transparent 50%); pointer-events: none; }
+    .vision-quote { font-family: 'Fraunces', serif; font-size: clamp(1.4rem, 3vw, 1.8rem); font-style: italic; margin-bottom: 32px; position: relative; z-index: 1; }
+    .vision-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 32px; margin-bottom: 32px; position: relative; z-index: 1; }
+    .vision-list span { display: flex; align-items: center; gap: 8px; font-size: 1rem; opacity: 0.9; }
+
+    .why-works { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; padding: 40px; background: var(--white); border-radius: 20px; border: 1px solid var(--border); }
+    @media (max-width: 768px) { .why-works { grid-template-columns: 1fr; } }
+    .why-works-col h4 { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 16px; }
+    .why-works-col ul { list-style: none; padding: 0; }
+    .why-works-col li { padding: 10px 0; font-size: 0.95rem; color: var(--slate); display: flex; align-items: center; gap: 10px; }
+    .why-works-col li::before { content: "→"; color: var(--brand-blue); font-weight: bold; }
+
+    .daily-urgency { background: var(--danger-light); border: 1px solid var(--danger); border-radius: 16px; padding: 24px 32px; text-align: center; margin-bottom: 32px; }
+    .daily-urgency-value { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--danger); }
+    .daily-urgency-label { font-size: 0.9rem; color: var(--danger); margin-top: 4px; }
+
+    .guarantee { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 24px; color: rgba(255,255,255,0.8); font-size: 0.9rem; }
+    .guarantee-icon { width: 24px; height: 24px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    .spend-slider { margin-top: 16px; padding: 16px; background: var(--white); border-radius: 12px; border: 1px solid var(--border); }
+    .spend-slider-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--slate); margin-bottom: 8px; }
+
+    .authority-flex { font-size: 0.9rem; font-style: italic; color: var(--slate); text-align: center; margin: 24px 0; padding: 16px; background: var(--warm-white); border-radius: 12px; }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <div class="bg-grid"></div>
+  <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+  
+  <div class="container">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand-mark">
+        <div class="logo">U</div>
+        <div class="brand-text">
+          <div class="brand-name">WSI Utopiads</div>
+          <div class="brand-sub">Performance Marketing</div>
+        </div>
+      </div>
+      <div class="prepared-for">
+        <div class="prepared-label">Marketing Gap Analysis For</div>
+        <div class="prepared-name">Arkady Frekhtman, Esq.</div>
+        <div class="prepared-firm">Frekhtman & Associates</div>
+        <div class="prepared-date">January 2026</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Analysis Complete
+      </div>
+      <h1 class="hero-title">
+        <em>$312,000/year</em><br>
+        That's what's walking out the door.
+      </h1>
+      <p class="hero-subtitle">
+        Your $900M in recovered verdicts means nothing if injured New Yorkers can't find you at 10 PM. 
+        Right now, Morgan & Morgan and Cellino Law get that call.
+      </p>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value danger">$26,000</div>
+          <div class="hero-stat-label">Lost Per Month</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value success">$41,200</div>
+          <div class="hero-stat-label">Recoverable Monthly</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value gold">4.8x</div>
+          <div class="hero-stat-label">Potential ROI</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value" style="color: var(--brand-blue);">100K+</div>
+          <div class="hero-stat-label">NYC Accidents/Year</div>
+        </div>
+      </div>
+      
+      <p style="margin-top: 40px; color: var(--slate);">This report shows you how to fix it. DIY or done-for-you.</p>
+    </section>
+
+    <!-- THE STORY -->
+    <section class="reveal">
+      <div class="story-block">
+        <div class="story-time">Last Tuesday. 10:47 PM. Brooklyn.</div>
+        <div class="story-text">
+          A construction worker just fell three stories at a Bedford-Stuyvesant job site. His wife Googled "construction accident lawyer Brooklyn" from Kings County Hospital. Your firm didn't show up in the ads. Cellino Law did. She called them. That's a seven-figure case that's now their client.
+        </div>
+      </div>
+      <p style="text-align: center; color: var(--slate); margin-top: 24px;">This happens every week. Here's why—and how to fix it.</p>
+    </section>
+
+    <!-- WHY NOW - MARKET DATA -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Why Now</span>
+        <h2 class="section-title">NYC's Personal Injury Market Is Exploding</h2>
+      </div>
+      
+      <div class="market-stats">
+        <div class="market-stat">
+          <div class="market-stat-value">100K+</div>
+          <div class="market-stat-label">NYC Crashes/Year</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">$287K</div>
+          <div class="market-stat-label">Median NY Verdict</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">60%</div>
+          <div class="market-stat-label">Brooklyn + Queens</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">185K</div>
+          <div class="market-stat-label">NY Lawyers</div>
+        </div>
+      </div>
+      
+      <p style="text-align: center; color: var(--slate); max-width: 700px; margin: 0 auto;">
+        Brooklyn alone saw 22,781 crashes in 2024. NYC courts are famous for "nuclear verdicts" of $10M+.
+        The cases are there. The question is: who's capturing them first?
+      </p>
+    </section>
+
+    <!-- COMPETITIVE REALITY -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">Competitive Reality</span>
+        <h2 class="section-title">Who's Winning Right Now</h2>
+      </div>
+      
+      <table class="competitive-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>Morgan & Morgan</th>
+            <th>Cellino Law</th>
+            <th>You</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Google Ads (Active)</td>
+            <td class="check">✓ Aggressive</td>
+            <td class="check">✓ Heavy</td>
+            <td class="partial">◐ Running, Not Optimized</td>
+          </tr>
+          <tr>
+            <td>Meta/Facebook Ads</td>
+            <td class="check">✓ Yes</td>
+            <td class="check">✓ Yes</td>
+            <td class="x">✗ None</td>
+          </tr>
+          <tr>
+            <td>After-Hours Intake</td>
+            <td class="check">✓ 24/7 Live</td>
+            <td class="check">✓ 24/7 Live</td>
+            <td class="x">✗ Voicemail</td>
+          </tr>
+          <tr>
+            <td>Review Count</td>
+            <td class="check">✓ 5,000+</td>
+            <td class="check">✓ 1,000+</td>
+            <td class="partial">◐ 155</td>
+          </tr>
+          <tr>
+            <td>Locations</td>
+            <td class="check">✓ 50+ States</td>
+            <td class="check">✓ NY + CT</td>
+            <td class="check">✓ 7 NYC Offices</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p style="text-align: center; color: var(--ink); font-weight: 500; margin-top: 24px;">
+        <strong>What you have that they don't:</strong> 26 years of NY trial experience, $900M+ recovered, Russian-speaking capability, deep local roots.<br>
+        <strong>What they have that you don't:</strong> 24/7 digital capture systems.
+      </p>
+      
+      <div class="authority-flex">
+        "They're not better trial lawyers than you. They just show up when families search."
+      </div>
+    </section>
+
+    <!-- THE CALCULATOR -->
+    <section class="calculator-section reveal" id="calculator">
+      <div class="calc-header">
+        <span class="section-label">Your Numbers</span>
+        <h2 class="section-title">See the Math for Yourself</h2>
+        <p class="section-subtitle">Adjust the sliders to match your practice. Watch the revenue opportunity change in real-time.</p>
+      </div>
+      
+      <!-- BASELINE SLIDERS -->
+      <div style="max-width: 700px; margin: 0 auto;">
+        <div class="slider-group">
+          <div class="slider-label">
+            <span class="slider-label-text">Weekly Inquiries</span>
+            <span class="slider-value" id="inquiriesValue">15</span>
+          </div>
+          <input type="range" class="calc-slider" id="inquiries" min="5" max="50" value="15">
+        </div>
+        
+        <div class="slider-group">
+          <div class="slider-label">
+            <span class="slider-label-text">After-Hours Percentage</span>
+            <span class="slider-value" id="afterHoursValue">35%</span>
+          </div>
+          <input type="range" class="calc-slider" id="afterHours" min="20" max="60" value="35">
+        </div>
+        
+        <div class="slider-group">
+          <div class="slider-label">
+            <span class="slider-label-text">Average Case Value (Fee)</span>
+            <span class="slider-value" id="caseValueValue">$25,000</span>
+          </div>
+          <input type="range" class="calc-slider" id="caseValue" min="5000" max="75000" step="1000" value="25000">
+        </div>
+        
+        <div class="slider-group">
+          <div class="slider-label">
+            <span class="slider-label-text">Current Close Rate</span>
+            <span class="slider-value" id="closeRateValue">30%</span>
+          </div>
+          <input type="range" class="calc-slider" id="closeRate" min="15" max="50" value="30">
+        </div>
+      </div>
+      
+      <!-- SERVICE TOGGLES -->
+      <h3 style="font-family: 'Fraunces', serif; text-align: center; margin: 48px 0 24px;">Marketing Services</h3>
+      
+      <div class="service-toggles" style="max-width: 700px; margin: 0 auto;">
+        <div class="service-toggle active" data-service="googleAds">
+          <div class="service-toggle-info">
+            <div class="service-toggle-name">Google Ads Optimization</div>
+            <div class="service-toggle-desc">Maximize your existing campaigns + expand to high-intent keywords</div>
+          </div>
+          <div class="toggle-switch active" onclick="toggleService(this)"></div>
+        </div>
+        <div class="spend-slider" id="googleAdsSpend">
+          <div class="spend-slider-label">
+            <span>Monthly Ad Spend</span>
+            <span id="googleAdsSpendValue">$8,000</span>
+          </div>
+          <input type="range" class="calc-slider" id="googleAdsSlider" min="2000" max="30000" step="500" value="8000">
+        </div>
+        
+        <div class="service-toggle active" data-service="metaAds">
+          <div class="service-toggle-info">
+            <div class="service-toggle-name">Meta Ads (Facebook/Instagram)</div>
+            <div class="service-toggle-desc">Reach accident victims and their families on social media</div>
+          </div>
+          <div class="toggle-switch active" onclick="toggleService(this)"></div>
+        </div>
+        <div class="spend-slider" id="metaAdsSpend">
+          <div class="spend-slider-label">
+            <span>Monthly Ad Spend</span>
+            <span id="metaAdsSpendValue">$4,000</span>
+          </div>
+          <input type="range" class="calc-slider" id="metaAdsSlider" min="1000" max="15000" step="500" value="4000">
+        </div>
+        
+        <div class="service-toggle active" data-service="aiVoice">
+          <div class="service-toggle-info">
+            <div class="service-toggle-name">AI Voice Agent (24/7 Intake)</div>
+            <div class="service-toggle-desc">Never miss a call—capture leads at 2 AM when accidents happen</div>
+          </div>
+          <div class="toggle-switch active" onclick="toggleService(this)"></div>
+        </div>
+        
+        <div class="service-toggle active" data-service="website">
+          <div class="service-toggle-info">
+            <div class="service-toggle-name">Website & SEO Optimization</div>
+            <div class="service-toggle-desc">Faster load times, better conversions, improved organic rankings</div>
+          </div>
+          <div class="toggle-switch active" onclick="toggleService(this)"></div>
+        </div>
+        
+        <div class="service-toggle active" data-service="crm">
+          <div class="service-toggle-info">
+            <div class="service-toggle-name">CRM & Automated Follow-Up</div>
+            <div class="service-toggle-desc">Nurture leads automatically, never let a prospect go cold</div>
+          </div>
+          <div class="toggle-switch active" onclick="toggleService(this)"></div>
+        </div>
+      </div>
+      
+      <!-- AI COMPARISON -->
+      <h3 style="font-family: 'Fraunces', serif; text-align: center; margin: 48px 0 24px;">Your After-Hours Options</h3>
+      
+      <div class="ai-comparison">
+        <div class="ai-option">
+          <div class="ai-option-title">Voicemail</div>
+          <div class="ai-option-feature"><span class="icon">❌</span> After-Hours: None</div>
+          <div class="ai-option-feature"><span class="icon">⏱️</span> Response: Never</div>
+          <div class="ai-option-feature"><span class="icon">📉</span> Lead Capture: ~15%</div>
+          <div class="ai-option-feature"><span class="icon">🌐</span> Languages: 1</div>
+          <div class="ai-option-feature"><span class="icon">📚</span> Training: None</div>
+          <div class="ai-option-feature"><span class="icon">🔄</span> Turnover: N/A</div>
+        </div>
+        <div class="ai-option">
+          <div class="ai-option-title">Answering Service</div>
+          <div class="ai-option-feature"><span class="icon">⚠️</span> After-Hours: Limited</div>
+          <div class="ai-option-feature"><span class="icon">⏱️</span> Response: Minutes</div>
+          <div class="ai-option-feature"><span class="icon">📊</span> Lead Capture: ~60%</div>
+          <div class="ai-option-feature"><span class="icon">🌐</span> Languages: 1-2</div>
+          <div class="ai-option-feature"><span class="icon">📚</span> Training: Weeks + ongoing</div>
+          <div class="ai-option-feature"><span class="icon">🔄</span> Turnover: Every 3-6 months</div>
+        </div>
+        <div class="ai-option recommended">
+          <div class="ai-option-title">✨ AI Intake (Us)</div>
+          <div class="ai-option-feature"><span class="icon">✅</span> After-Hours: 24/7/365</div>
+          <div class="ai-option-feature"><span class="icon">⚡</span> Response: &lt;5 minutes</div>
+          <div class="ai-option-feature"><span class="icon">📈</span> Lead Capture: 90%+</div>
+          <div class="ai-option-feature"><span class="icon">🌍</span> Languages: 30+</div>
+          <div class="ai-option-feature"><span class="icon">🎯</span> Training: None</div>
+          <div class="ai-option-feature"><span class="icon">♾️</span> Turnover: Never</div>
+        </div>
+      </div>
+      
+      <div class="authority-flex">
+        "Across our portfolio, AI intake recovers an average of 35% of previously lost after-hours leads."
+      </div>
+      
+      <!-- STEP BY STEP MATH -->
+      <div class="math-section">
+        <h3 style="font-family: 'Fraunces', serif; margin-bottom: 24px; text-align: center;">Step-by-Step Math</h3>
+        
+        <div class="math-step">
+          <div class="math-step-title">
+            <span class="math-step-num">1</span>
+            Your Current Baseline
+          </div>
+          <div class="math-line">
+            <span>Weekly inquiries:</span>
+            <span id="mathInquiries">15</span>
+          </div>
+          <div class="math-line">
+            <span>× Weeks per month:</span>
+            <span>× 4.3</span>
+          </div>
+          <div class="math-line total">
+            <span>= Monthly inquiries:</span>
+            <span id="mathMonthlyInquiries">64.5</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">
+            <span class="math-step-num">2</span>
+            The After-Hours Gap
+          </div>
+          <div class="math-line">
+            <span>Monthly inquiries:</span>
+            <span id="mathMonthlyInquiries2">64.5</span>
+          </div>
+          <div class="math-line">
+            <span>× After-hours %:</span>
+            <span id="mathAfterHours">× 35%</span>
+          </div>
+          <div class="math-line">
+            <span>= After-hours inquiries:</span>
+            <span id="mathAfterHoursInquiries">22.6/mo</span>
+          </div>
+          <div class="math-line">
+            <span>Current capture (voicemail 15%):</span>
+            <span id="mathCurrentCapture">3.4</span>
+          </div>
+          <div class="math-line total">
+            <span>= After-hours LOST:</span>
+            <span id="mathLost">19.2/mo</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">
+            <span class="math-step-num">3</span>
+            Revenue Impact
+          </div>
+          <div class="math-line">
+            <span>Lost leads (<span id="mathLostLeads">19.2</span>) × Close rate (<span id="mathCloseRate">30%</span>) × Case value (<span id="mathCaseValue">$25,000</span>)</span>
+            <span></span>
+          </div>
+          <div class="math-line total">
+            <span>= Monthly Loss:</span>
+            <span id="mathMonthlyLoss">$144,000</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">
+            <span class="math-step-num">4</span>
+            Recovery with All Services
+          </div>
+          <div class="math-line">
+            <span>Google Ads (optimized):</span>
+            <span id="mathGoogle">+$15,000/mo</span>
+          </div>
+          <div class="math-line">
+            <span>Meta Ads (new channel):</span>
+            <span id="mathMeta">+$8,000/mo</span>
+          </div>
+          <div class="math-line">
+            <span>AI Intake (90% capture vs 15%):</span>
+            <span id="mathAI">+$12,000/mo</span>
+          </div>
+          <div class="math-line">
+            <span>Website optimization (+15% conversion):</span>
+            <span id="mathWebsite">+$3,500/mo</span>
+          </div>
+          <div class="math-line">
+            <span>CRM/Follow-up (+20% close rate):</span>
+            <span id="mathCRM">+$2,700/mo</span>
+          </div>
+          <div class="math-line total">
+            <span>= TOTAL MONTHLY RECOVERY:</span>
+            <span id="mathTotal">$41,200</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="authority-flex">
+        "These projections are based on industry benchmarks from professional services marketing and NYC legal market data."
+      </div>
+      
+      <!-- RESULTS -->
+      <div class="results-grid">
+        <div class="calc-result-card">
+          <div class="calc-result-value danger" id="resultLosing">$26,000</div>
+          <div style="font-size: 0.85rem; color: var(--slate); margin-top: 8px;">Currently Losing/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value success" id="resultRecovery">$41,200</div>
+          <div style="font-size: 0.85rem; color: var(--slate); margin-top: 8px;">Could Recover/Mo</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value" style="color: var(--brand-blue);" id="resultROI">4.8x</div>
+          <div style="font-size: 0.85rem; color: var(--slate); margin-top: 8px;">Projected ROI</div>
+        </div>
+      </div>
+      
+      <div class="calc-total" style="margin-top: 32px;">
+        <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px;">Annual Opportunity</div>
+        <div class="calc-total-value" id="resultAnnual">$494,400</div>
+        <p style="color: rgba(255,255,255,0.8); margin-top: 16px; font-size: 1rem;">
+          That's <span id="resultClients">19</span> additional clients per year that Morgan & Morgan is getting right now.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIY PLAYBOOK -->
+    <section class="reveal">
+      <div class="section-header">
+        <span class="section-label">The Playbook</span>
+        <h2 class="section-title">How to Close Each Gap (Step by Step)</h2>
+        <p class="section-subtitle">Here's exactly how to fix each gap yourself—no gatekeeping. Fair warning: marketing isn't a one-time project. It's ongoing. These steps don't stop.</p>
+      </div>
+      
+      <!-- GAP 1: GET FOUND -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">01</div>
+          <div class="playbook-title">
+            <h3>Get Found — Paid Advertising</h3>
+            <p>You're invisible when families search at 10 PM.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 12px; font-weight: 600;">SETUP (One-Time):</p>
+            <div class="playbook-step"><span class="playbook-step-num">1</span> Audit current Google Ads campaigns for wasted spend</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span> Set up conversion tracking (calls, forms, consultations)</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span> Research keywords: "personal injury lawyer Brooklyn" + variations</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span> Build campaign structure: 3-5 ad groups by practice area</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span> Create Meta Business Manager and install Pixel</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px; font-weight: 600;">WEEKLY (Every Week, Forever):</p>
+            <div class="playbook-step"><span class="playbook-step-num">6</span> Review search terms, add negative keywords</div>
+            <div class="playbook-step"><span class="playbook-step-num">7</span> Create NEW ad creative (stale ads die within 7-14 days)</div>
+            <div class="playbook-step"><span class="playbook-step-num">8</span> Monitor competitor ads, test new angles</div>
+            <div class="playbook-step"><span class="playbook-step-num">9</span> Adjust bids based on performance</div>
+            
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 15-25 hrs</span>
+              <span>🔄 Ongoing: 8-12 hrs/week FOREVER</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Keyword research (500+ terms analyzed)</li>
+              <li>Campaign architecture & ad group structure</li>
+              <li>Ad copywriting — 3-5 variations per group</li>
+              <li>Landing page design & optimization</li>
+              <li>Conversion tracking setup & monitoring</li>
+              <li>Negative keyword management (weekly)</li>
+              <li>Bid adjustments & budget optimization (weekly)</li>
+              <li>Fresh ad creative (weekly)</li>
+              <li>A/B testing headlines, CTAs, images</li>
+              <li>Competitor ad monitoring</li>
+              <li>Monthly performance reporting</li>
+              <li>Quarterly strategy reviews</li>
+            </ul>
+            <p class="playbook-dfy-result">You approve the budget and take the consultations. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GAP 2: GET ANSWERED -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">02</div>
+          <div class="playbook-title">
+            <h3>Get Answered — 24/7 Intake</h3>
+            <p>35%+ of calls come after hours. Voicemail loses 85% of them.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 12px; font-weight: 600;">SETUP (One-Time):</p>
+            <div class="playbook-step"><span class="playbook-step-num">1</span> Research answering services (Ruby, Smith.ai, LEX)</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span> Write intake scripts for every scenario</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span> Create FAQ document for common questions</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span> Set up call forwarding rules</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span> Configure lead delivery to CRM</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px; font-weight: 600;">WEEKLY (Every Week, Forever):</p>
+            <div class="playbook-step"><span class="playbook-step-num">6</span> Review call recordings for quality</div>
+            <div class="playbook-step"><span class="playbook-step-num">7</span> Update scripts based on new questions</div>
+            <div class="playbook-step"><span class="playbook-step-num">8</span> Check for missed calls or failed transfers</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px; font-weight: 600;">WHEN STAFF TURNS OVER (Every 3-6 Months):</p>
+            <div class="playbook-step"><span class="playbook-step-num">9</span> Retrain new staff from scratch on scripts</div>
+            
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 8-12 hrs</span>
+              <span>🔄 Ongoing: 2-4 hrs/week + retraining</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>AI receptionist setup & configuration</li>
+              <li>Custom intake scripts for all practice areas</li>
+              <li>Qualification logic (urgency, case type)</li>
+              <li>Calendar integration for direct booking</li>
+              <li>CRM integration for lead delivery</li>
+              <li>30+ language support (including Russian)</li>
+              <li>&lt;5 minute response time, 24/7/365</li>
+              <li>Call recording & transcription</li>
+              <li>Lead scoring & prioritization</li>
+              <li>Ongoing optimization & improvements</li>
+              <li>No retraining when "staff" turns over</li>
+            </ul>
+            <p class="playbook-dfy-result">You take qualified appointments. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GAP 3: GET CHOSEN -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">03</div>
+          <div class="playbook-title">
+            <h3>Get Chosen — Website & SEO</h3>
+            <p>Visitors land but leave without contacting you.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 12px; font-weight: 600;">SETUP (One-Time):</p>
+            <div class="playbook-step"><span class="playbook-step-num">1</span> Run PageSpeed Insights, fix critical issues</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span> Optimize mobile experience</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span> Add clear CTAs on every page</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span> Set up Google Search Console</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span> Optimize Google Business Profiles (all 7 locations)</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px; font-weight: 600;">WEEKLY (Every Week, Forever):</p>
+            <div class="playbook-step"><span class="playbook-step-num">6</span> PUBLISH NEW CONTENT (Google rewards fresh content)</div>
+            <div class="playbook-step"><span class="playbook-step-num">7</span> Update existing pages with new info</div>
+            <div class="playbook-step"><span class="playbook-step-num">8</span> Build/earn 1-2 backlinks</div>
+            <div class="playbook-step"><span class="playbook-step-num">9</span> Request and respond to Google reviews</div>
+            
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 20-30 hrs</span>
+              <span>🔄 Ongoing: 6-10 hrs/week FOREVER</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Technical SEO audit & fixes</li>
+              <li>Page speed optimization</li>
+              <li>Mobile experience optimization</li>
+              <li>Contact form implementation</li>
+              <li>Trust signal placement (awards, credentials)</li>
+              <li>Practice area landing pages</li>
+              <li>Weekly content publishing (blogs, FAQs)</li>
+              <li>Google Business Profile management (all locations)</li>
+              <li>Review generation & response</li>
+              <li>Backlink building & outreach</li>
+              <li>Ranking monitoring & reporting</li>
+              <li>Quarterly competitive analysis</li>
+            </ul>
+            <p class="playbook-dfy-result">Your site climbs while you practice law.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- GAP 4: GET CLOSED -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">04</div>
+          <div class="playbook-title">
+            <h3>Get Closed — CRM & Follow-Up</h3>
+            <p>Leads go cold because follow-up is manual and inconsistent.</p>
+          </div>
+        </div>
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-section-title">🛠️ DIY Fix</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin-bottom: 12px; font-weight: 600;">SETUP (One-Time):</p>
+            <div class="playbook-step"><span class="playbook-step-num">1</span> Choose a CRM (Clio Grow, Lawmatics, HubSpot)</div>
+            <div class="playbook-step"><span class="playbook-step-num">2</span> Map your intake workflow</div>
+            <div class="playbook-step"><span class="playbook-step-num">3</span> Build automated email sequences</div>
+            <div class="playbook-step"><span class="playbook-step-num">4</span> Set up task reminders</div>
+            <div class="playbook-step"><span class="playbook-step-num">5</span> Configure lead source tracking</div>
+            
+            <p style="font-size: 0.85rem; color: var(--slate); margin: 16px 0 12px; font-weight: 600;">DAILY (Every Day, Forever):</p>
+            <div class="playbook-step"><span class="playbook-step-num">6</span> Respond to new leads within 5 minutes</div>
+            <div class="playbook-step"><span class="playbook-step-num">7</span> Complete follow-up tasks</div>
+            <div class="playbook-step"><span class="playbook-step-num">8</span> Update lead statuses</div>
+            
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 15-25 hrs</span>
+              <span>🔄 Ongoing: 5-8 hrs/week FOREVER</span>
+            </div>
+          </div>
+          <div class="playbook-done-for-you">
+            <div class="playbook-section-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>CRM setup & configuration</li>
+              <li>Intake workflow mapping</li>
+              <li>Automated email sequences (immediate, 24hr, 72hr, 7-day)</li>
+              <li>SMS follow-up automation</li>
+              <li>Task & reminder system setup</li>
+              <li>Lead source tracking</li>
+              <li>Pipeline reporting & analytics</li>
+              <li>Dead lead reactivation campaigns</li>
+              <li>Template creation & optimization</li>
+              <li>Ongoing sequence refinement</li>
+              <li>Monthly conversion analysis</li>
+            </ul>
+            <p class="playbook-dfy-result">You show up to consultations. Leads are already warmed up.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="authority-flex">
+        "You can absolutely do this yourself—many successful firms do. But be honest about the time commitment: this is 20-35 hours/week of ongoing work, forever. That's a part-time job on top of your full-time practice. If you'd rather spend that time trying cases, that's exactly why we exist."
+      </div>
+    </section>
+
+    <!-- VISION SECTION -->
+    <section class="reveal">
+      <div class="vision-block">
+        <div class="vision-quote">
+          "You spent 26 years mastering courtroom strategy. You graduated from UT Austin Law. You've recovered $900 million for clients. We've spent a decade perfecting legal marketing."
+        </div>
+        <p style="font-size: 1.3rem; font-weight: 600; margin-bottom: 32px; position: relative; z-index: 1;">
+          "You do what you're known for. We do what we're known for."
+        </p>
+        <div class="vision-list">
+          <span>→ You won't learn Google Ads</span>
+          <span>→ You won't manage Facebook campaigns</span>
+          <span>→ You won't obsess over conversion rates</span>
+        </div>
+        <p style="font-size: 1.1rem; opacity: 0.9; position: relative; z-index: 1;">
+          You'll try cases. Your calendar will fill. That's the partnership.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section reveal">
+      <div class="daily-urgency" style="background: rgba(220,38,38,0.2); border-color: rgba(220,38,38,0.5);">
+        <div class="daily-urgency-value">$867</div>
+        <div class="daily-urgency-label" style="color: rgba(255,255,255,0.9);">Revenue walking out the door TODAY</div>
+      </div>
+      
+      <div class="why-works" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+        <div class="why-works-col">
+          <h4 style="color: var(--white);">What We Found</h4>
+          <ul style="color: rgba(255,255,255,0.8);">
+            <li style="color: rgba(255,255,255,0.8);">Google Ads running but not optimized</li>
+            <li style="color: rgba(255,255,255,0.8);">No Meta/Facebook advertising at all</li>
+            <li style="color: rgba(255,255,255,0.8);">After-hours calls going to voicemail</li>
+            <li style="color: rgba(255,255,255,0.8);">155 reviews (competitors have 1,000+)</li>
+          </ul>
+        </div>
+        <div class="why-works-col">
+          <h4 style="color: var(--white);">What Changes</h4>
+          <ul style="color: rgba(255,255,255,0.8);">
+            <li style="color: rgba(255,255,255,0.8);">Optimized Google Ads + expanded keywords</li>
+            <li style="color: rgba(255,255,255,0.8);">New Meta channel reaching accident victims</li>
+            <li style="color: rgba(255,255,255,0.8);">24/7 AI intake capturing 90%+ of calls</li>
+            <li style="color: rgba(255,255,255,0.8);">Systematic review generation</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3 class="cta-title" style="margin-top: 40px;">Book Your 15-Minute Strategy Call</h3>
+      <p style="color: rgba(255,255,255,0.8); margin-bottom: 32px; position: relative; z-index: 1;">
+        We've helped firms like yours recover six figures in missed revenue—without adding a single hour to their workweek.
+      </p>
+      
+      <div class="calendly-container">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+        <p style="text-align: center; margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+          Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank" style="color: var(--accent-light);">Book directly here →</a>
+        </p>
+      </div>
+      
+      <div class="guarantee">
+        <div class="guarantee-icon">✓</div>
+        <span>No long-term contracts. Month-to-month. Results-focused.</span>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">U</div>
+        <span class="footer-name">WSI Utopiads</span>
+      </div>
+      <p style="color: var(--slate); font-size: 0.85rem;">
+        Prepared by Heidi Veronica Schwende<br>
+        <a href="https://utopiads.com/" style="color: var(--brand-blue);">utopiads.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll progress indicator
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Calculator logic
+    const services = {
+      googleAds: true,
+      metaAds: true,
+      aiVoice: true,
+      website: true,
+      crm: true
+    };
+
+    function toggleService(el) {
+      el.classList.toggle('active');
+      const parent = el.closest('.service-toggle');
+      parent.classList.toggle('active');
+      const serviceName = parent.dataset.service;
+      services[serviceName] = !services[serviceName];
+      
+      // Hide/show spend slider for ads
+      if (serviceName === 'googleAds') {
+        document.getElementById('googleAdsSpend').style.display = services.googleAds ? 'block' : 'none';
+      }
+      if (serviceName === 'metaAds') {
+        document.getElementById('metaAdsSpend').style.display = services.metaAds ? 'block' : 'none';
+      }
+      
+      calculateResults();
+    }
+
+    function formatCurrency(num) {
+      return '$' + Math.round(num).toLocaleString();
+    }
+
+    function calculateResults() {
+      const inquiries = parseInt(document.getElementById('inquiries').value);
+      const afterHours = parseInt(document.getElementById('afterHours').value) / 100;
+      const caseValue = parseInt(document.getElementById('caseValue').value);
+      const closeRate = parseInt(document.getElementById('closeRate').value) / 100;
+      const googleSpend = parseInt(document.getElementById('googleAdsSlider').value);
+      const metaSpend = parseInt(document.getElementById('metaAdsSlider').value);
+
+      // Update displayed values
+      document.getElementById('inquiriesValue').textContent = inquiries;
+      document.getElementById('afterHoursValue').textContent = (afterHours * 100) + '%';
+      document.getElementById('caseValueValue').textContent = formatCurrency(caseValue);
+      document.getElementById('closeRateValue').textContent = (closeRate * 100) + '%';
+      document.getElementById('googleAdsSpendValue').textContent = formatCurrency(googleSpend);
+      document.getElementById('metaAdsSpendValue').textContent = formatCurrency(metaSpend);
+
+      // Monthly calculations
+      const monthlyInquiries = inquiries * 4.3;
+      const afterHoursInquiries = monthlyInquiries * afterHours;
+      const currentCapture = afterHoursInquiries * 0.15;
+      const lostLeads = afterHoursInquiries - currentCapture;
+      const monthlyLoss = lostLeads * closeRate * caseValue;
+
+      // Service contributions (realistic estimates)
+      const googleRevenue = services.googleAds ? (googleSpend * 2.5) : 0; // 2.5x ROAS
+      const metaRevenue = services.metaAds ? (metaSpend * 2.0) : 0; // 2.0x ROAS
+      const aiRecovery = services.aiVoice ? (lostLeads * 0.75 * closeRate * caseValue * 0.35) : 0; // Recover 75% of lost, 35% improvement
+      const websiteBoost = services.website ? (monthlyInquiries * closeRate * caseValue * 0.15) : 0; // 15% conversion boost
+      const crmBoost = services.crm ? (monthlyInquiries * caseValue * 0.05) : 0; // 5% close rate improvement
+
+      const totalRecovery = googleRevenue + metaRevenue + aiRecovery + websiteBoost + crmBoost;
+      const totalCost = (services.googleAds ? googleSpend : 0) + (services.metaAds ? metaSpend : 0) + 
+                        (services.aiVoice ? 2000 : 0) + (services.website ? 1500 : 0) + (services.crm ? 500 : 0);
+      const roi = totalCost > 0 ? totalRecovery / totalCost : 0;
+      const annualRecovery = totalRecovery * 12;
+      const additionalClients = Math.round(annualRecovery / caseValue);
+
+      // Update math section
+      document.getElementById('mathInquiries').textContent = inquiries;
+      document.getElementById('mathMonthlyInquiries').textContent = monthlyInquiries.toFixed(1);
+      document.getElementById('mathMonthlyInquiries2').textContent = monthlyInquiries.toFixed(1);
+      document.getElementById('mathAfterHours').textContent = '× ' + (afterHours * 100) + '%';
+      document.getElementById('mathAfterHoursInquiries').textContent = afterHoursInquiries.toFixed(1) + '/mo';
+      document.getElementById('mathCurrentCapture').textContent = currentCapture.toFixed(1);
+      document.getElementById('mathLost').textContent = lostLeads.toFixed(1) + '/mo';
+      document.getElementById('mathLostLeads').textContent = lostLeads.toFixed(1);
+      document.getElementById('mathCloseRate').textContent = (closeRate * 100) + '%';
+      document.getElementById('mathCaseValue').textContent = formatCurrency(caseValue);
+      document.getElementById('mathMonthlyLoss').textContent = formatCurrency(monthlyLoss);
+      
+      document.getElementById('mathGoogle').textContent = services.googleAds ? '+' + formatCurrency(googleRevenue) + '/mo' : '$0/mo';
+      document.getElementById('mathMeta').textContent = services.metaAds ? '+' + formatCurrency(metaRevenue) + '/mo' : '$0/mo';
+      document.getElementById('mathAI').textContent = services.aiVoice ? '+' + formatCurrency(aiRecovery) + '/mo' : '$0/mo';
+      document.getElementById('mathWebsite').textContent = services.website ? '+' + formatCurrency(websiteBoost) + '/mo' : '$0/mo';
+      document.getElementById('mathCRM').textContent = services.crm ? '+' + formatCurrency(crmBoost) + '/mo' : '$0/mo';
+      document.getElementById('mathTotal').textContent = formatCurrency(totalRecovery);
+
+      // Update results
+      document.getElementById('resultLosing').textContent = formatCurrency(monthlyLoss);
+      document.getElementById('resultRecovery').textContent = formatCurrency(totalRecovery);
+      document.getElementById('resultROI').textContent = roi.toFixed(1) + 'x';
+      document.getElementById('resultAnnual').textContent = formatCurrency(annualRecovery);
+      document.getElementById('resultClients').textContent = additionalClients;
+    }
+
+    // Add event listeners
+    document.querySelectorAll('.calc-slider').forEach(slider => {
+      slider.addEventListener('input', calculateResults);
+    });
+
+    // Initial calculation
+    calculateResults();
+  </script>
+</body>
+</html>
