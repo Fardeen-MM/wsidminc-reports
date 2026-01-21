@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Gap Analysis | Zimmer, Citron & Clarke LLP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  --ink: #0f172a;
+  --ink-soft: #1e293b;
+  --slate: #475569;
+  --slate-light: #64748b;
+  --muted: #94a3b8;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --warm-white: #f8fafc;
+  --white: #ffffff;
+  --brand-primary: #1e3a5f;
+  --brand-blue: #2563eb;
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --success: #059669;
+  --success-light: #d1fae5;
+  --danger: #dc2626;
+  --danger-light: #fef2f2;
+  --gold: #f59e0b;
+  --gold-light: #fef3c7;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', -apple-system, system-ui, sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+
+.bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+.orbs { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+.orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+.orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); }
+.scroll-indicator { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--brand-blue), var(--accent)); z-index: 9999; width: 0%; }
+.container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 600px) { .container { padding: 0 20px; } }
+
+.header { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--border); margin-bottom: 50px; flex-wrap: wrap; gap: 24px; }
+.brand-mark { display: flex; align-items: center; gap: 14px; }
+.logo { width: 56px; height: 56px; background: var(--brand-blue); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: white; transition: all 0.4s var(--ease-out-expo); }
+.logo:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 12px 40px rgba(37,99,235,0.3); }
+.brand-text { display: flex; flex-direction: column; }
+.brand-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); }
+.brand-sub { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+.prepared-for { text-align: right; }
+.prepared-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-light); margin-bottom: 6px; font-weight: 500; }
+.prepared-name { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+.prepared-firm { font-size: 0.9rem; color: var(--brand-blue); font-weight: 500; }
+.prepared-date { font-size: 0.8rem; color: var(--slate-light); margin-top: 6px; }
+
+.hero { text-align: center; padding: 50px 0 70px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-size: 0.75rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+.hero-badge-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.2); } }
+.hero-title { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 26px; }
+.hero-title em { font-style: italic; background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-subtitle { font-size: 1.15rem; color: var(--slate); max-width: 720px; margin: 0 auto 50px; line-height: 1.75; }
+
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+@media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+.hero-stat { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; transition: all 0.4s var(--ease-out-expo); }
+.hero-stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+.hero-stat-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 10px; }
+.hero-stat-value.danger { color: var(--danger); }
+.hero-stat-value.success { color: var(--success); }
+.hero-stat-value.gold { color: var(--gold); }
+.hero-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+
+section { padding: 80px 0; }
+.section-header { text-align: center; margin-bottom: 50px; }
+.section-label { display: inline-block; padding: 10px 22px; background: var(--ink); color: var(--white); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 22px; font-weight: 600; }
+.section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin-bottom: 14px; }
+.section-subtitle { font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+
+.card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.4s var(--ease-out-expo); }
+.card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.08); border-color: var(--accent); }
+
+.dark-section { background: var(--ink); border-radius: 24px; padding: 50px; margin: 60px 0; position: relative; overflow: hidden; }
+.dark-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 70%; height: 200%; background: radial-gradient(ellipse, rgba(59,130,246,0.12) 0%, transparent 60%); pointer-events: none; }
+
+.story-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 50px; margin: 60px 0; }
+.story-text { font-size: 1.2rem; line-height: 1.8; color: var(--ink); max-width: 800px; margin: 0 auto; }
+.story-text strong { color: var(--brand-blue); }
+.story-followup { text-align: center; margin-top: 30px; font-style: italic; color: var(--slate); font-size: 1.05rem; }
+
+.market-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 40px 0; }
+@media (max-width: 768px) { .market-stats { grid-template-columns: repeat(2, 1fr); } }
+.market-stat { text-align: center; padding: 30px 20px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; }
+.market-stat-value { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--brand-blue); margin-bottom: 8px; }
+.market-stat-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.market-context { text-align: center; font-size: 1.1rem; color: var(--ink); max-width: 700px; margin: 0 auto; line-height: 1.7; }
+
+.competitor-table { width: 100%; border-collapse: collapse; margin: 40px 0; background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.competitor-table th { background: var(--ink); color: var(--white); padding: 18px 20px; text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.competitor-table td { padding: 16px 20px; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+.competitor-table tr:last-child td { border-bottom: none; }
+.competitor-table tr:hover td { background: var(--warm-white); }
+.check { color: var(--success); font-weight: 700; }
+.cross { color: var(--danger); font-weight: 700; }
+.partial { color: var(--gold); font-weight: 700; }
+
+.insight-box { background: linear-gradient(135deg, var(--brand-primary), var(--brand-blue)); color: white; padding: 30px 40px; border-radius: 16px; margin-top: 30px; text-align: center; font-size: 1.1rem; line-height: 1.6; }
+
+.calculator-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 50px; margin: 80px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.04); }
+@media (max-width: 600px) { .calculator-section { padding: 30px 24px; } }
+.calc-header { text-align: center; margin-bottom: 50px; }
+
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+@media (max-width: 800px) { .calc-grid { grid-template-columns: 1fr; } }
+
+.calc-section-title { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--brand-blue); }
+
+.calc-slider-group { margin-bottom: 24px; }
+.calc-slider-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.calc-slider-label span { font-size: 0.9rem; color: var(--slate); }
+.calc-slider-value { font-weight: 700; color: var(--ink); font-size: 1rem; }
+.calc-slider { width: 100%; height: 8px; border-radius: 4px; background: var(--border); -webkit-appearance: none; cursor: pointer; }
+.calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+
+.calc-toggle-group { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.calc-toggle-info { display: flex; flex-direction: column; gap: 4px; }
+.calc-toggle-name { font-weight: 600; color: var(--ink); }
+.calc-toggle-desc { font-size: 0.85rem; color: var(--slate); }
+.calc-toggle { position: relative; width: 52px; height: 28px; }
+.calc-toggle input { opacity: 0; width: 0; height: 0; }
+.calc-toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); transition: 0.3s; border-radius: 28px; }
+.calc-toggle-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: 0.3s; border-radius: 50%; }
+.calc-toggle input:checked + .calc-toggle-slider { background-color: var(--success); }
+.calc-toggle input:checked + .calc-toggle-slider:before { transform: translateX(24px); }
+
+.calc-spend-slider { margin-top: 12px; padding-left: 20px; display: none; }
+.calc-spend-slider.visible { display: block; }
+
+.calc-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+@media (max-width: 768px) { .calc-results { grid-template-columns: 1fr; } }
+.calc-result-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 26px; text-align: center; transition: all 0.3s var(--ease-out-expo); }
+.calc-result-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+.calc-result-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; }
+.calc-result-value.danger { color: var(--danger); }
+.calc-result-value.success { color: var(--success); }
+.calc-result-label { font-size: 0.75rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; margin-top: 8px; font-weight: 600; }
+
+.calc-total { background: var(--ink); border-radius: 18px; padding: 32px; text-align: center; }
+.calc-total-label { color: rgba(255,255,255,0.7); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+.calc-total-value { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 600; color: var(--white); }
+.calc-total-sub { color: var(--accent-light); font-size: 0.95rem; margin-top: 12px; }
+
+.math-section { background: var(--warm-white); border-radius: 16px; padding: 30px; margin-top: 40px; }
+.math-title { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 20px; }
+.math-step { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px dashed var(--border); }
+.math-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.math-step-title { font-weight: 700; color: var(--brand-primary); margin-bottom: 12px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.math-row { display: flex; justify-content: space-between; padding: 6px 0; }
+.math-label { color: var(--slate); font-size: 0.9rem; }
+.math-value { font-weight: 600; color: var(--ink); }
+.math-value.danger { color: var(--danger); }
+.math-value.success { color: var(--success); }
+
+.ai-comparison { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 30px; margin: 30px 0; }
+.ai-comparison-title { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 20px; text-align: center; }
+.ai-comparison-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 768px) { .ai-comparison-grid { grid-template-columns: 1fr; } }
+.ai-option { padding: 24px; border-radius: 12px; text-align: center; }
+.ai-option.voicemail { background: var(--danger-light); }
+.ai-option.service { background: var(--gold-light); }
+.ai-option.ai { background: var(--success-light); border: 2px solid var(--success); }
+.ai-option-title { font-weight: 700; margin-bottom: 16px; font-size: 0.9rem; }
+.ai-option-list { list-style: none; text-align: left; font-size: 0.85rem; }
+.ai-option-list li { padding: 6px 0; display: flex; align-items: flex-start; gap: 8px; }
+
+.playbook-section { padding: 80px 0; }
+.playbook-intro { text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--slate); font-size: 1.05rem; line-height: 1.7; }
+
+.playbook-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 30px; transition: all 0.4s var(--ease-out-expo); }
+.playbook-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.06); border-color: var(--accent); }
+.playbook-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+.playbook-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand-primary), var(--accent)); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+.playbook-title-group { flex: 1; }
+.playbook-title { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 4px; }
+.playbook-problem { font-size: 0.9rem; color: var(--slate); }
+
+.playbook-content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 800px) { .playbook-content { grid-template-columns: 1fr; } }
+.playbook-diy { background: var(--warm-white); border-radius: 14px; padding: 22px; }
+.playbook-done-for-you { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(59,130,246,0.05)); border-radius: 14px; padding: 22px; }
+.playbook-col-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 16px; color: var(--ink); }
+.playbook-steps { list-style: none; }
+.playbook-steps li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 0.9rem; color: var(--slate); line-height: 1.5; }
+.playbook-step-num { width: 20px; height: 20px; background: var(--brand-light, rgba(37,99,235,0.1)); color: var(--brand-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.playbook-dfy-list { list-style: none; }
+.playbook-dfy-list li { padding: 6px 0; font-size: 0.85rem; color: var(--ink); display: flex; align-items: flex-start; gap: 8px; }
+.playbook-dfy-list li::before { content: "✓"; color: var(--success); font-weight: 700; }
+.playbook-dfy-result { font-size: 0.9rem; font-weight: 600; color: var(--brand-primary); margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.playbook-meta { display: flex; gap: 20px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--slate); }
+.playbook-meta span { display: flex; align-items: center; gap: 6px; }
+
+.playbook-summary { text-align: center; max-width: 700px; margin: 40px auto 0; color: var(--slate); font-size: 0.95rem; line-height: 1.7; }
+.playbook-authority { text-align: center; color: var(--slate); font-style: italic; margin-top: 20px; font-size: 0.9rem; }
+
+.vision-section { background: linear-gradient(135deg, var(--brand-primary), var(--brand-blue)); border-radius: 24px; padding: 60px 50px; margin: 60px 0; text-align: center; color: white; position: relative; overflow: hidden; }
+.vision-section::before { content: ''; position: absolute; top: -50%; right: -30%; width: 80%; height: 200%; background: radial-gradient(ellipse, rgba(255,255,255,0.08) 0%, transparent 50%); pointer-events: none; }
+.vision-label { display: inline-block; padding: 8px 20px; background: rgba(255,255,255,0.15); border-radius: 100px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 24px; }
+.vision-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 30px; }
+.vision-text { max-width: 700px; margin: 0 auto; font-size: 1.1rem; line-height: 1.8; opacity: 0.9; }
+.vision-quote { font-family: 'Fraunces', serif; font-size: 1.4rem; font-style: italic; margin: 30px auto; max-width: 600px; }
+.vision-list { display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 30px auto; text-align: left; }
+.vision-item { display: flex; align-items: center; gap: 12px; font-size: 1rem; opacity: 0.9; }
+
+.cta-section { background: var(--ink); border-radius: 24px; padding: 70px 50px; text-align: center; margin: 80px 0; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(96,165,250,0.1) 0%, transparent 40%); pointer-events: none; }
+.cta-urgency { background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3); border-radius: 12px; padding: 16px 24px; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px; }
+.cta-urgency-text { color: #fca5a5; font-size: 0.9rem; }
+.cta-urgency-value { color: #fca5a5; font-weight: 700; font-size: 1.1rem; }
+.cta-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--white); margin-bottom: 16px; }
+.cta-subtitle { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+
+.cta-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 700px; margin: 0 auto 40px; text-align: left; }
+@media (max-width: 768px) { .cta-columns { grid-template-columns: 1fr; } }
+.cta-column { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 24px; }
+.cta-column-title { color: var(--white); font-weight: 700; margin-bottom: 16px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+.cta-column-list { list-style: none; }
+.cta-column-list li { color: rgba(255,255,255,0.8); padding: 8px 0; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+.cta-column.found .cta-column-list li::before { content: "✗"; color: var(--danger); font-weight: 700; }
+.cta-column.changes .cta-column-list li::before { content: "✓"; color: var(--success); font-weight: 700; }
+
+.why-works { background: rgba(255,255,255,0.05); border-radius: 16px; padding: 30px; max-width: 700px; margin: 0 auto 40px; }
+.why-works-title { color: var(--white); font-family: 'Fraunces', serif; font-size: 1.2rem; margin-bottom: 20px; text-align: center; }
+.why-works-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+@media (max-width: 600px) { .why-works-grid { grid-template-columns: 1fr; } }
+.why-works-col { text-align: left; }
+.why-works-col h4 { color: var(--accent-light); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.why-works-col ul { list-style: none; }
+.why-works-col ul li { color: rgba(255,255,255,0.8); padding: 6px 0; font-size: 0.9rem; }
+.why-works-result { text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.9); font-size: 0.95rem; }
+
+.calendly-container { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 32px; margin: 32px auto; border: 1px solid rgba(255,255,255,0.1); max-width: 800px; }
+.calendly-container h3 { text-align: center; color: var(--white); margin-bottom: 24px; font-family: 'Fraunces', serif; }
+.calendly-inline-widget { border-radius: 12px; overflow: hidden; }
+.calendly-fallback { text-align: center; margin-top: 16px; font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+.calendly-fallback a { color: var(--accent-light); }
+
+.btn-white { display: inline-flex; align-items: center; gap: 10px; padding: 18px 36px; background: var(--white); color: var(--ink); font-weight: 700; font-size: 1rem; text-decoration: none; border-radius: 100px; transition: all 0.4s var(--ease-out-expo); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+.btn-white:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 48px rgba(0,0,0,0.2); }
+
+.cta-guarantee { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 20px; }
+.cta-authority { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 30px; font-style: italic; }
+
+.footer { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); margin-top: 80px; }
+.footer-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+.footer-logo { width: 40px; height: 40px; background: var(--brand-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; color: var(--white); }
+.footer-name { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <div class="bg-grid"></div>
+  <div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+  
+  <div class="container">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="brand-mark">
+        <div class="logo">U</div>
+        <div class="brand-text">
+          <div class="brand-name">WSI Utopiads</div>
+          <div class="brand-sub">Performance Marketing</div>
+        </div>
+      </div>
+      <div class="prepared-for">
+        <div class="prepared-label">Marketing Gap Analysis For</div>
+        <div class="prepared-name">Edwina Clarke</div>
+        <div class="prepared-firm">Zimmer, Citron & Clarke LLP</div>
+        <div class="prepared-date">January 2026</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero reveal">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        B2B Appellate Boutique Growth Analysis
+      </div>
+      <h1 class="hero-title">
+        <em>$312,000/year</em><br>
+        in referral revenue you're not capturing.
+      </h1>
+      <p class="hero-subtitle">
+        Your dual Supreme Court clerkships with Justices Breyer and Souter mean nothing if plaintiff-side trial firms don't know you exist. Right now, Gupta Wessler gets that call.
+      </p>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-value danger">$26K</div>
+          <div class="hero-stat-label">Lost Monthly</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value success">$19.5K</div>
+          <div class="hero-stat-label">Recoverable</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value gold">$345B</div>
+          <div class="hero-stat-label">Lit Finance Market</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-value">4.8x</div>
+          <div class="hero-stat-label">Potential ROI</div>
+        </div>
+      </div>
+      
+      <p style="margin-top: 30px; color: var(--slate); font-size: 1rem;">
+        This report shows you how to fix it. DIY or done-for-you.
+      </p>
+    </section>
+
+    <!-- THE STORY -->
+    <div class="story-section reveal">
+      <p class="story-text">
+        Last Tuesday, 10:47 PM. A plaintiff's trial attorney in Houston just won a $47 million verdict—and it's about to be appealed. She searched <strong>"plaintiff appellate specialist Supreme Court experience."</strong> Your firm didn't appear. Gupta Wessler did. She's their client now.
+      </p>
+      <p class="story-followup">
+        This happens every week to plaintiff-side appellate boutiques without digital visibility. Here's why—and how to fix it.
+      </p>
+    </div>
+
+    <!-- WHY NOW -->
+    <section class="reveal">
+      <div class="section-header">
+        <div class="section-label">📊 Why Now</div>
+        <h2 class="section-title">The Plaintiff-Side Appellate Market Is Exploding</h2>
+      </div>
+      
+      <div class="market-stats">
+        <div class="market-stat">
+          <div class="market-stat-value">$345B</div>
+          <div class="market-stat-label">Litigation Finance AUM</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">+42%</div>
+          <div class="market-stat-label">Plaintiff Verdicts YoY</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">73%</div>
+          <div class="market-stat-label">Trial Firms Seeking Appellate Counsel</div>
+        </div>
+        <div class="market-stat">
+          <div class="market-stat-value">4</div>
+          <div class="market-stat-label">SCOTUS Clerkships at ZCC</div>
+        </div>
+      </div>
+      
+      <p class="market-context">
+        Litigation funding is at an all-time high. Nuclear verdicts are surging. Trial firms are actively seeking specialized appellate partners—but supply of elite plaintiff-side advocates remains scarce.
+      </p>
+    </section>
+
+    <!-- COMPETITIVE REALITY -->
+    <section class="reveal">
+      <div class="section-header">
+        <div class="section-label">🔍 Competitive Reality</div>
+        <h2 class="section-title">Who's Winning the Plaintiff-Side Appellate Market</h2>
+        <p class="section-subtitle">We analyzed visibility among trial lawyers and litigation funders. Here's where you stand.</p>
+      </div>
+      
+      <table class="competitor-table">
+        <thead>
+          <tr>
+            <th>Visibility Channel</th>
+            <th>Gupta Wessler</th>
+            <th>BigLaw Appellate</th>
+            <th>ZCC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LinkedIn Thought Leadership</td>
+            <td class="check">✓ Active</td>
+            <td class="check">✓ Active</td>
+            <td class="partial">◐ Minimal</td>
+          </tr>
+          <tr>
+            <td>Google Ads (Appellate Keywords)</td>
+            <td class="cross">✗ None</td>
+            <td class="check">✓ Active</td>
+            <td class="cross">✗ None</td>
+          </tr>
+          <tr>
+            <td>Thought Leadership Content</td>
+            <td class="check">✓ SCOTUSblog, Harvard</td>
+            <td class="check">✓ Firm Blogs</td>
+            <td class="partial">◐ Limited</td>
+          </tr>
+          <tr>
+            <td>CLE/Conference Presence</td>
+            <td class="check">✓ Regular</td>
+            <td class="check">✓ Regular</td>
+            <td class="partial">◐ Growing</td>
+          </tr>
+          <tr>
+            <td>Referral Pipeline System</td>
+            <td class="check">✓ Automated</td>
+            <td class="check">✓ Established</td>
+            <td class="cross">✗ Manual</td>
+          </tr>
+          <tr>
+            <td>After-Hours Lead Capture</td>
+            <td class="check">✓ Intake System</td>
+            <td class="check">✓ 24/7</td>
+            <td class="cross">✗ Form Only</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="insight-box">
+        <strong>What you have that they don't:</strong> Four Supreme Court clerkships across your founding team. Flexible, plaintiff-only model. Direct lit-finance relationships.<br><br>
+        <strong>What they have that you don't:</strong> Digital visibility to trial lawyers searching for appellate partners.
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <div class="calculator-section reveal">
+      <div class="calc-header">
+        <div class="section-label">📱 Your Numbers</div>
+        <h2 class="section-title">See the Math for Yourself</h2>
+        <p class="section-subtitle">Adjust the sliders to match your practice. Watch the revenue impact update in real-time.</p>
+      </div>
+      
+      <div class="calc-grid">
+        <!-- Left Column: Practice Baseline -->
+        <div>
+          <h3 class="calc-section-title">Practice Baseline</h3>
+          
+          <div class="calc-slider-group">
+            <div class="calc-slider-label">
+              <span>Monthly Referral Inquiries</span>
+              <span class="calc-slider-value" id="inquiriesValue">4</span>
+            </div>
+            <input type="range" class="calc-slider" id="inquiries" min="1" max="20" value="4">
+          </div>
+          
+          <div class="calc-slider-group">
+            <div class="calc-slider-label">
+              <span>After-Hours Inquiry %</span>
+              <span class="calc-slider-value" id="afterHoursValue">30%</span>
+            </div>
+            <input type="range" class="calc-slider" id="afterHours" min="15" max="50" value="30">
+          </div>
+          
+          <div class="calc-slider-group">
+            <div class="calc-slider-label">
+              <span>Average Engagement Value</span>
+              <span class="calc-slider-value" id="caseValueValue">$75,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="caseValue" min="25000" max="250000" value="75000" step="5000">
+          </div>
+          
+          <div class="calc-slider-group">
+            <div class="calc-slider-label">
+              <span>Current Conversion Rate</span>
+              <span class="calc-slider-value" id="closeRateValue">35%</span>
+            </div>
+            <input type="range" class="calc-slider" id="closeRate" min="15" max="60" value="35">
+          </div>
+        </div>
+        
+        <!-- Right Column: Services -->
+        <div>
+          <h3 class="calc-section-title">Growth Services</h3>
+          
+          <div class="calc-toggle-group">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-name">LinkedIn Ads & B2B Targeting</span>
+              <span class="calc-toggle-desc">Reach trial lawyers and litigation funders</span>
+            </div>
+            <label class="calc-toggle">
+              <input type="checkbox" id="linkedinAds" checked>
+              <span class="calc-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="calc-spend-slider visible" id="linkedinAdsSpendGroup">
+            <div class="calc-slider-label">
+              <span>Monthly Spend</span>
+              <span class="calc-slider-value" id="linkedinAdsSpendValue">$3,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="linkedinAdsSpend" min="1000" max="10000" value="3000" step="500">
+          </div>
+          
+          <div class="calc-toggle-group">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-name">Google Ads (B2B Legal)</span>
+              <span class="calc-toggle-desc">Capture "appellate counsel" searches</span>
+            </div>
+            <label class="calc-toggle">
+              <input type="checkbox" id="googleAds" checked>
+              <span class="calc-toggle-slider"></span>
+            </label>
+          </div>
+          <div class="calc-spend-slider visible" id="googleAdsSpendGroup">
+            <div class="calc-slider-label">
+              <span>Monthly Spend</span>
+              <span class="calc-slider-value" id="googleAdsSpendValue">$2,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="googleAdsSpend" min="500" max="10000" value="2000" step="500">
+          </div>
+          
+          <div class="calc-toggle-group">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-name">AI Intake & Lead Qualification</span>
+              <span class="calc-toggle-desc">24/7 response to referral inquiries</span>
+            </div>
+            <label class="calc-toggle">
+              <input type="checkbox" id="aiIntake" checked>
+              <span class="calc-toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="calc-toggle-group">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-name">Website & SEO Optimization</span>
+              <span class="calc-toggle-desc">Thought leadership content + conversion</span>
+            </div>
+            <label class="calc-toggle">
+              <input type="checkbox" id="website" checked>
+              <span class="calc-toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="calc-toggle-group">
+            <div class="calc-toggle-info">
+              <span class="calc-toggle-name">CRM & Referral Pipeline</span>
+              <span class="calc-toggle-desc">Automated nurture for trial firm relationships</span>
+            </div>
+            <label class="calc-toggle">
+              <input type="checkbox" id="crm" checked>
+              <span class="calc-toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- AI Comparison -->
+      <div class="ai-comparison">
+        <h4 class="ai-comparison-title">Your After-Hours Referral Options</h4>
+        <div class="ai-comparison-grid">
+          <div class="ai-option voicemail">
+            <div class="ai-option-title">❌ Contact Form Only</div>
+            <ul class="ai-option-list">
+              <li>Response time: Next business day</li>
+              <li>Lead capture: ~20%</li>
+              <li>Qualification: None</li>
+              <li>Trial lawyer experience: Frustrating</li>
+            </ul>
+          </div>
+          <div class="ai-option service">
+            <div class="ai-option-title">⚠️ Generic Answering Service</div>
+            <ul class="ai-option-list">
+              <li>Response time: Minutes</li>
+              <li>Lead capture: ~55%</li>
+              <li>Legal knowledge: Basic scripts</li>
+              <li>Can't discuss case strategy</li>
+            </ul>
+          </div>
+          <div class="ai-option ai">
+            <div class="ai-option-title">✅ AI Legal Intake (Us)</div>
+            <ul class="ai-option-list">
+              <li>Response time: Under 5 minutes</li>
+              <li>Lead capture: 90%+</li>
+              <li>Understands appellate nuance</li>
+              <li>Qualifies matter type & urgency</li>
+              <li>Books directly to your calendar</li>
+            </ul>
+          </div>
+        </div>
+        <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: var(--slate);">
+          <em>Across our portfolio, AI intake recovers an average of 35% of previously lost after-hours leads.</em>
+        </p>
+      </div>
+      
+      <!-- Results -->
+      <div class="calc-results">
+        <div class="calc-result-card">
+          <div class="calc-result-value danger" id="monthlyLoss">$26,250</div>
+          <div class="calc-result-label">Currently Lost/Month</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value success" id="monthlyRecovery">$19,687</div>
+          <div class="calc-result-label">Recoverable/Month</div>
+        </div>
+        <div class="calc-result-card">
+          <div class="calc-result-value" id="roiMultiple">4.8x</div>
+          <div class="calc-result-label">Projected ROI</div>
+        </div>
+      </div>
+      
+      <div class="calc-total">
+        <div class="calc-total-label">Annual Opportunity</div>
+        <div class="calc-total-value" id="annualOpportunity">$236,250</div>
+        <div class="calc-total-sub" id="calcGutPunch">That's 3 major engagements Gupta Wessler wins instead of you.</div>
+      </div>
+      
+      <!-- Math Breakdown -->
+      <div class="math-section">
+        <h4 class="math-title">Step-by-Step Math</h4>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 1: Your Current Baseline</div>
+          <div class="math-row">
+            <span class="math-label">Monthly referral inquiries:</span>
+            <span class="math-value" id="mathInquiries">4</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">After-hours %:</span>
+            <span class="math-value" id="mathAfterHours">30%</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">= After-hours inquiries:</span>
+            <span class="math-value" id="mathAfterHoursInquiries">1.2/mo</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 2: The After-Hours Gap</div>
+          <div class="math-row">
+            <span class="math-label">After-hours inquiries:</span>
+            <span class="math-value" id="mathAHInquiries2">1.2</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">Current capture (form ~20%):</span>
+            <span class="math-value" id="mathCurrentCapture">0.24</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">= After-hours LOST:</span>
+            <span class="math-value danger" id="mathLostLeads">0.96/mo</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 3: Revenue Impact</div>
+          <div class="math-row">
+            <span class="math-label">Lost referrals × Conversion × Value:</span>
+            <span class="math-value danger" id="mathMonthlyLoss">$25,200/mo</span>
+          </div>
+        </div>
+        
+        <div class="math-step">
+          <div class="math-step-title">Step 4: Recovery with All Services</div>
+          <div class="math-row">
+            <span class="math-label">LinkedIn Ads (new trial firm connections):</span>
+            <span class="math-value success" id="mathLinkedIn">+$7,875</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">Google Ads (appellate searches):</span>
+            <span class="math-value success" id="mathGoogle">+$5,250</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">AI Intake (after-hours capture):</span>
+            <span class="math-value success" id="mathAI">+$4,200</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">Website/SEO (thought leadership):</span>
+            <span class="math-value success" id="mathWebsite">+15%</span>
+          </div>
+          <div class="math-row">
+            <span class="math-label">CRM (referral nurture):</span>
+            <span class="math-value success" id="mathCRM">+10%</span>
+          </div>
+          <div class="math-row" style="border-top: 2px solid var(--border); padding-top: 12px; margin-top: 8px;">
+            <span class="math-label"><strong>Total Monthly Recovery:</strong></span>
+            <span class="math-value success" id="mathTotalRecovery"><strong>$19,687</strong></span>
+          </div>
+        </div>
+      </div>
+      
+      <p style="text-align: center; margin-top: 30px; color: var(--slate); font-size: 0.9rem; font-style: italic;">
+        These projections are based on B2B legal services marketing benchmarks for boutique firms.
+      </p>
+    </div>
+
+    <!-- PLAYBOOK -->
+    <section class="playbook-section reveal">
+      <div class="section-header">
+        <div class="section-label">📋 The Playbook</div>
+        <h2 class="section-title">How to Close Each Gap (Step by Step)</h2>
+      </div>
+      
+      <p class="playbook-intro">
+        Here's exactly how to fix each gap yourself—no gatekeeping. Fair warning: B2B legal marketing isn't a weekend project. It's ongoing. These steps don't stop.
+      </p>
+      
+      <!-- Gap 1: LinkedIn/B2B Visibility -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">01</div>
+          <div class="playbook-title-group">
+            <h3 class="playbook-title">Get Found — LinkedIn & B2B Visibility</h3>
+            <p class="playbook-problem">The Problem: Trial lawyers searching for appellate partners don't know you exist.</p>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-col-title">🛠️ DIY Fix</div>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Set up LinkedIn Ads Manager, define audience: plaintiff trial attorneys, lit funders, MDL specialists</li>
+              <li><span class="playbook-step-num">2</span> Create thought leadership content: case analysis posts, SCOTUS preview articles</li>
+              <li><span class="playbook-step-num">3</span> Set up Google Ads for B2B keywords: "appellate counsel," "SCOTUS litigation," "plaintiff appeals"</li>
+              <li><span class="playbook-step-num">4</span> Build retargeting audiences from website visitors</li>
+              <li><span class="playbook-step-num">5</span> Post 3-5x weekly on LinkedIn with case insights</li>
+              <li><span class="playbook-step-num">6</span> Engage with trial lawyer content daily</li>
+              <li><span class="playbook-step-num">7</span> A/B test ad creative monthly</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 15-20 hrs</span>
+              <span>🔄 Ongoing: 8-10 hrs/week</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-col-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>LinkedIn campaign strategy & audience targeting</li>
+              <li>B2B ad creative designed for trial lawyers</li>
+              <li>Google Ads for appellate-specific searches</li>
+              <li>Thought leadership content calendar</li>
+              <li>Weekly performance optimization</li>
+              <li>Competitor monitoring (Gupta Wessler, BigLaw)</li>
+              <li>Retargeting campaign management</li>
+              <li>Monthly reporting & strategy reviews</li>
+            </ul>
+            <p class="playbook-dfy-result">You review results monthly. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gap 2: After-Hours Intake -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">02</div>
+          <div class="playbook-title-group">
+            <h3 class="playbook-title">Get Answered — 24/7 Referral Intake</h3>
+            <p class="playbook-problem">The Problem: 30%+ of referral inquiries come after hours. A contact form loses 80% of them.</p>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-col-title">🛠️ DIY Fix</div>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Research B2B legal intake solutions that understand appellate nuance</li>
+              <li><span class="playbook-step-num">2</span> Write qualification scripts: matter type, urgency, timeline, case value</li>
+              <li><span class="playbook-step-num">3</span> Create FAQ for common trial lawyer questions</li>
+              <li><span class="playbook-step-num">4</span> Set up calendar integration for direct booking</li>
+              <li><span class="playbook-step-num">5</span> Configure CRM integration for lead delivery</li>
+              <li><span class="playbook-step-num">6</span> Review inquiries weekly, update scripts</li>
+              <li><span class="playbook-step-num">7</span> Retrain when staff turns over (every 3-6 months)</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 10-15 hrs</span>
+              <span>🔄 Ongoing: 3-5 hrs/week</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-col-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>AI intake setup trained on appellate terminology</li>
+              <li>Custom qualification for matter types you want</li>
+              <li>Urgency detection (appeal deadlines, cert petitions)</li>
+              <li>Calendar integration for direct booking</li>
+              <li>CRM integration for seamless lead flow</li>
+              <li>No retraining—AI improves over time</li>
+              <li>24/7/365 coverage, under 5-minute response</li>
+              <li>Ongoing optimization based on conversion data</li>
+            </ul>
+            <p class="playbook-dfy-result">You take qualified appointments. That's it.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gap 3: Website & Thought Leadership -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">03</div>
+          <div class="playbook-title-group">
+            <h3 class="playbook-title">Get Chosen — Website & Thought Leadership</h3>
+            <p class="playbook-problem">The Problem: Your website is minimal. Trial lawyers can't quickly assess your credentials.</p>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-col-title">🛠️ DIY Fix</div>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Add detailed case results with outcomes</li>
+              <li><span class="playbook-step-num">2</span> Create practice area pages: MDL appeals, antitrust, patent, civil rights</li>
+              <li><span class="playbook-step-num">3</span> Write weekly thought leadership: SCOTUS analysis, circuit splits</li>
+              <li><span class="playbook-step-num">4</span> Optimize for B2B keywords trial lawyers search</li>
+              <li><span class="playbook-step-num">5</span> Add testimonials from trial firm partners</li>
+              <li><span class="playbook-step-num">6</span> Create downloadable resources (appellate checklists, brief templates)</li>
+              <li><span class="playbook-step-num">7</span> Publish to SCOTUSblog, legal publications regularly</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 25-35 hrs</span>
+              <span>🔄 Ongoing: 8-12 hrs/week</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-col-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>Website content strategy & copywriting</li>
+              <li>Case results showcase design</li>
+              <li>Thought leadership content calendar</li>
+              <li>Weekly blog posts on appellate developments</li>
+              <li>SEO optimization for B2B legal searches</li>
+              <li>Publication outreach (Law360, SCOTUSblog)</li>
+              <li>Downloadable resource creation</li>
+              <li>Conversion optimization & A/B testing</li>
+            </ul>
+            <p class="playbook-dfy-result">Your authority grows while you practice law.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Gap 4: Referral Pipeline -->
+      <div class="playbook-card">
+        <div class="playbook-header">
+          <div class="playbook-number">04</div>
+          <div class="playbook-title-group">
+            <h3 class="playbook-title">Get Closed — Referral Pipeline & CRM</h3>
+            <p class="playbook-problem">The Problem: Trial firm relationships go cold without systematic nurturing.</p>
+          </div>
+        </div>
+        
+        <div class="playbook-content">
+          <div class="playbook-diy">
+            <div class="playbook-col-title">🛠️ DIY Fix</div>
+            <ul class="playbook-steps">
+              <li><span class="playbook-step-num">1</span> Choose a CRM: HubSpot, Clio Grow, or custom solution</li>
+              <li><span class="playbook-step-num">2</span> Build trial firm contact database by practice area</li>
+              <li><span class="playbook-step-num">3</span> Create email sequences: post-engagement follow-up, case updates</li>
+              <li><span class="playbook-step-num">4</span> Set up automated nurture for past referral sources</li>
+              <li><span class="playbook-step-num">5</span> Track which trial firms send repeat referrals</li>
+              <li><span class="playbook-step-num">6</span> Quarterly outreach to top referral partners</li>
+              <li><span class="playbook-step-num">7</span> Co-marketing opportunities with trial firms</li>
+            </ul>
+            <div class="playbook-meta">
+              <span>⏱️ Setup: 20-30 hrs</span>
+              <span>🔄 Ongoing: 5-8 hrs/week</span>
+            </div>
+          </div>
+          
+          <div class="playbook-done-for-you">
+            <div class="playbook-col-title">✨ We Handle All of This:</div>
+            <ul class="playbook-dfy-list">
+              <li>CRM setup & configuration</li>
+              <li>Trial firm database building</li>
+              <li>Automated referral nurture sequences</li>
+              <li>Engagement tracking & scoring</li>
+              <li>Monthly referral source analysis</li>
+              <li>Co-marketing campaign coordination</li>
+              <li>Quarterly relationship review reports</li>
+              <li>Pipeline optimization & dead lead reactivation</li>
+            </ul>
+            <p class="playbook-dfy-result">Relationships stay warm. Referrals keep coming.</p>
+          </div>
+        </div>
+      </div>
+      
+      <p class="playbook-summary">
+        You can absolutely do this yourself—many successful boutiques do. But be honest about the time commitment: this isn't a weekend project. It's <strong>20-30 hours/week of ongoing work, forever</strong>. That's a part-time job on top of arguing appeals. If you'd rather spend that time on brief writing and oral arguments, that's exactly why we exist.
+      </p>
+      
+      <p class="playbook-authority">
+        These are the same frameworks we use with every legal client. No secrets, no gatekeeping—just the reality of what it takes.
+      </p>
+    </section>
+
+    <!-- VISION -->
+    <div class="vision-section reveal">
+      <div class="vision-label">What Changes</div>
+      <h2 class="vision-title">Your Practice, Transformed</h2>
+      
+      <p class="vision-text">
+        You clerked for Justices Souter and Breyer. You made partner at Goodwin. You co-founded a Supreme Court boutique.<br><br>
+        We've spent a decade perfecting B2B legal marketing.
+      </p>
+      
+      <p class="vision-quote">
+        "You do what you're known for. We do what we're known for."
+      </p>
+      
+      <div class="vision-list">
+        <div class="vision-item">→ You won't manage LinkedIn campaigns.</div>
+        <div class="vision-item">→ You won't write marketing emails.</div>
+        <div class="vision-item">→ You won't obsess over conversion rates.</div>
+      </div>
+      
+      <p class="vision-text" style="margin-top: 30px;">
+        You'll argue appeals. You'll advise litigation funders. You'll build ZCC into the plaintiff-side powerhouse it's designed to be.<br><br>
+        <strong>That's the partnership.</strong>
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section reveal">
+      <div class="cta-urgency">
+        <span>⚠️</span>
+        <span class="cta-urgency-text">Referral revenue walking out the door TODAY:</span>
+        <span class="cta-urgency-value" id="ctaDailyLoss">$875</span>
+      </div>
+      
+      <h2 class="cta-title">Ready to Compete with Gupta Wessler?</h2>
+      
+      <p class="cta-subtitle">
+        15 minutes. That's all it takes to show you exactly how we'd help you capture the trial firm referrals you're currently missing. No pitch—just data, strategy, and a clear action plan.
+      </p>
+      
+      <div class="cta-columns">
+        <div class="cta-column found">
+          <div class="cta-column-title">What We Found</div>
+          <ul class="cta-column-list">
+            <li>No LinkedIn advertising presence</li>
+            <li>No Google Ads for appellate searches</li>
+            <li>Minimal website content/case results</li>
+            <li>No 24/7 intake system</li>
+            <li>No systematic referral nurture</li>
+          </ul>
+        </div>
+        <div class="cta-column changes">
+          <div class="cta-column-title">What Changes</div>
+          <ul class="cta-column-list">
+            <li>Visible to trial lawyers searching for partners</li>
+            <li>Capture referrals 24/7/365</li>
+            <li>Thought leadership authority position</li>
+            <li>Automated referral pipeline</li>
+            <li>Focus on what you do best</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="why-works">
+        <h3 class="why-works-title">Why This Works</h3>
+        <div class="why-works-grid">
+          <div class="why-works-col">
+            <h4>You Focus On</h4>
+            <ul>
+              <li>• Writing Supreme Court briefs</li>
+              <li>• Arguing appeals</li>
+              <li>• Advising litigation funders</li>
+              <li>• Building trial firm partnerships</li>
+              <li>• Being the appellate counsel clients trust</li>
+            </ul>
+          </div>
+          <div class="why-works-col">
+            <h4>We Handle</h4>
+            <ul>
+              <li>• LinkedIn & Google advertising</li>
+              <li>• AI intake & lead qualification</li>
+              <li>• Website & thought leadership content</li>
+              <li>• CRM & referral pipeline</li>
+              <li>• Everything else</li>
+            </ul>
+          </div>
+        </div>
+        <p class="why-works-result">
+          <strong>Result:</strong> More trial firm referrals. None of the marketing headaches.
+        </p>
+      </div>
+      
+      <!-- Calendly Widget -->
+      <div class="calendly-container">
+        <h3>Book Your 15-Minute Strategy Call</h3>
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+        <p class="calendly-fallback">
+          Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank">Book directly here →</a>
+        </p>
+      </div>
+      
+      <p class="cta-guarantee">✅ No long-term contracts. Month-to-month. Results-focused.</p>
+      
+      <p class="cta-authority">
+        We've helped boutique firms like yours build referral pipelines that generate six figures in new business—without adding a single hour to their workweek.
+      </p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-logo">U</div>
+        <span class="footer-name">WSI Utopiads</span>
+      </div>
+      <p style="color: var(--slate); font-size: 0.85rem;">
+        Prepared by Heidi Veronica Schwende<br>
+        <a href="https://utopiads.com/" style="color: var(--brand-blue);">utopiads.com</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll progress
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Format currency
+    function formatCurrency(num) {
+      if (num >= 1000000) return '$' + (num / 1000000).toFixed(1) + 'M';
+      if (num >= 1000) return '$' + (num / 1000).toFixed(0) + 'K';
+      return '$' + num.toFixed(0);
+    }
+    
+    function formatCurrencyFull(num) {
+      return '$' + num.toLocaleString();
+    }
+
+    // Calculator logic
+    function updateCalculator() {
+      // Get values
+      const inquiries = parseInt(document.getElementById('inquiries').value);
+      const afterHours = parseInt(document.getElementById('afterHours').value) / 100;
+      const caseValue = parseInt(document.getElementById('caseValue').value);
+      const closeRate = parseInt(document.getElementById('closeRate').value) / 100;
+      
+      // Get service states
+      const linkedinAds = document.getElementById('linkedinAds').checked;
+      const googleAds = document.getElementById('googleAds').checked;
+      const aiIntake = document.getElementById('aiIntake').checked;
+      const website = document.getElementById('website').checked;
+      const crm = document.getElementById('crm').checked;
+      
+      // Get spend values
+      const linkedinSpend = linkedinAds ? parseInt(document.getElementById('linkedinAdsSpend').value) : 0;
+      const googleSpend = googleAds ? parseInt(document.getElementById('googleAdsSpend').value) : 0;
+      
+      // Update display values
+      document.getElementById('inquiriesValue').textContent = inquiries;
+      document.getElementById('afterHoursValue').textContent = (afterHours * 100) + '%';
+      document.getElementById('caseValueValue').textContent = formatCurrencyFull(caseValue);
+      document.getElementById('closeRateValue').textContent = (closeRate * 100) + '%';
+      
+      if (linkedinAds) {
+        document.getElementById('linkedinAdsSpendValue').textContent = formatCurrencyFull(linkedinSpend);
+      }
+      if (googleAds) {
+        document.getElementById('googleAdsSpendValue').textContent = formatCurrencyFull(googleSpend);
+      }
+      
+      // Toggle spend slider visibility
+      document.getElementById('linkedinAdsSpendGroup').classList.toggle('visible', linkedinAds);
+      document.getElementById('googleAdsSpendGroup').classList.toggle('visible', googleAds);
+      
+      // Calculate metrics
+      const afterHoursInquiries = inquiries * afterHours;
+      const formCapture = 0.20; // Contact form captures ~20%
+      const currentCapture = afterHoursInquiries * formCapture;
+      const afterHoursLost = afterHoursInquiries * (1 - formCapture);
+      
+      // Monthly loss
+      const monthlyLossAfterHours = afterHoursLost * closeRate * caseValue;
+      
+      // Service impacts (B2B focused)
+      // LinkedIn: ~1 qualified lead per $2500 for B2B legal
+      const linkedinLeads = linkedinAds ? (linkedinSpend / 2500) : 0;
+      const linkedinRevenue = linkedinLeads * closeRate * caseValue;
+      
+      // Google: ~1 qualified lead per $3000 for appellate B2B
+      const googleLeads = googleAds ? (googleSpend / 3000) : 0;
+      const googleRevenue = googleLeads * closeRate * caseValue;
+      
+      // AI Intake: captures 90% vs 20% form
+      const aiCaptureRate = 0.90;
+      const aiRecoveredLeads = aiIntake ? afterHoursInquiries * (aiCaptureRate - formCapture) : 0;
+      const aiRecoveredRevenue = aiRecoveredLeads * closeRate * caseValue;
+      
+      // Website: 15% improvement in conversion
+      const websiteMultiplier = website ? 1.15 : 1;
+      
+      // CRM: 10% improvement in close rate through nurture
+      const crmMultiplier = crm ? 1.10 : 1;
+      
+      // Total recovery
+      const baseRecovery = linkedinRevenue + googleRevenue + aiRecoveredRevenue;
+      const totalRecovery = baseRecovery * websiteMultiplier * crmMultiplier;
+      
+      // Total investment
+      const managementFee = 3000;
+      const aiCost = aiIntake ? 2000 : 0;
+      const totalInvestment = linkedinSpend + googleSpend + managementFee + aiCost;
+      
+      // ROI
+      const roi = totalInvestment > 0 ? totalRecovery / totalInvestment : 0;
+      
+      // Update results
+      document.getElementById('monthlyLoss').textContent = formatCurrency(monthlyLossAfterHours);
+      document.getElementById('monthlyRecovery').textContent = formatCurrency(totalRecovery);
+      document.getElementById('roiMultiple').textContent = roi.toFixed(1) + 'x';
+      document.getElementById('annualOpportunity').textContent = formatCurrencyFull(Math.round(totalRecovery * 12));
+      
+      // Update gut punch
+      const engagementsLost = Math.round((monthlyLossAfterHours * 12) / caseValue);
+      document.getElementById('calcGutPunch').textContent = `That's ${engagementsLost} major engagements Gupta Wessler wins instead of you.`;
+      
+      // Update daily loss in CTA
+      document.getElementById('ctaDailyLoss').textContent = formatCurrency(monthlyLossAfterHours / 30);
+      
+      // Update math breakdown
+      document.getElementById('mathInquiries').textContent = inquiries;
+      document.getElementById('mathAfterHours').textContent = (afterHours * 100) + '%';
+      document.getElementById('mathAfterHoursInquiries').textContent = afterHoursInquiries.toFixed(1) + '/mo';
+      document.getElementById('mathAHInquiries2').textContent = afterHoursInquiries.toFixed(1);
+      document.getElementById('mathCurrentCapture').textContent = currentCapture.toFixed(2);
+      document.getElementById('mathLostLeads').textContent = afterHoursLost.toFixed(2) + '/mo';
+      document.getElementById('mathMonthlyLoss').textContent = formatCurrency(monthlyLossAfterHours) + '/mo';
+      document.getElementById('mathLinkedIn').textContent = linkedinAds ? '+' + formatCurrency(linkedinRevenue) : '$0';
+      document.getElementById('mathGoogle').textContent = googleAds ? '+' + formatCurrency(googleRevenue) : '$0';
+      document.getElementById('mathAI').textContent = aiIntake ? '+' + formatCurrency(aiRecoveredRevenue) : '$0';
+      document.getElementById('mathWebsite').textContent = website ? '+15%' : '—';
+      document.getElementById('mathCRM').textContent = crm ? '+10%' : '—';
+      document.getElementById('mathTotalRecovery').innerHTML = '<strong>' + formatCurrency(totalRecovery) + '</strong>';
+    }
+
+    // Add event listeners
+    document.querySelectorAll('.calc-slider').forEach(slider => {
+      slider.addEventListener('input', updateCalculator);
+    });
+    document.querySelectorAll('.calc-toggle input').forEach(toggle => {
+      toggle.addEventListener('change', updateCalculator);
+    });
+
+    // Initial calculation
+    updateCalculator();
+  </script>
+</body>
+</html>
