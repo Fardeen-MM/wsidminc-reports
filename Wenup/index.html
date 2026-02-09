@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing Gap Analysis | Wenup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0f172a; --ink-soft: #1e293b; --slate: #475569; --slate-light: #64748b;
+      --muted: #94a3b8; --border: #e2e8f0; --border-light: #f1f5f9; --warm-white: #f8fafc;
+      --white: #ffffff; --brand-primary: #1e3a5f; --brand-light: #eff6ff; --brand-blue: #2563eb;
+      --accent: #3b82f6; --accent-light: #60a5fa; --success: #059669; --success-light: #d1fae5;
+      --danger: #dc2626; --danger-light: #fef2f2; --gold: #f59e0b; --gold-light: #fef3c7;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', -apple-system, system-ui, sans-serif; background: var(--warm-white); color: var(--ink); line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    h1, h2, h3, .display { font-family: 'Fraunces', Georgia, serif; font-weight: 500; }
+    .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    .orbs { position: fixed; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.1; }
+    .orb-1 { width: 600px; height: 600px; left: -200px; top: -100px; background: var(--brand-blue); }
+    .orb-2 { width: 400px; height: 400px; right: -150px; bottom: 10%; background: var(--accent); }
+    .scroll-indicator { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--brand-blue), var(--accent)); z-index: 9999; width: 0%; }
+    .container { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    @media (max-width: 600px) { .container { padding: 0 20px; } }
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-bottom: 1px solid var(--border); margin-bottom: 50px; flex-wrap: wrap; gap: 24px; }
+    .brand-mark { display: flex; align-items: center; gap: 14px; }
+    .logo { width: 56px; height: 56px; background: var(--brand-blue); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 14px; font-weight: 600; color: white; transition: all 0.4s var(--ease-out-expo); }
+    .logo:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 12px 40px rgba(37,99,235,0.3); }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 500; color: var(--ink); }
+    .brand-sub { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+    .prepared-for { text-align: right; }
+    .prepared-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--slate-light); margin-bottom: 6px; font-weight: 500; }
+    .prepared-name { font-family: 'Fraunces', serif; font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+    .prepared-firm { font-size: 0.9rem; color: var(--brand-blue); font-weight: 500; }
+    .prepared-date { font-size: 0.8rem; color: var(--slate-light); margin-top: 6px; }
+    .hero { text-align: center; padding: 50px 0 70px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; font-size: 0.75rem; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 36px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .hero-badge-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.2); } }
+    .hero-title { font-size: clamp(2.2rem, 5.5vw, 3.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); margin-bottom: 26px; }
+    .hero-title em { font-style: italic; background: linear-gradient(135deg, var(--brand-blue) 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: 1.15rem; color: var(--slate); max-width: 720px; margin: 0 auto 50px; line-height: 1.75; }
+    .hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 40px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    @media (max-width: 768px) { .hero-stats { grid-template-columns: repeat(2, 1fr); } }
+    .hero-stat { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; transition: all 0.4s var(--ease-out-expo); }
+    .hero-stat:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .hero-stat-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; line-height: 1; margin-bottom: 10px; }
+    .hero-stat-value.danger { color: var(--danger); }
+    .hero-stat-value.success { color: var(--success); }
+    .hero-stat-value.gold { color: var(--gold); }
+    .hero-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 50px; }
+    .section-label { display: inline-block; padding: 10px 22px; background: var(--ink); color: var(--white); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 100px; margin-bottom: 22px; font-weight: 600; }
+    .section-title { font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--ink); margin-bottom: 14px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 0 auto; line-height: 1.7; }
+    .card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.4s var(--ease-out-expo); }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .comp-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .comp-table th { padding: 16px 20px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; color: var(--slate); background: var(--warm-white); text-align: left; border-bottom: 1px solid var(--border); }
+    .comp-table th:last-child { background: var(--brand-light); color: var(--brand-blue); }
+    .comp-table td { padding: 14px 20px; font-size: 0.9rem; border-bottom: 1px solid var(--border-light); color: var(--ink); }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .comp-table td:last-child { background: var(--brand-light); font-weight: 600; }
+    .comp-check { color: var(--success); font-weight: 700; }
+    .comp-x { color: var(--danger); font-weight: 700; }
+    .comp-partial { color: var(--gold); font-weight: 700; }
+    .calculator-section { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 50px; margin: 80px 0; box-shadow: 0 20px 60px rgba(0,0,0,0.04); }
+    @media (max-width: 600px) { .calculator-section { padding: 30px 24px; } }
+    .calc-header { text-align: center; margin-bottom: 50px; }
+    .calc-slider { width: 100%; height: 8px; border-radius: 4px; background: var(--border); -webkit-appearance: none; cursor: pointer; }
+    .calc-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+    .calc-result-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 26px; text-align: center; transition: all 0.3s var(--ease-out-expo); }
+    .calc-result-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .calc-result-value { font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 600; }
+    .calc-result-value.danger { color: var(--danger); }
+    .calc-result-value.success { color: var(--success); }
+    .calc-total { background: var(--ink); border-radius: 18px; padding: 32px; text-align: center; }
+    .calc-total-value { font-family: 'Fraunces', serif; font-size: 2.8rem; font-weight: 600; color: var(--white); }
+    .toggle-container { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: var(--warm-white); border-radius: 12px; margin-bottom: 12px; border: 1px solid var(--border); transition: all 0.3s ease; }
+    .toggle-container:hover { border-color: var(--accent); }
+    .toggle-label { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+    .toggle-sub { font-size: 0.8rem; color: var(--slate-light); margin-top: 2px; }
+    .toggle-switch { position: relative; width: 48px; height: 26px; flex-shrink: 0; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: var(--border); border-radius: 26px; transition: 0.3s; }
+    .toggle-slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s; }
+    .toggle-switch input:checked + .toggle-slider { background: var(--brand-blue); }
+    .toggle-switch input:checked + .toggle-slider:before { transform: translateX(22px); }
+    .slider-group { margin-bottom: 28px; }
+    .slider-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+    .slider-label { font-weight: 600; font-size: 0.9rem; color: var(--ink); }
+    .slider-value { font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.1rem; color: var(--brand-blue); }
+    .spend-slider-row { margin-top: 10px; padding: 10px 16px; background: var(--white); border-radius: 10px; border: 1px solid var(--border-light); }
+    .spend-slider-row .slider-header { margin-bottom: 6px; }
+    .spend-slider-row .slider-label { font-size: 0.8rem; font-weight: 500; }
+    .spend-slider-row .slider-value { font-size: 0.9rem; }
+    .ai-compare { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 24px 0; }
+    @media (max-width: 768px) { .ai-compare { grid-template-columns: 1fr; } }
+    .ai-compare-card { border-radius: 16px; padding: 24px; text-align: center; }
+    .ai-compare-card.basic { background: var(--warm-white); border: 1px solid var(--border); }
+    .ai-compare-card.mid { background: var(--gold-light); border: 1px solid var(--gold); }
+    .ai-compare-card.best { background: var(--brand-light); border: 2px solid var(--brand-blue); position: relative; }
+    .ai-compare-badge { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--brand-blue); color: white; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 14px; border-radius: 100px; }
+    .ai-compare-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 12px; color: var(--ink); }
+    .ai-compare-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.06); color: var(--slate); }
+    .ai-compare-row:last-child { border-bottom: none; }
+    .math-section { background: var(--warm-white); border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-top: 32px; }
+    .math-step { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .math-step:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .math-step-title { font-weight: 700; font-size: 0.85rem; color: var(--brand-blue); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .math-row { display: flex; justify-content: space-between; font-size: 0.9rem; padding: 3px 0; color: var(--ink-soft); }
+    .math-row.result { font-weight: 700; color: var(--ink); border-top: 1px solid var(--border); padding-top: 8px; margin-top: 6px; }
+    .math-row.big-result { font-weight: 700; color: var(--success); font-size: 1.1rem; }
+    .playbook-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px; margin-bottom: 28px; transition: all 0.4s var(--ease-out-expo); }
+    .playbook-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.06); border-color: var(--accent); }
+    .playbook-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .playbook-number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--brand-primary), var(--accent)); color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+    .playbook-title-group h3 { font-size: 1.2rem; color: var(--ink); margin-bottom: 4px; }
+    .playbook-problem { font-size: 0.85rem; color: var(--slate); }
+    .playbook-content { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 768px) { .playbook-content { grid-template-columns: 1fr; } }
+    .playbook-diy { background: var(--warm-white); border-radius: 14px; padding: 22px; }
+    .playbook-done-for-you { background: var(--brand-light); border-radius: 14px; padding: 22px; }
+    .playbook-diy-title, .playbook-dfy-title { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; color: var(--ink); }
+    .playbook-dfy-title { color: var(--brand-blue); }
+    .playbook-step { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 0.85rem; color: var(--ink-soft); line-height: 1.5; }
+    .playbook-step-num { width: 20px; height: 20px; min-width: 20px; background: var(--brand-light); color: var(--brand-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 700; margin-top: 2px; }
+    .playbook-phase { font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--slate); margin: 16px 0 10px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .playbook-phase:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+    .playbook-meta { display: flex; gap: 20px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 0.8rem; color: var(--slate); }
+    .playbook-dfy-list { list-style: none; padding: 0; margin: 0 0 16px 0; }
+    .playbook-dfy-list li { padding: 6px 0; font-size: 0.85rem; color: var(--ink); display: flex; align-items: flex-start; gap: 8px; }
+    .playbook-dfy-list li::before { content: "\2713"; color: var(--success); font-weight: 700; flex-shrink: 0; }
+    .playbook-dfy-result { font-size: 0.9rem; font-weight: 600; color: var(--brand-primary); margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .cta-section { background: var(--ink); border-radius: 24px; padding: 70px 50px; text-align: center; margin: 80px 0; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(96,165,250,0.1) 0%, transparent 40%); pointer-events: none; }
+    .cta-title { font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 4vw, 2.4rem); color: var(--white); margin-bottom: 16px; position: relative; }
+    .calendly-container { background: rgba(255,255,255,0.05); border-radius: 20px; padding: 32px; margin: 32px 0; border: 1px solid rgba(255,255,255,0.1); position: relative; }
+    .calendly-inline-widget { border-radius: 12px; overflow: hidden; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 40px 0; position: relative; }
+    @media (max-width: 768px) { .why-grid { grid-template-columns: 1fr; } }
+    .why-col { padding: 28px; border-radius: 16px; }
+    .why-col.you { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); }
+    .why-col.us { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25); }
+    .why-col h4 { color: rgba(255,255,255,0.6); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-family: 'Outfit', sans-serif; font-weight: 700; }
+    .why-col li { color: rgba(255,255,255,0.9); font-size: 0.95rem; padding: 6px 0; list-style: none; }
+    .vision-block { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 48px; text-align: center; margin: 40px 0; }
+    .vision-block blockquote { font-family: 'Fraunces', serif; font-size: 1.5rem; font-style: italic; color: var(--ink); margin: 24px 0; line-height: 1.5; }
+    .vision-arrows { display: flex; flex-direction: column; gap: 10px; margin: 24px auto; max-width: 400px; text-align: left; }
+    .vision-arrow { font-size: 0.95rem; color: var(--slate); }
+    .footer { text-align: center; padding: 50px 0 30px; border-top: 1px solid var(--border); margin-top: 80px; }
+    .footer-brand { display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .footer-logo { width: 40px; height: 40px; background: var(--brand-blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; color: var(--white); }
+    .footer-name { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ink); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; }
+    @media (max-width: 768px) { .results-grid { grid-template-columns: repeat(2, 1fr); } }
+    .market-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 20px; }
+    @media (max-width: 768px) { .market-stats { grid-template-columns: repeat(2, 1fr); } }
+    .market-stat { text-align: center; padding: 24px 16px; background: var(--white); border: 1px solid var(--border); border-radius: 16px; }
+    .market-stat-value { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 600; color: var(--brand-blue); line-height: 1; margin-bottom: 8px; }
+    .market-stat-label { font-size: 0.7rem; color: var(--slate); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
+    .market-context { text-align: center; font-size: 1.05rem; color: var(--slate); max-width: 650px; margin: 16px auto 0; line-height: 1.7; }
+    .daily-urgency { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--danger); margin-bottom: 20px; position: relative; }
+  </style>
+</head>
+<body>
+<div class="scroll-indicator" id="scrollIndicator"></div>
+<div class="bg-grid"></div>
+<div class="orbs"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
+<div class="container">
+
+  <header class="header">
+    <div class="brand-mark">
+      <div class="logo">M</div>
+      <div class="brand-text">
+        <div class="brand-name">WSI Mortar Metrics</div>
+        <div class="brand-sub">Performance Marketing</div>
+      </div>
+    </div>
+    <div class="prepared-for">
+      <div class="prepared-label">Marketing Gap Analysis For</div>
+      <div class="prepared-name">Toby Gowan</div>
+      <div class="prepared-firm">Wenup</div>
+      <div class="prepared-date">January 2026</div>
+    </div>
+  </header>
+
+  <section class="hero reveal">
+    <div class="hero-badge"><div class="hero-badge-dot"></div>Revenue Gap Identified</div>
+    <h1 class="hero-title"><em>&pound;211,680/year</em><br>That's what's scrolling past you.</h1>
+    <p class="hero-subtitle">Wenup has 66 five-star Trustpilot reviews, FT coverage, and the best fixed-fee prenup in the UK. But when a couple Googles "prenuptial agreement UK" tonight, Divorce-Online's ad shows up first. Not yours.</p>
+    <p style="font-size:0.95rem; color:var(--slate);">This report shows you how to fix it. DIY or done-for-you.</p>
+    <div class="hero-stats" style="margin-top: 40px;">
+      <div class="hero-stat"><div class="hero-stat-value danger">&pound;17,640</div><div class="hero-stat-label">Lost / Month</div></div>
+      <div class="hero-stat"><div class="hero-stat-value success">&pound;31,200</div><div class="hero-stat-label">Recoverable / Mo</div></div>
+      <div class="hero-stat"><div class="hero-stat-value gold">4.8x</div><div class="hero-stat-label">Projected ROI</div></div>
+      <div class="hero-stat"><div class="hero-stat-value" style="color: var(--brand-blue);">70%</div><div class="hero-stat-label">Prenup Demand Surge</div></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="section-header"><div class="section-label">The Reality</div></div>
+    <div style="max-width:700px;margin:0 auto;font-size:1.1rem;line-height:1.8;color:var(--ink-soft);">
+      <strong>Saturday, 11:30 PM.</strong> A couple in Clapham just got engaged. She Googles "prenuptial agreement UK" from bed. Wenup doesn't appear &mdash; no Google Ad, no top-of-page result. Divorce-Online's ad does. She clicks. They pay &pound;899. Wenup never knew she existed.
+    </div>
+    <p style="text-align:center;font-size:0.95rem;color:var(--slate);margin-top:28px;font-style:italic;">"This happens dozens of times every week. Here's why &mdash; and how to fix it."</p>
+  </section>
+
+  <section class="reveal">
+    <div class="section-header"><div class="section-label">Why Now</div></div>
+    <div class="market-stats">
+      <div class="market-stat"><div class="market-stat-value">70%</div><div class="market-stat-label">Prenup Demand Surge</div></div>
+      <div class="market-stat"><div class="market-stat-value">1 in 5</div><div class="market-stat-label">UK Marriages w/ Prenup</div></div>
+      <div class="market-stat"><div class="market-stat-value">50%</div><div class="market-stat-label">Millennials Open to Prenups</div></div>
+      <div class="market-stat"><div class="market-stat-value">&pound;1,380</div><div class="market-stat-label">Your Conversion Value</div></div>
+    </div>
+    <p class="market-context">Co-op Legal Services reported a 70% surge in prenup requests. One in five UK marriages now include one. Millennials and Gen Z are driving demand. The market is exploding. The question is who captures the search traffic.</p>
+  </section>
+
+  <section class="reveal">
+    <div class="section-header"><div class="section-label">Who's Winning Right Now</div><h2 class="section-title">Competitive Reality</h2></div>
+    <div style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead><tr><th></th><th>Divorce-Online</th><th>Lawhive</th><th>Traditional Firms</th><th>Wenup (You)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Google Ads</strong></td><td><span class="comp-check">&check; Active</span></td><td><span class="comp-check">&check; Active</span></td><td><span class="comp-check">&check; Active</span></td><td><span class="comp-x">&cross; None</span></td></tr>
+          <tr><td><strong>Meta Ads</strong></td><td><span class="comp-partial">&#9684; Some</span></td><td><span class="comp-check">&check; Active</span></td><td><span class="comp-x">&cross; Rare</span></td><td><span class="comp-check">&check; 36 Active</span></td></tr>
+          <tr><td><strong>Both Partners Covered</strong></td><td><span class="comp-x">&cross; One side only</span></td><td><span class="comp-x">&cross; One side only</span></td><td><span class="comp-x">&cross; One side only</span></td><td><span class="comp-check">&check; Both included</span></td></tr>
+          <tr><td><strong>AI-Powered Drafting</strong></td><td><span class="comp-x">&cross; No</span></td><td><span class="comp-x">&cross; No</span></td><td><span class="comp-x">&cross; No</span></td><td><span class="comp-check">&check; Yes</span></td></tr>
+          <tr><td><strong>Trustpilot Rating</strong></td><td><span class="comp-partial">&#9684; 4.7</span></td><td><span class="comp-partial">&#9684; 4.6</span></td><td><span class="comp-partial">&#9684; Varies</span></td><td><span class="comp-check">&check; 5.0 (66 reviews)</span></td></tr>
+          <tr><td><strong>National Press</strong></td><td><span class="comp-x">&cross; Minimal</span></td><td><span class="comp-partial">&#9684; Some</span></td><td><span class="comp-partial">&#9684; Firm-specific</span></td><td><span class="comp-check">&check; FT, Telegraph, Sky</span></td></tr>
+          <tr><td><strong>After-Hours Capture</strong></td><td><span class="comp-check">&check; Online form</span></td><td><span class="comp-check">&check; AI + form</span></td><td><span class="comp-x">&cross; Office hours</span></td><td><span class="comp-partial">&#9684; Form only</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:1rem;color:var(--slate);"><strong>What you have that they don't:</strong> a perfect 5.0 rating, FT/Telegraph coverage, and a genuinely superior product.<br><strong>What they have that you don't:</strong> Google Ads visibility when couples actually search.</p>
+    <p style="text-align:center;margin-top:8px;font-size:0.9rem;font-style:italic;color:var(--slate-light);">"They're not better than Wenup. They just show up when couples search."</p>
+  </section>
+
+
+  <!-- CALCULATOR -->
+  <div class="calculator-section reveal" id="calculator">
+    <div class="calc-header">
+      <div class="section-label">Your Numbers</div>
+      <h2 class="section-title">See the Math for Yourself</h2>
+      <p class="section-subtitle">Adjust the sliders to match Wenup's reality. The calculator updates in real-time.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px;">
+      <div>
+        <div class="slider-group"><div class="slider-header"><span class="slider-label">Monthly Website Inquiries</span><span class="slider-value" id="inquiriesVal">40</span></div><input type="range" class="calc-slider" id="inquiries" min="10" max="150" value="40"></div>
+        <div class="slider-group"><div class="slider-header"><span class="slider-label">After-Hours % of Inquiries</span><span class="slider-value" id="afterHoursVal">40%</span></div><input type="range" class="calc-slider" id="afterHours" min="20" max="60" value="40"></div>
+      </div>
+      <div>
+        <div class="slider-group"><div class="slider-header"><span class="slider-label">Average Revenue per Couple</span><span class="slider-value" id="caseValueVal">&pound;1,380</span></div><input type="range" class="calc-slider" id="caseValue" min="800" max="2500" value="1380" step="10"></div>
+        <div class="slider-group"><div class="slider-header"><span class="slider-label">Current Close Rate</span><span class="slider-value" id="closeRateVal">30%</span></div><input type="range" class="calc-slider" id="closeRate" min="10" max="60" value="30"></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;margin-bottom:20px;color:var(--ink);">Growth Channels</h3>
+
+    <div class="toggle-container"><div><div class="toggle-label">Google Ads</div><div class="toggle-sub">Capture high-intent "prenup UK" searches &mdash; currently going to competitors</div></div><label class="toggle-switch"><input type="checkbox" id="toggleGoogle" checked onchange="calculate()"><span class="toggle-slider"></span></label></div>
+    <div class="spend-slider-row" id="googleSpendRow"><div class="slider-header"><span class="slider-label">Monthly Google Ad Spend</span><span class="slider-value" id="googleSpendVal">&pound;3,000</span></div><input type="range" class="calc-slider" id="googleSpend" min="1000" max="15000" value="3000" step="250" oninput="calculate()"></div>
+
+    <div class="toggle-container" style="margin-top:12px;"><div><div class="toggle-label">Meta Ads Optimisation</div><div class="toggle-sub">You're running 36 ads &mdash; are they all performing? Optimise for conversions, not impressions.</div></div><label class="toggle-switch"><input type="checkbox" id="toggleMeta" checked onchange="calculate()"><span class="toggle-slider"></span></label></div>
+    <div class="spend-slider-row" id="metaSpendRow"><div class="slider-header"><span class="slider-label">Monthly Meta Ad Spend</span><span class="slider-value" id="metaSpendVal">&pound;2,500</span></div><input type="range" class="calc-slider" id="metaSpend" min="500" max="10000" value="2500" step="250" oninput="calculate()"></div>
+
+    <div class="toggle-container" style="margin-top:12px;"><div><div class="toggle-label">AI Inquiry Agent (24/7)</div><div class="toggle-sub">Instant engagement when couples browse at midnight &mdash; qualify, answer, book consultations</div></div><label class="toggle-switch"><input type="checkbox" id="toggleAI" checked onchange="calculate()"><span class="toggle-slider"></span></label></div>
+
+    <div class="toggle-container" style="margin-top:12px;"><div><div class="toggle-label">Website Conversion Optimisation</div><div class="toggle-sub">Trust signals, speed, mobile UX &mdash; turn browsers into free-consultation bookings</div></div><label class="toggle-switch"><input type="checkbox" id="toggleWebsite" checked onchange="calculate()"><span class="toggle-slider"></span></label></div>
+
+    <div class="toggle-container" style="margin-top:12px;"><div><div class="toggle-label">CRM &amp; Follow-Up Automation</div><div class="toggle-sub">Nurture couples who book a free consult but haven't signed up &mdash; automated sequences</div></div><label class="toggle-switch"><input type="checkbox" id="toggleCRM" checked onchange="calculate()"><span class="toggle-slider"></span></label></div>
+
+    <!-- AI Comparison -->
+    <div style="margin-top:40px;">
+      <h3 style="font-size:1.1rem;margin-bottom:16px;color:var(--ink);text-align:center;">Your After-Hours Options</h3>
+      <div class="ai-compare">
+        <div class="ai-compare-card basic"><div class="ai-compare-title">Contact Form Only</div><div class="ai-compare-row"><span>Response Time</span><span>Next business day</span></div><div class="ai-compare-row"><span>Engagement</span><span>~15% capture</span></div><div class="ai-compare-row"><span>Qualification</span><span>None</span></div><div class="ai-compare-row"><span>Languages</span><span>1</span></div><div class="ai-compare-row"><span>Always On</span><span>Form only</span></div><div class="ai-compare-row"><span>Scales</span><span>No</span></div></div>
+        <div class="ai-compare-card mid"><div class="ai-compare-title">Live Chat / Answering Service</div><div class="ai-compare-row"><span>Response Time</span><span>Minutes</span></div><div class="ai-compare-row"><span>Engagement</span><span>~60% capture</span></div><div class="ai-compare-row"><span>Qualification</span><span>Basic scripting</span></div><div class="ai-compare-row"><span>Languages</span><span>1-2</span></div><div class="ai-compare-row"><span>Turnover Risk</span><span>Every 3-6 months</span></div><div class="ai-compare-row"><span>Retraining</span><span>Constant</span></div></div>
+        <div class="ai-compare-card best"><div class="ai-compare-badge">Recommended</div><div class="ai-compare-title">AI Inquiry Agent (Us)</div><div class="ai-compare-row"><span>Response Time</span><span>&lt;5 minutes</span></div><div class="ai-compare-row"><span>Engagement</span><span>90%+ capture</span></div><div class="ai-compare-row"><span>Qualification</span><span>Smart intake</span></div><div class="ai-compare-row"><span>Languages</span><span>30+</span></div><div class="ai-compare-row"><span>Turnover Risk</span><span>Never</span></div><div class="ai-compare-row"><span>Improves Over Time</span><span>Yes</span></div></div>
+      </div>
+      <p style="text-align:center;font-size:0.85rem;color:var(--slate);font-style:italic;margin-top:8px;">Across our portfolio, AI intake recovers an average of 35% of previously lost after-hours leads.</p>
+    </div>
+
+    <!-- Math Section -->
+    <div class="math-section" id="mathSection">
+      <h3 style="font-size:1rem;margin-bottom:20px;color:var(--ink);">Step-by-Step Math</h3>
+      <div class="math-step"><div class="math-step-title">Step 1: Your Current Baseline</div><div class="math-row"><span>Monthly inquiries:</span><span id="mathInquiries">40</span></div><div class="math-row"><span>&times; Close rate:</span><span id="mathCloseRate">&times; 30%</span></div><div class="math-row result"><span>Current monthly sign-ups:</span><span id="mathCurrentSignups">12</span></div></div>
+      <div class="math-step"><div class="math-step-title">Step 2: The After-Hours Gap</div><div class="math-row"><span>Monthly inquiries:</span><span id="mathInq2">40</span></div><div class="math-row"><span>&times; After-hours %:</span><span id="mathAfterHrs">&times; 40%</span></div><div class="math-row"><span>= After-hours inquiries:</span><span id="mathAfterInq">16.0/mo</span></div><div class="math-row"><span>Current capture (form only ~15%):</span><span id="mathCapture">2.4</span></div><div class="math-row result"><span>= After-hours LOST:</span><span id="mathLost" style="color:var(--danger);">13.6/mo</span></div></div>
+      <div class="math-step"><div class="math-step-title">Step 3: Revenue Impact of Missed Leads</div><div class="math-row"><span>Lost leads &times; Close rate &times; Revenue per couple</span><span></span></div><div class="math-row result"><span>= Monthly gap from after-hours alone:</span><span id="mathAfterHoursGap" style="color:var(--danger);">&pound;5,616</span></div></div>
+      <div class="math-step"><div class="math-step-title">Step 4: Total Recovery (All Channels)</div><div class="math-row" id="mathGoogleRow"><span>Google Ads (new sign-ups):</span><span>+&pound;6,210/mo</span></div><div class="math-row" id="mathMetaRow"><span>Meta Ads optimisation:</span><span>+&pound;3,450/mo</span></div><div class="math-row" id="mathAIRow"><span>AI intake (after-hours recovery):</span><span>+&pound;4,762/mo</span></div><div class="math-row" id="mathWebRow"><span>Website conversion lift:</span><span>+&pound;2,484/mo</span></div><div class="math-row" id="mathCRMRow"><span>CRM &amp; follow-up automation:</span><span>+&pound;2,070/mo</span></div><div class="math-row big-result"><span>= TOTAL MONTHLY RECOVERY:</span><span id="mathTotalRecovery">&pound;18,976/mo</span></div></div>
+      <p style="font-size:0.85rem;color:var(--slate);margin-top:12px;font-style:italic;text-align:center;">These projections are based on industry benchmarks from professional services marketing.</p>
+    </div>
+
+    <!-- Results Panel -->
+    <div class="results-grid" style="margin-top:32px;">
+      <div class="calc-result-card"><div class="calc-result-value danger" id="resultLost">&pound;17,640</div><div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--slate);font-weight:600;margin-top:8px;">Currently Losing / Mo</div></div>
+      <div class="calc-result-card"><div class="calc-result-value success" id="resultRecover">&pound;18,976</div><div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--slate);font-weight:600;margin-top:8px;">Could Recover / Mo</div></div>
+      <div class="calc-result-card"><div class="calc-result-value" style="color:var(--brand-blue);" id="resultClients">14</div><div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--slate);font-weight:600;margin-top:8px;">New Couples / Mo</div></div>
+      <div class="calc-result-card"><div class="calc-result-value gold" id="resultROI">4.8x</div><div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--slate);font-weight:600;margin-top:8px;">Projected ROI</div></div>
+    </div>
+
+    <div class="calc-total" style="margin-top:24px;">
+      <div style="color:rgba(255,255,255,0.6);font-size:0.7rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;font-weight:600;">Annual Opportunity</div>
+      <div class="calc-total-value" id="resultAnnual">&pound;227,712</div>
+      <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-top:12px;" id="resultGutpunch">That's couples Divorce-Online and Lawhive are signing up right now &mdash; with an inferior product.</p>
+    </div>
+  </div>
+
+
+  <!-- PLAYBOOK -->
+  <section class="reveal">
+    <div class="section-header"><div class="section-label">The Playbook</div><h2 class="section-title">How to Close Each Gap (Step by Step)</h2><p class="section-subtitle">Here's exactly how to fix each gap yourself &mdash; no gatekeeping. Fair warning: marketing isn't a one-time project. It's ongoing. These steps don't stop.</p></div>
+
+    <!-- GAP 1 -->
+    <div class="playbook-card reveal">
+      <div class="playbook-header"><div class="playbook-number">01</div><div class="playbook-title-group"><h3>Get Found &mdash; Google Ads for Prenup Searches</h3><p class="playbook-problem">The Problem: You're invisible on Google when couples actively search for prenuptial agreements.</p></div></div>
+      <div class="playbook-content">
+        <div class="playbook-diy">
+          <div class="playbook-diy-title">&#128736;&#65039; DIY Fix</div>
+          <div class="playbook-phase">Setup (One-Time):</div>
+          <div class="playbook-step"><div class="playbook-step-num">1</div><span>Create Google Ads account, set up conversion tracking (form fills, consultation bookings)</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">2</div><span>Research keywords: "prenuptial agreement UK", "prenup cost UK", "online prenup service", "fixed fee prenup"</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">3</div><span>Build 3-5 ad groups by intent: prenup seekers, cost comparers, postnup/cohab seekers</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">4</div><span>Write 3 ad variations per group &mdash; headline with "&pound;690/person", "Both Partners Included", "5-Star Rated"</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">5</div><span>Create dedicated landing pages per service (not just homepage)</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">6</div><span>Build negative keywords list (divorce, free template, DIY prenup)</span></div>
+          <div class="playbook-phase">Weekly (Every Week, Forever):</div>
+          <div class="playbook-step"><div class="playbook-step-num">7</div><span>Review search terms &mdash; add negatives for irrelevant queries</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">8</div><span>Pause underperforming ads, create fresh ad copy (platforms reward new creative)</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">9</div><span>Monitor competitor ads &mdash; what angles are Divorce-Online and Lawhive testing?</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">10</div><span>Check budget pacing and conversion tracking accuracy</span></div>
+          <div class="playbook-meta"><span>&#9200; Setup: 15-20 hrs</span><span>&#128260; Ongoing: 6-10 hrs/week FOREVER</span></div>
+        </div>
+        <div class="playbook-done-for-you">
+          <div class="playbook-dfy-title">&#10024; We Handle All of This:</div>
+          <ul class="playbook-dfy-list">
+            <li>Keyword research (500+ prenup/postnup/cohab terms analysed)</li>
+            <li>Campaign architecture &amp; ad group structure</li>
+            <li>Ad copywriting &mdash; 3-5 variations leveraging your 5-star rating</li>
+            <li>Dedicated landing page design &amp; optimisation</li>
+            <li>Conversion tracking setup &amp; monitoring</li>
+            <li>Negative keyword management (weekly)</li>
+            <li>Bid adjustments &amp; budget optimisation (weekly)</li>
+            <li>Fresh ad creative every week</li>
+            <li>A/B testing headlines, CTAs, extensions</li>
+            <li>Competitor ad monitoring (Divorce-Online, Lawhive, law firms)</li>
+            <li>Monthly performance reporting with cost-per-signup metrics</li>
+            <li>Quarterly strategy reviews</li>
+          </ul>
+          <p class="playbook-dfy-result">You approve the budget and take the consultation bookings. That's it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAP 2 -->
+    <div class="playbook-card reveal">
+      <div class="playbook-header"><div class="playbook-number">02</div><div class="playbook-title-group"><h3>Get Answered &mdash; 24/7 AI Inquiry Agent</h3><p class="playbook-problem">The Problem: 40%+ of couples browse prenup options after hours. Your contact form captures ~15% of them.</p></div></div>
+      <div class="playbook-content">
+        <div class="playbook-diy">
+          <div class="playbook-diy-title">&#128736;&#65039; DIY Fix</div>
+          <div class="playbook-phase">Setup (One-Time):</div>
+          <div class="playbook-step"><div class="playbook-step-num">1</div><span>Research live chat / chatbot solutions (Intercom, Drift, Tidio)</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">2</div><span>Write intake scripts for: prenup inquiries, postnup, cohabitation, wills, pricing</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">3</div><span>Build qualification logic &mdash; timeline to wedding, complexity, assets</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">4</div><span>Configure lead routing to your CRM and booking system</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">5</div><span>Test with mock inquiries across all service types</span></div>
+          <div class="playbook-phase">Weekly (Every Week, Forever):</div>
+          <div class="playbook-step"><div class="playbook-step-num">6</div><span>Review chat transcripts for missed opportunities</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">7</div><span>Update scripts based on new FAQ patterns from couples</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">8</div><span>Monitor lead delivery &mdash; are all inquiries reaching your team?</span></div>
+          <div class="playbook-meta"><span>&#9200; Setup: 10-15 hrs</span><span>&#128260; Ongoing: 2-3 hrs/week FOREVER</span></div>
+        </div>
+        <div class="playbook-done-for-you">
+          <div class="playbook-dfy-title">&#10024; We Handle All of This:</div>
+          <ul class="playbook-dfy-list">
+            <li>AI inquiry agent setup for your specific services</li>
+            <li>Custom intake scripts for prenups, postnups, cohab, wills</li>
+            <li>Qualification logic (timeline, complexity, asset level)</li>
+            <li>Calendar integration for direct consultation booking</li>
+            <li>CRM integration for seamless lead delivery</li>
+            <li>30+ language support &mdash; perfect for international couples in London</li>
+            <li>&lt;5 minute response time, 24/7/365</li>
+            <li>Conversation logging &amp; transcription</li>
+            <li>Lead scoring &amp; prioritisation</li>
+            <li>Ongoing optimisation as inquiry patterns evolve</li>
+            <li>No retraining when "staff" turns over &mdash; AI doesn't quit</li>
+          </ul>
+          <p class="playbook-dfy-result">You take qualified consultation bookings. That's it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAP 3 -->
+    <div class="playbook-card reveal">
+      <div class="playbook-header"><div class="playbook-number">03</div><div class="playbook-title-group"><h3>Get Chosen &mdash; Website &amp; SEO Optimisation</h3><p class="playbook-problem">The Problem: Visitors land on wenup.co.uk but leave without booking a free consultation.</p></div></div>
+      <div class="playbook-content">
+        <div class="playbook-diy">
+          <div class="playbook-diy-title">&#128736;&#65039; DIY Fix</div>
+          <div class="playbook-phase">Setup (One-Time):</div>
+          <div class="playbook-step"><div class="playbook-step-num">1</div><span>Run PageSpeed Insights &mdash; optimise loading time (mobile crucial)</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">2</div><span>Add clear CTAs on every page &mdash; "Book Free Consultation" above the fold</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">3</div><span>Surface trust signals prominently: 5-star Trustpilot, FT/Telegraph, 66+ reviews</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">4</div><span>Optimise title tags/meta descriptions for prenup keywords by location</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">5</div><span>Build location pages beyond London &mdash; Manchester, Birmingham, Bristol</span></div>
+          <div class="playbook-phase">Weekly (Every Week, Forever):</div>
+          <div class="playbook-step"><div class="playbook-step-num">6</div><span>Publish fresh content &mdash; prenup guides, FAQs, myth-busting articles</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">7</div><span>Monitor rankings for target keywords and competitor content</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">8</div><span>Request and respond to Trustpilot/Google reviews</span></div>
+          <div class="playbook-meta"><span>&#9200; Setup: 20-30 hrs</span><span>&#128260; Ongoing: 6-10 hrs/week FOREVER</span></div>
+        </div>
+        <div class="playbook-done-for-you">
+          <div class="playbook-dfy-title">&#10024; We Handle All of This:</div>
+          <ul class="playbook-dfy-list">
+            <li>Technical SEO audit &amp; fixes</li>
+            <li>Page speed optimisation</li>
+            <li>Mobile experience optimisation</li>
+            <li>CTA placement &amp; conversion-focused design</li>
+            <li>Trust signal strategy (leveraging FT, Telegraph, Sky News coverage)</li>
+            <li>Location-specific landing pages across England &amp; Wales</li>
+            <li>Weekly content publishing (guides, FAQs, myth-busting)</li>
+            <li>Google Business Profile management</li>
+            <li>Review generation &amp; response strategy</li>
+            <li>Backlink building &amp; wedding industry outreach</li>
+            <li>Ranking monitoring &amp; reporting</li>
+            <li>Quarterly competitive content analysis</li>
+          </ul>
+          <p class="playbook-dfy-result">Your site climbs while you scale the platform. That's it.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAP 4 -->
+    <div class="playbook-card reveal">
+      <div class="playbook-header"><div class="playbook-number">04</div><div class="playbook-title-group"><h3>Get Closed &mdash; CRM &amp; Follow-Up Automation</h3><p class="playbook-problem">The Problem: Couples book free consultations but don't all sign up. Without nurturing, warm leads go cold.</p></div></div>
+      <div class="playbook-content">
+        <div class="playbook-diy">
+          <div class="playbook-diy-title">&#128736;&#65039; DIY Fix</div>
+          <div class="playbook-phase">Setup (One-Time):</div>
+          <div class="playbook-step"><div class="playbook-step-num">1</div><span>Choose CRM (HubSpot, Pipedrive, or integrate with existing platform)</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">2</div><span>Map intake workflow: inquiry &rarr; free consult &rarr; sign-up &rarr; lawyer matching &rarr; completion</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">3</div><span>Build automated email sequences: immediate confirmation, 24hr follow-up, 72hr nudge</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">4</div><span>Create nurture content: "5 Things to Discuss Before Your Prenup", Trustpilot highlights</span></div>
+          <div class="playbook-phase">Weekly (Every Week, Forever):</div>
+          <div class="playbook-step"><div class="playbook-step-num">5</div><span>Review pipeline &mdash; who booked a consult but hasn't signed up?</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">6</div><span>Check automations fired correctly; no leads slipped through</span></div>
+          <div class="playbook-step"><div class="playbook-step-num">7</div><span>Run "stale lead" reactivation campaigns for couples who went quiet</span></div>
+          <div class="playbook-meta"><span>&#9200; Setup: 15-20 hrs</span><span>&#128260; Ongoing: 4-6 hrs/week FOREVER</span></div>
+        </div>
+        <div class="playbook-done-for-you">
+          <div class="playbook-dfy-title">&#10024; We Handle All of This:</div>
+          <ul class="playbook-dfy-list">
+            <li>CRM setup &amp; configuration</li>
+            <li>Intake workflow mapping across all services</li>
+            <li>Automated email sequences (immediate, 24hr, 72hr, 7-day)</li>
+            <li>SMS follow-up automation</li>
+            <li>Task &amp; reminder system for your team</li>
+            <li>Lead source tracking (which channel produces sign-ups?)</li>
+            <li>Pipeline reporting &amp; analytics</li>
+            <li>Stale lead reactivation campaigns</li>
+            <li>Template creation with your brand voice</li>
+            <li>Ongoing sequence refinement based on conversion data</li>
+            <li>Monthly conversion funnel analysis</li>
+          </ul>
+          <p class="playbook-dfy-result">Couples get nurtured automatically. You just review the sign-up numbers.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;max-width:700px;margin:40px auto 0;padding:28px;background:var(--warm-white);border-radius:16px;border:1px solid var(--border);">
+      <p style="font-size:1rem;color:var(--ink);line-height:1.7;">You can absolutely do this yourself &mdash; many companies do. But be honest about the time commitment: this isn't a weekend project. It's <strong>20-35 hours/week of ongoing work, forever.</strong> That's a part-time job on top of scaling Wenup. If you'd rather spend that time improving the platform and serving couples, that's exactly why we exist.</p>
+      <p style="font-size:0.85rem;color:var(--slate);font-style:italic;margin-top:12px;">These are the same frameworks we use with every client. No secrets, no gatekeeping &mdash; just the reality of what it takes.</p>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="reveal">
+    <div class="section-header"><div class="section-label">What Changes</div><h2 class="section-title">Your Platform, Amplified</h2></div>
+    <div class="vision-block">
+      <p style="color:var(--slate);font-size:1rem;line-height:1.7;">You and James built Wenup to make prenups amicable, affordable, and digital. You've been featured in the Financial Times, the Telegraph, Sky News, and The New Yorker. You have a perfect 5.0 Trustpilot rating. We've spent a decade perfecting performance marketing for services like yours.</p>
+      <blockquote>"You do what you're known for. We do what we're known for."</blockquote>
+      <div class="vision-arrows">
+        <div class="vision-arrow">&rarr; You won't manage Google Ads campaigns.</div>
+        <div class="vision-arrow">&rarr; You won't A/B test ad creative weekly.</div>
+        <div class="vision-arrow">&rarr; You won't obsess over keyword bids and quality scores.</div>
+      </div>
+      <p style="color:var(--ink);font-size:1.05rem;font-weight:600;margin-top:16px;">You'll keep building the UK's best prenup platform. Your pipeline will grow.</p>
+      <p style="color:var(--slate);font-size:0.95rem;margin-top:8px;">That's the partnership.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <div style="position:relative;z-index:1;">
+      <p class="daily-urgency" id="dailyUrgency">Revenue walking out the door TODAY: &pound;580</p>
+      <h2 class="cta-title">Let's Fix This, Toby</h2>
+      <p style="color:rgba(255,255,255,0.8);font-size:1.05rem;margin-bottom:32px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.7;">15 minutes. No commitment. We'll walk you through the three highest-impact moves Wenup can make in Q1 2026.</p>
+
+      <div class="why-grid">
+        <div class="why-col you"><h4>You Focus On</h4><ul><li>&rarr; Building the platform</li><li>&rarr; Customer success &amp; partnerships</li><li>&rarr; Lawyer network growth</li><li>&rarr; Being the prenup company couples trust</li></ul></div>
+        <div class="why-col us"><h4>We Handle</h4><ul><li>&rarr; Google Ads (your biggest gap)</li><li>&rarr; Meta Ads optimisation</li><li>&rarr; AI intake for 24/7 engagement</li><li>&rarr; Website conversion optimisation</li><li>&rarr; CRM &amp; follow-up automation</li><li>&rarr; Everything else marketing</li></ul></div>
+      </div>
+      <p style="color:rgba(255,255,255,0.7);font-size:0.95rem;margin:24px 0;"><strong style="color:var(--white);">Result:</strong> More of the right couples finding Wenup. None of the marketing headaches.</p>
+      <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;font-style:italic;margin-bottom:32px;">We've helped companies like yours recover six figures in missed revenue &mdash; without adding a single hour to their workweek.</p>
+
+      <div class="calendly-container">
+        <h3 style="text-align:center;color:var(--white);margin-bottom:24px;font-size:1.3rem;">Book Your 15-Minute Strategy Call</h3>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <p style="text-align:center;margin-top:16px;font-size:0.85rem;color:rgba(255,255,255,0.7);">Widget not loading? <a href="https://calendly.com/heidi-schwende/2026-performance-marketing-assessment" target="_blank" style="color:var(--accent-light);">Book directly here &rarr;</a></p>
+      </div>
+      <p style="color:rgba(255,255,255,0.5);font-size:0.8rem;margin-top:24px;">No long-term contracts. Month-to-month. Results-focused.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-brand"><div class="footer-logo">M</div><span class="footer-name">WSI Mortar Metrics</span></div>
+    <p style="color:var(--slate);font-size:0.85rem;">Prepared by Heidi Veronica Schwende<br><a href="https://utopiads.com/" style="color:var(--brand-blue);">utopiads.com</a></p>
+  </footer>
+
+</div>
+
+<script>
+window.addEventListener('scroll', function() {
+  var scrollTop = window.scrollY;
+  var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  var scrollPercent = (scrollTop / docHeight) * 100;
+  document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+});
+
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+function getEl(id) { return document.getElementById(id); }
+
+function formatGBP(n) {
+  return '\u00A3' + Math.round(n).toLocaleString('en-GB');
+}
+
+function calculate() {
+  var inquiries = parseInt(getEl('inquiries').value);
+  var afterHoursPct = parseInt(getEl('afterHours').value) / 100;
+  var caseValue = parseInt(getEl('caseValue').value);
+  var closeRate = parseInt(getEl('closeRate').value) / 100;
+
+  var googleOn = getEl('toggleGoogle').checked;
+  var metaOn = getEl('toggleMeta').checked;
+  var aiOn = getEl('toggleAI').checked;
+  var websiteOn = getEl('toggleWebsite').checked;
+  var crmOn = getEl('toggleCRM').checked;
+
+  var googleSpend = parseInt(getEl('googleSpend').value);
+  var metaSpend = parseInt(getEl('metaSpend').value);
+
+  getEl('inquiriesVal').textContent = inquiries;
+  getEl('afterHoursVal').textContent = Math.round(afterHoursPct * 100) + '%';
+  getEl('caseValueVal').textContent = formatGBP(caseValue);
+  getEl('closeRateVal').textContent = Math.round(closeRate * 100) + '%';
+  getEl('googleSpendVal').textContent = formatGBP(googleSpend);
+  getEl('metaSpendVal').textContent = formatGBP(metaSpend);
+
+  getEl('googleSpendRow').style.display = googleOn ? 'block' : 'none';
+  getEl('metaSpendRow').style.display = metaOn ? 'block' : 'none';
+
+  var monthlyInquiries = inquiries;
+  var currentSignups = monthlyInquiries * closeRate;
+  var afterHoursInq = monthlyInquiries * afterHoursPct;
+  var currentCapture = afterHoursInq * 0.15;
+  var afterHoursLost = afterHoursInq - currentCapture;
+  var afterHoursGap = afterHoursLost * closeRate * caseValue;
+
+  var googleSignups = googleOn ? (googleSpend / 1500) * 4.5 : 0;
+  var googleRevenue = googleOn ? googleSignups * caseValue : 0;
+
+  var metaBaseSignups = metaOn ? (metaSpend / 2000) * 3.5 : 0;
+  var metaRevenue = metaOn ? metaBaseSignups * caseValue : 0;
+
+  var aiRecovery = aiOn ? afterHoursLost * 0.35 : 0;
+  var aiRevenue = aiOn ? aiRecovery * closeRate * caseValue : 0;
+
+  var websiteLift = websiteOn ? monthlyInquiries * 0.20 * closeRate * caseValue * 0.3 : 0;
+  var crmLift = crmOn ? monthlyInquiries * 0.15 * closeRate * caseValue * 0.25 : 0;
+
+  var totalRecovery = googleRevenue + metaRevenue + aiRevenue + websiteLift + crmLift;
+  var totalNewClients = Math.round(totalRecovery / caseValue);
+  var totalSpend = (googleOn ? googleSpend : 0) + (metaOn ? metaSpend : 0) + (aiOn ? 2000 : 0) + (websiteOn ? 500 : 0) + (crmOn ? 500 : 0);
+  var roi = totalSpend > 0 ? (totalRecovery / totalSpend) : 0;
+  var annualOpportunity = totalRecovery * 12;
+  var monthlyLoss = afterHoursGap + (monthlyInquiries * 0.3 * closeRate * caseValue);
+
+  getEl('mathInquiries').textContent = monthlyInquiries;
+  getEl('mathCloseRate').textContent = '\u00D7 ' + Math.round(closeRate * 100) + '%';
+  getEl('mathCurrentSignups').textContent = currentSignups.toFixed(1);
+  getEl('mathInq2').textContent = monthlyInquiries;
+  getEl('mathAfterHrs').textContent = '\u00D7 ' + Math.round(afterHoursPct * 100) + '%';
+  getEl('mathAfterInq').textContent = afterHoursInq.toFixed(1) + '/mo';
+  getEl('mathCapture').textContent = currentCapture.toFixed(1);
+  getEl('mathLost').textContent = afterHoursLost.toFixed(1) + '/mo';
+  getEl('mathAfterHoursGap').textContent = formatGBP(afterHoursGap);
+
+  getEl('mathGoogleRow').innerHTML = '<span>Google Ads (new sign-ups):</span><span>' + (googleOn ? '+' + formatGBP(googleRevenue) + '/mo' : 'Off') + '</span>';
+  getEl('mathMetaRow').innerHTML = '<span>Meta Ads optimisation:</span><span>' + (metaOn ? '+' + formatGBP(metaRevenue) + '/mo' : 'Off') + '</span>';
+  getEl('mathAIRow').innerHTML = '<span>AI intake (after-hours recovery):</span><span>' + (aiOn ? '+' + formatGBP(aiRevenue) + '/mo' : 'Off') + '</span>';
+  getEl('mathWebRow').innerHTML = '<span>Website conversion lift:</span><span>' + (websiteOn ? '+' + formatGBP(websiteLift) + '/mo' : 'Off') + '</span>';
+  getEl('mathCRMRow').innerHTML = '<span>CRM &amp; follow-up automation:</span><span>' + (crmOn ? '+' + formatGBP(crmLift) + '/mo' : 'Off') + '</span>';
+  getEl('mathTotalRecovery').textContent = formatGBP(totalRecovery) + '/mo';
+
+  getEl('resultLost').textContent = formatGBP(monthlyLoss);
+  getEl('resultRecover').textContent = formatGBP(totalRecovery);
+  getEl('resultClients').textContent = totalNewClients;
+  getEl('resultROI').textContent = roi.toFixed(1) + 'x';
+  getEl('resultAnnual').textContent = formatGBP(annualOpportunity);
+  getEl('resultGutpunch').textContent = "That\u2019s couples Divorce-Online and Lawhive are signing up right now \u2014 with an inferior product.";
+  getEl('dailyUrgency').textContent = 'Revenue walking out the door TODAY: ' + formatGBP(monthlyLoss / 30);
+
+  document.querySelectorAll('.hero-stat-value.danger')[0].textContent = formatGBP(monthlyLoss);
+  document.querySelectorAll('.hero-stat-value.success')[0].textContent = formatGBP(totalRecovery);
+  document.querySelectorAll('.hero-stat-value.gold')[0].textContent = roi.toFixed(1) + 'x';
+}
+
+['inquiries', 'afterHours', 'caseValue', 'closeRate', 'googleSpend', 'metaSpend'].forEach(function(id) {
+  getEl(id).addEventListener('input', calculate);
+});
+
+calculate();
+</script>
+</body>
+</html>
